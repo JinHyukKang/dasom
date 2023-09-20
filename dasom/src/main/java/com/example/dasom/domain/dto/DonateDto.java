@@ -13,7 +13,7 @@ public class DonateDto {
 
     private Long donateNumber;
     private Long userNumber;
-    private Long donatewriteNumber;
+    private Long donateWriteNumber;
     private Long donateAmount;
     private Date donateDate;
 

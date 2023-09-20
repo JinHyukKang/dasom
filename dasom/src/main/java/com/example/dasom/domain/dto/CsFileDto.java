@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class CsFileDto {
-    private Long csfileNumber;
-    private Long cswriteNumber;
-    private String csfileName;
-    private String csfileUploadPath;
-    private String csfileUuid;
+    private Long csFileNumber;
+    private Long csWriteNumber;
+    private String csFileName;
+    private String csFileUploadPath;
+    private String csFileUuid;
 }
