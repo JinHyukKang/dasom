@@ -3,6 +3,14 @@
 
 <configuration>
     <typeAliases>
+<!--        <typeAlias type="com.example.dasom.domain.dto.AdminDto" alias="adminDto"></typeAlias>-->
+<!--        <typeAlias type="com.example.dasom.domain.dto.CsFileDto" alias="csFileDto"></typeAlias>-->
+<!--        <typeAlias type="com.example.dasom.domain.dto.CsWriteDto" alias="csWriteDto"></typeAlias>-->
+<!--        <typeAlias type="com.example.dasom.domain.dto.DonateFileDto" alias="donateFileDto"></typeAlias>-->
+<!--        <typeAlias type="com.example.dasom.domain.dto.DonateWriteDto" alias="donateWriteDto"></typeAlias>-->
+        <typeAlias type="com.example.dasom.domain.dto.DonateWriteDto" alias="donateWriteDto"></typeAlias>
+        <typeAlias type="com.example.dasom.domain.dto.CsDto" alias="CsDto"></typeAlias>
 
+        <typeAlias type="com.example.dasom.domain.vo.DonateWriteVo" alias="donateWriteVo"></typeAlias>
     </typeAliases>
 </configuration>
