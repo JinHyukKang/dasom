@@ -11,9 +11,11 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class DonateWriteDto {
-   private Long donatewriteNumber;
-   private Long adminNumber;
-   private String donatewriteTitle;
-   private String donatewriteStatus;
-   private Date donatewriteDate;
+
+    private Long donateWriteNumber;
+    private Long adminNumber;
+    private String donateWriteTitle;
+    private String donateWriteStatus;
+    private Date donateWriteDate;
+
 }
