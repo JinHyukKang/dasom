@@ -16,6 +16,7 @@
 
 
         <typeAlias type="com.example.dasom.domain.vo.UserVo" alias="userVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.DonateWriteVo" alias="donateWriteVo"/>
 
     </typeAliases>
 </configuration>

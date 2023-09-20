@@ -12,7 +12,7 @@ import java.util.Date;
 public class DonateWriteVo {
 //    private Long donatewriteNumber;
 //    private Long adminNumber;
-    private String donatewriteTitle;
+    private String donateWriteTitle;
 //    private String donatewriteStatus;
 //    private Date donatewriteDate;
 //    private Long donatefileNumber;
