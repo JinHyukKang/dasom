@@ -10,17 +10,17 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class CsWriteDto {
-    private Long cswriteNumber;
+    private Long csWriteNumber;
     private Long adminNumber;
-    private String cswriteTitle;
-    private Date cswriteRecruitStart;
-    private Date cswriteRecruitEnd;
-    private String cswriteCount;
-    private String cswritePlace;
-    private Date cswriteActStart;
-    private Date cswriteActEnd;
-    private Long cswriteStatus;
-    private Date cswriteDate;
-    private String cswriteManager;
-    private String cswritePhone;
+    private String csWriteTitle;
+    private Date csWriteRecruitStart;
+    private Date csWriteRecruitEnd;
+    private String csWriteCount;
+    private String csWritePlace;
+    private Date csWriteActStart;
+    private Date csWriteActEnd;
+    private Long csWriteStatus;
+    private Date csWriteDate;
+    private String csWriteManager;
+    private String csWritePhone;
 }

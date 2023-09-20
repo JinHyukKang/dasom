@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class DonateFileDto {
-    private Long donatefileNumber;
-    private Long donatewriteNumber;
-    private String donatefileName;
-    private String donatefileUploadPath;
-    private String donatefileUuid;
+    private Long donateFileNumber;
+    private Long donateWriteNumber;
+    private String donateFileName;
+    private String donateFileUploadPath;
+    private String donateFileUuid;
 }

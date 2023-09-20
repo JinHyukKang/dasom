@@ -4,17 +4,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.example.dasom.domain.dto.UserDto" alias="userDto"/>
-<<<<<<< HEAD
-        <typeAlias type="com.example.dasom.domain.dto.AdminDto" alias="adminDto"></typeAlias>
-        <typeAlias type="com.example.dasom.domain.dto.CsFileDto" alias="csFileDto"></typeAlias>
-        <typeAlias type="com.example.dasom.domain.dto.CsWriteDto" alias="csWriteDto"></typeAlias>
-        <typeAlias type="com.example.dasom.domain.dto.DonateFileDto" alias="donateFileDto"></typeAlias>
-        <typeAlias type="com.example.dasom.domain.dto.DonateWriteDto" alias="donateWriteDto"></typeAlias>
 
-        <typeAlias type="com.example.dasom.domain.vo.UserVo" alias="userVo"/>
-
-
-=======
         <typeAlias type="com.example.dasom.domain.dto.AdminDto" alias="adminDto"/>
         <typeAlias type="com.example.dasom.domain.dto.CsFileDto" alias="csFileDto"/>
         <typeAlias type="com.example.dasom.domain.dto.CsWriteDto" alias="csWriteDto"/>
@@ -22,7 +12,7 @@
         <typeAlias type="com.example.dasom.domain.dto.DonateWriteDto" alias="donateWriteDto"/>
         <typeAlias type="com.example.dasom.domain.dto.DonateDto" alias="donateDto"/>
         <typeAlias type="com.example.dasom.domain.dto.CsDto" alias="csDto"/>
->>>>>>> main
+
 
         <typeAlias type="com.example.dasom.domain.vo.UserVo" alias="userVo"/>
     </typeAliases>

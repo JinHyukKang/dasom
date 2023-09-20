@@ -12,6 +12,6 @@ import java.util.Date;
 public class CsDto {
     private Long csNumber;
     private Long userNumber;
-    private Long cswriteNumber;
+    private Long csWriteNumber;
     private Date csApplyDate;
 }
