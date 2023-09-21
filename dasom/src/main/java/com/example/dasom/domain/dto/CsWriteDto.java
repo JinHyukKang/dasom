@@ -13,12 +13,12 @@ public class CsWriteDto {
     private Long csWriteNumber;
     private Long adminNumber;
     private String csWriteTitle;
-    private Date csWriteRecruitStart;
-    private Date csWriteRecruitEnd;
+    private String csWriteRecruitStart;
+    private String csWriteRecruitEnd;
     private String csWriteCount;
     private String csWritePlace;
-    private Date csWriteActStart;
-    private Date csWriteActEnd;
+    private String csWriteActStart;
+    private String csWriteActEnd;
     private Long csWriteStatus;
     private Date csWriteDate;
     private String csWriteManager;
