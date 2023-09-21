@@ -53,11 +53,20 @@ input[type='text'] {
 .form-wrap {
     width: 600px;
     margin: 100px auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .login-form{
     text-align: center;
 }
 
+#post-pw{
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 0 20px 0 ;
+}
 
 

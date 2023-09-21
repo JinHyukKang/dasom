@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dasom.mapper.DonateWriteMapper">
-
+    <insert id="insert">
+        <selectKey keyProperty="donateWriteNumber" order="BEFORE" resultType="long">
+            select SEQ_DONATEWRITE.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into TBL_DONATEWRITE (DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE)
+        values (#{donateWriteNumber},#{adminNumber},#{donateWriteTitle})
+    </insert>
 </mapper>
