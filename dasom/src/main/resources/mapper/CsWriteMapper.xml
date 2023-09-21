@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dasom.mapper.CsWriteMapper">
-
+    <insert id="insert">
+        <selectKey keyProperty="csWriteNumber" order="BEFORE" resultType="long">
+            select SEQ_CSWRITE.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into TBL_CSWRITE (CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+        CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_MANAGER, CSWRITE_PHONE)
+        values (#{csWriteNumber},#{adminNumber},#{csWriteTitle},#{csWriteRecruitStart},#{csWriteRecruitEnd},
+          #{csWriteCount}, #{csWritePlace}, #{csWriteActStart}, #{csWriteActEnd}, #{csWriteManager}, #{csWritePhone})
+    </insert>
 </mapper>

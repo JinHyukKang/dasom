@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지</title>
-    <link rel="stylesheet" href="resource/css/header.css">
+    <title>header</title>
+<!--    <link rel="stylesheet" href="/css/header.css">-->
 </head>
 <body>
-<header>
+<header class="header" th:fragment="header">
     <div class="main-header-container">
         <div class="main-header-logo">
-            <a href="mainPage.html" class="main-header-logo-tag">
-                <img src="../../../../../publishing/resource/img/logo.png" class="main-header-logo-img"
+            <a href="../mainPage.html" class="main-header-logo-tag">
+                <img src="/img/logo.png" class="main-header-logo-img"
                      alt="main-header-logo-img">
             </a>
         </div>
@@ -51,7 +51,7 @@
     </div>
 </header>
 
-<script defer src="../../../../../publishing/resource/js/mainPage.js"></script>
+<script defer src="/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 </body>
 </html>
