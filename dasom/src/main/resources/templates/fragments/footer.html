@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지</title>
-    <link rel="stylesheet" href="/css/mainPage.css">
+    <title>footer</title>
+<!--    <link rel="stylesheet" href="/css/footer.css">-->
 </head>
 <body>
 
-<footer>
+<footer class="footer" th:fragment="footer">
     <div class="inner">
         <p class="info">
             서울특별시 강서구 공항대로 59다길 109 (사)한국국제기아대책기구
@@ -27,7 +27,7 @@
     </div>
 </footer>
 
-<script defer src="/js/mainPage.js"></script>
+<script defer src="/js/footer.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 </body>
 </html>
