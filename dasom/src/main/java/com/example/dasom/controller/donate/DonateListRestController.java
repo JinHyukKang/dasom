@@ -1,7 +1,7 @@
 package com.example.dasom.controller.donate;
 
-import com.example.dasom.domain.vo.DonateWriteVo;
-import com.example.dasom.service.DonateService;
+import com.example.dasom.domain.vo.DonateListVo;
+import com.example.dasom.service.DonateListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +15,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/donations")
 @Slf4j
-public class DonateRestController {
-    private final DonateService donateService;
+public class DonateListRestController {
+    private final DonateListService donateListService;
 
     @GetMapping(value = {"/{status}"})
-    public List<DonateWriteVo> showList(@PathVariable("status") String status){
+    public List<DonateListVo> showList(@PathVariable("status") String status){
         log.info(status);
-        return donateService.showList(status);
+        return donateListService.showList(status);
     }
 
 

@@ -73,6 +73,7 @@ main {
     justify-content: center;
     align-items: end;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .open>.campaign-text {
@@ -88,6 +89,10 @@ hr {
     height: 3px;
     border: none;
     background-color: #39b54a;
+
+}
+#hr-end{
+    display: none;
 }
 
 /*  게시글 리스트  */

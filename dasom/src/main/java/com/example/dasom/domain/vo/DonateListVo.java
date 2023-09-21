@@ -9,7 +9,7 @@ import java.util.Date;
 @Component
 @Data
 @NoArgsConstructor
-public class DonateWriteVo {
+public class DonateListVo {
 //    private Long donatewriteNumber;
 //    private Long adminNumber;
     private String donateWriteTitle;

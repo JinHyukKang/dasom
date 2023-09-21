@@ -1,8 +1,7 @@
 package com.example.dasom.mapper;
 
-import com.example.dasom.domain.vo.DonateWriteVo;
+import com.example.dasom.domain.vo.DonateListVo;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,21 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
 @Transactional
-class DonateMapperTest {
+class DonateListMapperTest {
 
     @Autowired
-    DonateMapper donateMapper;
+    DonateListMapper donateListMapper;
 
-    DonateWriteVo donateWriteVo;
+    DonateListVo donateListVo;
 
     @Test
     void selectList() {
-        List<DonateWriteVo> donateWriteVo =  donateMapper.selectList("1");
-        assertThat(donateWriteVo.size()).isEqualTo(11);
+        List<DonateListVo> donateListVo =  donateListMapper.selectList("1");
+        assertThat(donateListVo.size()).isEqualTo(11);
     }
 }
