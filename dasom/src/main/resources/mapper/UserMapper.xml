@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.UserMapper">
+
+    <!--이우진 아이디찾기-->
+    <select id="findUserId" parameterType="UserDto" resultType="UserDto">
+        select *
+        from tbl_users
+        where user_name = #{userName}
+          and user_Phone = #{userPhone}
+          and user_Birth_Year = #{userBirthYear}
+          and user_Birth_Month = #{userBirthMonth}
+          and user_Birth_Day = #{userBirthDay}
+    </select>
+</mapper>
