@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,22 +14,22 @@
       <aside>
         <div class="aside-spacing"></div>
         <section class="">
-          <a class="member-a" href="/admin/adUser/adUser.html">
+          <a class="member-a" href="/admin/adUser">
             <div class="member-text">회원관리</div>
           </a>
         </section>
         <section class="board-mate">
-          <a class="board-mate-a" href="/admin/adDonationList/adDonationList.html">
+          <a class="board-mate-a" href="/admin/adDonationList">
             <div class="board-mate-text">후원금리스트</div>
           </a>
         </section>
         <section class="member">
-          <a class="board-free-a" href="/admin/adDonation/adDonation.html">
+          <a class="board-free-a" href="/admin/adDonation">
             <div class="board-free-text">후원 글 관리</div>
           </a>
         </section>
         <section class="board-qna">
-          <a class="board-qna-a" href="/admin/adCs/adCs.html">
+          <a class="board-qna-a" href="/admin/adCs">
             <div class="board-qna-text">봉사 글 관리</div>
           </a>
         </section>
@@ -45,23 +45,20 @@
           </div>
           <!-- 글쓰기버튼 -->
           <div class="section-top-write">
-            <a
-              class="section-top-write-a"
-              href="/admin/adWrite/adWrite.htmll"
-            >
-              <button class="button-write">글쓰기</button>
-            </a>
+
+              <button onclick="location.href='/donateWrite/write'" class="button-write">글쓰기</button>
+
           </div>
         </section>
 
         <!-- 검색바 -->
         <section class="section-search">
-          <form class="search-form" action="">
+          <form class="search-form" action="/admin/adDonation">
             <div class="search-inner">
-              <select class="search-dropdown" name="" campaign="">
+              <select class="search-dropdown" name="cate">
                 <option value="campaign">캠페인명</option>
               </select>
-              <input class="search-bar" type="text" />
+              <input class="search-bar" type="text" name="keyword" th:value="${param.keyword}"/>
               <button class="search-button" type="submit">검색</button>
             </div>
           </form>
@@ -80,11 +77,12 @@
           </div>
 
           <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
+          <div class="section-board-bottom" th:each="donate : ${donateWriteList}">
+            <div class="num" th:text="${donate.donateWriteNumber}">1</div>
+            <div class="campaign" th:text="${donate.donateWriteTitle}">캠페인명</div>
+            <div class="writeDate" th:text="${donate.donateWriteDate}">23.09.13</div>
+            <div class="state" th:if="${donate.donateWriteStatus} == '1'">모집중</div>
+            <div class="state" th:unless="${donate.donateWriteStatus} == '1'">모집중</div>
             <div class="execute">
               <button class="btngreen">수정</button>
             </div>
@@ -92,120 +90,41 @@
               <button class="btnred">마감</button>
             </div>
           </div>
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
-            <div class="execute">
-              <button class="btngreen">수정</button>
-            </div>
-            <div class="execute">
-              <button class="btnred">마감</button>
-            </div>
-          </div>
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
-            <div class="execute">
-              <button class="btngreen">수정</button>
-            </div>
-            <div class="execute">
-              <button class="btnred">마감</button>
-            </div>
-          </div>
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
-            <div class="execute">
-              <button class="btngreen">수정</button>
-            </div>
-            <div class="execute">
-              <button class="btnred">마감</button>
-            </div>
-          </div>
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
-            <div class="execute">
-              <button class="btngreen">수정</button>
-            </div>
-            <div class="execute">
-              <button class="btnred">마감</button>
-            </div>
-          </div>
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
-            <div class="execute">
-              <button class="btngreen">수정</button>
-            </div>
-            <div class="execute">
-              <button class="btnred">마감</button>
-            </div>
-          </div>
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
-            <div class="execute">
-              <button class="btngreen">수정</button>
-            </div>
-            <div class="execute">
-              <button class="btnred">마감</button>
-            </div>
-          </div>
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="num">1</div>
-            <div class="campaign">캠페인명</div>
-            <div class="writeDate">23.09.13</div>
-            <div class="state">모집중</div>
-            <div class="execute">
-              <button class="btngreen">수정</button>
-            </div>
-            <div class="execute">
-              <button class="btnred">마감</button>
-            </div>
-          </div>
+
         </section>
         <!-- 페이징  -->
         <section class="section-paging">
           <div class="page_wrap">
             <div class="page_nation">
-               <a class="arrow pprev" href="#">&lt;&lt;</a>
-               <a class="arrow prev" href="#">&lt;</a>
-               <a href="#" class="active">1</a>
-               <a href="#">2</a>
-               <a href="#">3</a>
-               <a href="#">4</a>
-               <a href="#">5</a>
-               <a href="#">6</a>
-               <a href="#">7</a>
-               <a href="#">8</a>
-               <a href="#">9</a>
-               <a href="#">10</a>
-               <a class="arrow next" href="#">&gt;</a>
-               <a class="arrow nnext" href="#">&gt;&gt;</a>
+              <!-- 이전 페이지 링크 -->
+              <a th:href="@{/admin/adDonation(page=${pageInfo.startPage-1}, keyword=${param.keyword})}"
+                 class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
+
+              <!-- 페이지 번호 순환 출력 -->
+              <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <a th:href="@{/admin/adDonation(page=${i}, keyword=${param.keyword})}" class="active"
+                   th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
+                <a th:href="@{/admin/adDonation(page=${i}, keyword=${param.keyword})}" class="active"
+                   th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
+              </th:block>
+
+              <!-- 다음 페이지 링크 -->
+              <a th:href="@{/admin/adDonation(page=${pageInfo.endPage+1}, keyword=${param.keyword})}"
+                 class="arrow next" th:if="${pageInfo.next}">&gt;</a>
             </div>
-         </div>
+          </div>
         </section>
       </main>
     </div>
+    <script th:inline="javascript">
+      // 페이지 로딩 시
+      $(document).ready(function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var keywordParam = urlParams.get('keyword');
+        if (keywordParam) {
+          $('.search-bar').val(decodeURIComponent(keywordParam)); // 검색어 입력란에 검색어 설정
+        }
+      });
+    </script>
   </body>
 </html>

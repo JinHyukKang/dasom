@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dasom.mapper.CsWriteMapper">
+    <insert id="insert">
+        <selectKey keyProperty="csWriteNumber" order="BEFORE" resultType="long">
+            select SEQ_CSWRITE.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into TBL_CSWRITE (CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+        CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_MANAGER, CSWRITE_PHONE)
+        values (#{csWriteNumber},#{adminNumber},#{csWriteTitle},#{csWriteRecruitStart},#{csWriteRecruitEnd},
+          #{csWriteCount}, #{csWritePlace}, #{csWriteActStart}, #{csWriteActEnd}, #{csWriteManager}, #{csWritePhone})
+    </insert>
 
+    <!--  총 봉사 모집글 개수  -->
+    <select id="selectTotal" resultType="_int" parameterType="string">
+        SELECT COUNT(CSWRITE_NUMBER)
+        FROM TBL_CSWRITE
+        WHERE CSWRITE_TITLE LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+    </select>
+    <select id="selectAll" resultType="csWriteDto">
+        SELECT RNUM,CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+        TO_CHAR(TO_DATE(CSWRITE_RECRUIT_START, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_START,
+        TO_CHAR(TO_DATE(CSWRITE_RECRUIT_END, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_END,
+        CSWRITE_COUNT, CSWRITE_PLACE,
+        TO_CHAR(TO_DATE(CSWRITE_ACT_START, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_ACT_START,
+        TO_CHAR(TO_DATE(CSWRITE_ACT_END, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_ACT_END,
+        TO_CHAR(CSWRITE_DATE, 'YYYY.MM.DD') AS CSWRITE_DATE,
+        CSWRITE_MANAGER,
+        CSWRITE_PHONE
+        FROM(
+            SELECT ROWNUM AS RNUM,CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+                CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END, CSWRITE_COUNT, CSWRITE_PLACE,
+                CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_DATE,
+                CSWRITE_MANAGER, CSWRITE_PHONE
+            FROM TBL_CSWRITE
+            <choose>
+                <when test="'campaign'.equals(searchVo.cate)">
+                    <![CDATA[
+                      WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%' AND ROWNUM <= #{criteria.page} * #{criteria.amount}
+                      ]]>
+                    ORDER BY CSWRITE_NUMBER
+                </when>
+                <otherwise>
+                    <![CDATA[
+                      WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+                      ]]>
+                    ORDER BY CSWRITE_NUMBER
+                </otherwise>
+            </choose>
+        )X
+        WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%' AND RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
 </mapper>
