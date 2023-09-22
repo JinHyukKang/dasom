@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/findId.css"/>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/headerLogin.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
 <!-- header -->
@@ -26,34 +29,45 @@
 
         <!-- form -->
         <div class="form-wrap">
-            <form class="find-id-form" action="" method="post" enctype="multipart/form-data">
+            <form class="find-id-form" action="findId" method="post" enctype="multipart/form-data">
                 <!-- name -->
                 <div class="form-group">
                     <label for="id-name">이름</label>
-                    <input type="text" id="id-name" name="find-id-name" required/>
+                    <input type="text" id="id-name" name="userName" required/>
                 </div>
                 <!-- phone-number -->
                 <div class="form-group">
                     <label for="id-name">휴대전화</label>
-                    <input type="text" id="id-phnum" name="find-id-phnum" required/>
+                    <input type="text" id="id-phnum" name="userPhone" required/>
                 </div>
                 <!-- birth -->
                 <div class="form-group">
                     <label for="id-birth">생년월일</label>
                     <div class="birth" id="birth-info">
-                        <select class="box" id="birth-year">
+                        <select class="box" id="birth-year" name="userBirthYear">
                             <option disabled selected>출생 연도</option>
                         </select>
-                        <select class="box" id="birth-month">
+                        <select class="box" id="birth-month" name="userBirthMonth">
                             <option disabled selected>월</option>
                         </select>
-                        <select class="box" id="birth-day">
+                        <select class="box" id="birth-day" name="userBirthDay">
                             <option disabled selected>일</option>
                         </select>
                     </div>
+                    <!--                    <p th:text="${userId}"></p>-->
+                    <div th:if="${userDto != null}">
+                        <!-- Display the user ID -->
+                        <p th:text="'조회된 아이디: ' + ${userDto.userId}"></p>
+                    </div>
+                    <div th:if="${userDto == null}">
+                        <!-- Display a message for no query result -->
+                        <p>조회 결과 없음</p>
+                    </div>
+
                 </div>
                 <!-- btn -->
                 <button type="submit" class="submit-btn">확인하기</button>
+
 
             </form>
         </div>
@@ -70,7 +84,7 @@
         // year 목록 생성되지 않았을 때 (최초 클릭 시)
         if (!isYearOptionExisted) {
             isYearOptionExisted = true
-            for (var i = 1940; i <= 2022; i++) {
+            for (var i = 1940; i <= 2023; i++) {
                 // option element 생성
                 const yearOption = document.createElement('option')
                 yearOption.setAttribute('value', i)
