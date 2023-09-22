@@ -12,4 +12,12 @@
           and user_Birth_Month = #{userBirthMonth}
           and user_Birth_Day = #{userBirthDay}
     </select>
+    <!--이우진 아이디찾기-->
+    <select id="findUserPassword" parameterType="UserDto" resultType="UserDto">
+        select *
+        from tbl_users
+        where user_password = #{userPassword}
+          and user_name = #{userName}
+          and user_Phone = #{userPhone}
+    </select>
 </mapper>
