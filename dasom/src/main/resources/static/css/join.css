@@ -399,10 +399,12 @@ main{
 .user-check-btn:hover{
     background-color:#16a729;
 }
-.countdown{
+.countdown {
     display: none;
     margin-left: 10px;
     color: rgb(242, 49, 49);
     font-size: 14px;
     margin-bottom: 20px;
 }
+
+
