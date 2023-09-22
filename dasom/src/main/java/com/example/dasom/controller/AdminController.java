@@ -1,11 +1,18 @@
 package com.example.dasom.controller;
 
+import com.example.dasom.domain.vo.Criteria;
+import com.example.dasom.domain.vo.PageVo;
+import com.example.dasom.domain.vo.SearchVo;
 import com.example.dasom.service.AdminService;
+import com.example.dasom.service.CsWriteService;
+import com.example.dasom.service.DonateWriteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminController {
 
     private final AdminService adminService;
+    private final DonateWriteService donateWriteService;
+    private final CsWriteService csWriteService;
 
 //    관리자 로그인 페이지 이동
     @GetMapping("/adLogin")
@@ -34,7 +43,11 @@ public class AdminController {
 
 //    관리자페이지 후원 관리 이동
     @GetMapping("/adDonation")
-    public String showAdDanation(){
+    public String showAdDonation(Criteria criteria, Model model, SearchVo searchVo,
+                                 @RequestParam(name = "keyword", required = false) String keyword){
+
+        model.addAttribute("donateWriteList", donateWriteService.findAll(criteria, searchVo));
+        model.addAttribute("pageInfo", new PageVo(donateWriteService.getTotal(keyword), criteria));
         return "admin/adDonation/adDonation";
     }
 
@@ -52,7 +65,12 @@ public class AdminController {
 
 //    관리자페이지 봉사글 관리 페이지 이동
     @GetMapping("/adCs")
-    public String showAdCs(){
+    public String showAdCs(Criteria criteria, Model model, SearchVo searchVo,
+                           @RequestParam(name = "keyword", required = false) String keyword){
+
+        model.addAttribute("csWriteList", csWriteService.findAll(criteria, searchVo));
+        model.addAttribute("pageInfo", new PageVo(csWriteService.getTotal(keyword), criteria));
+
         return "admin/adCs/adCs";
     }
 
