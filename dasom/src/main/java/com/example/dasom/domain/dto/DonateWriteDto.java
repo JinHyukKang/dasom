@@ -16,6 +16,6 @@ public class DonateWriteDto {
     private Long adminNumber;
     private String donateWriteTitle;
     private String donateWriteStatus;
-    private Date donateWriteDate;
+    private String donateWriteDate;
 
 }
