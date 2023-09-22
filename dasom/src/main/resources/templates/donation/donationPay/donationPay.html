@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/donation/donationPay.css" />
+    <link rel="stylesheet" href="/css/donationPay.css" />
 </head>
 <body> 
     <!-- header -->
-    <header class="header" th:replace="fragments/header :: header">
-    </header>
+<!--    <header class="header" th:replace="fragments/header :: header">-->
+<!--    </header>-->
     <!-- out:container -->
     <div class="container">
         <h1> 다솜아띠 후원 </h1>
       <!-- form -->
       <div class="form-wrap">
-        <form class="pay-form" action="" method="post" enctype="multipart/form-data">
+        <form class="pay-form" action="/donate/donationComplete" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="campaign">캠페인명</label>
             <input type="text" id="campaign" name="campaign" required />
@@ -28,8 +28,6 @@
             <label for="name">후원자명</label>
             <input type="text" id="name" name="name" required />
           </div>
-
-          
           <!-- btn -->
           <button id="check_module">후원하기</button>
         </form>
@@ -42,10 +40,10 @@
     $("#check_module").click(function () {
         event.preventDefault();
     // 생략가능
-      var IMP = window.IMP; 
+      var IMP = window.IMP;
     // 가맹점 식별코드 입력
-      IMP.init('imp44070752'); 
-    
+      IMP.init('imp44070752');
+
       // input 값 받을 변수 선언
     var payAmount = $('#pay-amount').val();
     var campaign = $('#campaign').val();
@@ -56,7 +54,7 @@
          pg: 'kakaopay.TC0ONETIME',
          pay_method: 'card',
          merchant_uid: 'merchant_' + new Date().getTime(),
-        
+
          // 결제창에서 보여질 이름
          name: '캠페인 명 : ' + campaign,
          // 후원금
@@ -83,6 +81,5 @@
    });
  </script>
 
-    
 </body>
 </html>

@@ -1,170 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/donation/donateList.css" />
-    <title>진행중 후원페이지</title>
-  </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/donationList.css"/>
+    <title>후원페이지</title>
+</head>
 
-  <body>
-    <main>
-      <!-- 상단 이미지 배너 -->
-      <section class="top-banner margin-auto">
+<body>
+<main>
+    <!-- 상단 이미지 배너 -->
+    <section class="top-banner margin-auto">
         <div class="banner-img">
-          <img class="banner-img-img" src="/img/가로사진.jpg" alt="" />
+            <img class="banner-img-img" src="/img/가로사진.jpg" alt=""/>
         </div>
         <div class="banner-text flex-center">후원</div>
-      </section>
+    </section>
 
-      <!-- 진행중인캠페인/종료된캠페인 -->
-      <section class="campaign-open-close margin-auto">
+    <!-- 진행중인캠페인/종료된캠페인 -->
+    <section class="campaign-open-close margin-auto">
         <div class="campaign open">
-          <div class="campaign-text">진행중캠페인</div>
-          <hr />
+            <div class="campaign-text" id="campaign-ongoing">진행중 캠페인</div>
+            <hr id="hr-on">
         </div>
         <div class="campaign close">
-          <div class="campaign-text">종료된캠페인</div>
+            <div class="campaign-text" id="campaign-end">종료된 캠페인</div>
+            <hr id="hr-end">
         </div>
-      </section>
+    </section>
 
-      <!-- 게시글 리스트 -->
-      <section class="board-items margin-auto">
+    <!-- 게시글 리스트 -->
+    <section class="board-items margin-auto">
         <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->  <!-- 게시글 시작 -->
-        <a href="" class="board-a">
-          <div class="board-item-box">
-            <div class="box-top">
-              <img class="box-top-img" src="/img/dog.jpeg" alt="" />
-              <div class="box-top-text flex-center">우진이의 가나여행</div>
-            </div>
-            <div class="box-bottom-donate">
-              <div class="bottom-donate-text">후원하기</div>
-            </div>
-          </div>
-        </a>
-        <!-- 게시글 끝 -->
 
-      </section>
-    </main>
-  </body>
+        <!-- 게시글 끝 -->
+    </section>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+<script>
+
+    //페이지 진입시 비동기 게시판 구성
+    myModule('0', showResult);
+
+    //비동기식 게시판 리스트 출력 함수
+    function myModule(status,callback) {
+        $.ajax({
+            url: `/donations/${status}`,
+            type: 'get',
+            dataType: 'json',
+            success: function (result) {
+                console.log("result");
+                if (callback) {
+                    callback(result);
+                }
+            },
+            error: function (a, b, c) {
+                console.log(c);
+            }
+        });
+    }
+
+    //html에 들어갈 양식
+    function showResult(result) {
+        let text = '';
+        result.forEach(r => {
+
+            text += `
+                <a href="" class="board-a">
+                    <div class="board-item-box">
+                        <div class="box-top">
+                            <img class="box-top-img" src="/img/dog.jpeg" alt=""/>
+                            <div class="box-top-text flex-center">${r.donateWriteTitle}</div>
+                        </div>
+                        <div class="box-bottom-donate">
+                            <div class="bottom-donate-text">후원하기</div>
+                        </div>
+                    </div>
+                </a>
+                    `;
+        });
+        $('.board-items').html(text);
+    }
+
+
+    //진행중 캠페인 클릭
+    $('#campaign-ongoing').on('click',function (){
+
+        //버튼 css 조정
+        document.getElementById("hr-end").style.display="none";
+        document.getElementById("hr-end").style.color="black";
+        document.getElementById("hr-on").style.display="";
+        document.getElementById("campaign-ongoing").style.color="#39b54a";
+        document.getElementById("campaign-end").style.color="#black";
+
+        myModule('0', showResult);
+    });
+
+    //종료된 캠페인 클릭
+    $('#campaign-end').on('click',function (){
+
+        //버튼 css 조정
+        document.getElementById("hr-on").style.display="none";
+        document.getElementById("hr-on").style.color="black";
+        document.getElementById("hr-end").style.display="block";
+        document.getElementById("campaign-ongoing").style.color="black";
+        document.getElementById("campaign-end").style.color="#39b54a";
+
+        myModule('1', showResult);
+    });
+
+</script>
+
+</body>
 </html>
