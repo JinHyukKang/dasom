@@ -9,7 +9,7 @@
     margin: 0;
     padding: 0;
     font-family: 'LINESeedKR-Bd';
-    /* border: 1px black solid; */
+     /*border: 1px black solid;*/
 }
 
 .flex-center {
@@ -106,10 +106,18 @@ main {
     gap: 10px;
 }
 
-.left-info-title>div {
+.left-info-title>div, .left-info-title-count>div{
     display: flex;
     align-items: center;
+}
+.left-info-title-count{
+    width: 100%;
+    height: 40px;
+    display: flex;
+}
 
+.recruit-count{
+    margin-right: 10px;
 }
 
 .right-info-title {

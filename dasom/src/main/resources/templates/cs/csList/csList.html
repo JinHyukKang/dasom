@@ -74,7 +74,7 @@
             result.forEach(r => {
 
                 text += `
-                <a href="" class="main-va-tag">
+                <a href="/cs/detail?csNum=${r.csWriteNumber}" class="main-va-tag">
                 <div class="main-va-list">
                     <div class="main-va-text">봉사지원</div>
                     <div class="main-va-content">[모집]${r.csWriteTitle}</div>
@@ -93,7 +93,6 @@
             });
             $('.board-items').html(text);
         }
-
 
         //진행중 캠페인 클릭
         $('#campaign-ongoing').on('click',function (){

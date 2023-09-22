@@ -8,11 +8,16 @@
         FROM TBL_DONATEWRITE
     </select>
 
-
     <select id="selectList" resultType="csWriteDto">
         SELECT *
         FROM TBL_CSWRITE
         WHERE CSWRITE_STATUS = '${status}'
+    </select>
+
+    <select id="selectDetail" resultType="csWriteDto">
+        SELECT *
+        FROM TBL_CSWRITE
+        WHERE CSWRITE_NUMBER = ${csNum}
     </select>
 
 

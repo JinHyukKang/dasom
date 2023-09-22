@@ -25,10 +25,20 @@ public class CsListService {
 
 //    봉사 리스트 전체 게시글 조회
     public List<CsWriteDto> showList(String status){
-
         return csListMapper.selectList(status);
     };
 
 
+//    봉사 게시물 상세보기
+    public CsWriteDto showDetail(Long csNum){
+       return csListMapper.selectDetail(csNum);
+    }
+
+//    봉사신청 완료페이지 이동
+    //입력받은 데이터 테이블에 넣고 이동!
+//    public String csComplete(){
+//
+//
+//    }
 
 }
