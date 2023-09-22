@@ -1,4 +1,4 @@
-package com.example.dasom.controller.mainPage;
+package com.example.dasom.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
