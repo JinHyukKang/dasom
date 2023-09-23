@@ -49,11 +49,11 @@
         <section class="section-search">
           <form class="search-form" action="">
             <div class="search-inner">
-              <select class="search-dropdown" name="" id="">
-                <option value="NAME">이름</option>
-                <option value="ID">아이디</option>
+              <select class="search-dropdown" name="cate" id="">
+                <option value="name">이름</option>
+                <option value="id">아이디</option>
               </select>
-              <input class="search-bar" type="text" />
+              <input class="search-bar" type="text" name="keyword" th:value="${param.keyword}"/>
               <button class="search-button" type="submit">검색</button>
             </div>
           </form>
@@ -73,110 +73,23 @@
           </div>
 
           <!-- 회원목록 데이터값 -->
-          <div
-            class="section-board-bottom"
-            onclick="location.href='/admin/adUserDetail/adUserDetail.html';"
-          >
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
+          <div th:each="user : ${userList}"
+            class="section-board-bottom">
+            <div class="member-num" th:text="${user.userNumber}">1</div>
+            <div class="id" th:text="${user.userId}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">abb60455</div>
+            <div class="name" th:text="${user.userName}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">이우진</div>
+            <div class="birth"
+            th:text="${user.userBirthYear}+'.'+${user.userBirthMonth}+'.'+${user.userBirthDay}"
+            >1962.05.07</div>
+            <div class="gender" th:text="${user.userName} == 'M' ? '남':'여'">남자</div>
+            <div class="join-date" th:text="${user.userJoinDate}">23.02.10</div>
             <div class="execute">
-              <button class="btnred">회원탈퇴</button>
+              <button class="btnred2" th:attr="data-userNumber=${user.userNumber}"
+                      onclick="deleteUser(this.getAttribute('data-userNumber'))">회원탈퇴</button>
             </div>
           </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
-            <div class="execute">
-              <button class="btnred">회원탈퇴</button>
-            </div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
-            <div class="execute">
-              <button class="btnred">회원탈퇴</button>
-            </div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
-            <div class="execute">
-              <button class="btnred">회원탈퇴</button>
-            </div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
-            <div class="execute">
-              <button class="btnred">회원탈퇴</button>
-            </div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
-            <div class="execute">
-              <button class="btnred">회원탈퇴</button>
-            </div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
-            <div class="execute">
-              <button class="btnred">회원탈퇴</button>
-            </div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="birth">1962.05.07</div>
-            <div class="gender">남자</div>
-            <div class="join-date">23.02.10</div>
-            <div class="execute">
-              <button class="btnred">회원탈퇴</button>
-            </div>
+          <div class="noResult-text" th:if="${#lists.isEmpty(userList)}">
+            <h3>일치하는 검색결과가 없습니다</h3>
           </div>
         </section>
 
@@ -184,24 +97,27 @@
         <section class="section-paging">
           <div class="page_wrap">
             <div class="page_nation">
-               <a class="arrow pprev" href="#">&lt;&lt;</a>
-               <a class="arrow prev" href="#">&lt;</a>
-               <a href="#" class="active">1</a>
-               <a href="#">2</a>
-               <a href="#">3</a>
-               <a href="#">4</a>
-               <a href="#">5</a>
-               <a href="#">6</a>
-               <a href="#">7</a>
-               <a href="#">8</a>
-               <a href="#">9</a>
-               <a href="#">10</a>
-               <a class="arrow next" href="#">&gt;</a>
-               <a class="arrow nnext" href="#">&gt;&gt;</a>
+              <!-- 이전 페이지 링크 -->
+              <a th:href="@{/admin/adUser(page=${pageInfo.startPage-1}, keyword=${param.keyword})}"
+                 class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
+
+              <!-- 페이지 번호 순환 출력 -->
+              <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <a th:href="@{/admin/adUser(page=${i}, keyword=${param.keyword})}" class="active"
+                   th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
+                <a th:href="@{/admin/adUser(page=${i}, keyword=${param.keyword})}" class="active"
+                   th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
+              </th:block>
+
+              <!-- 다음 페이지 링크 -->
+              <a th:href="@{/admin/adUser(page=${pageInfo.endPage+1}, keyword=${param.keyword})}"
+                 class="arrow next" th:if="${pageInfo.next}">&gt;</a>
             </div>
-         </div>
+          </div>
         </section>
       </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script defer src="/js/adMember.js"></script>
   </body>
 </html>

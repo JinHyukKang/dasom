@@ -7,4 +7,17 @@
         values (SEQ_DONATEFILE.NEXTVAL, #{donateWriteNumber},#{donateFileName},#{donateFileUploadPath},
                 #{donateFileUuid})
     </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_DONATEFILE
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </delete>
+
+    <select id="select" resultType="donateFileDto">
+        SELECT DONATEFILE_NUMBER, DONATEWRITE_NUMBER, DONATEFILE_NAME, DONATEFILE_UPLOAD_PATH,
+               DONATEFILE_UUID
+        FROM TBL_DONATEFILE
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </select>
+
 </mapper>

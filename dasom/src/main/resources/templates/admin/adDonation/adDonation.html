@@ -81,14 +81,23 @@
             <div class="num" th:text="${donate.donateWriteNumber}">1</div>
             <div class="campaign" th:text="${donate.donateWriteTitle}">캠페인명</div>
             <div class="writeDate" th:text="${donate.donateWriteDate}">23.09.13</div>
-            <div class="state" th:if="${donate.donateWriteStatus} == '1'">모집중</div>
-            <div class="state" th:unless="${donate.donateWriteStatus} == '1'">모집중</div>
+            <div class="state" th:text="${donate.donateWriteStatus == '1' ? '모집중' : '모집완료'}"></div>
             <div class="execute">
-              <button class="btngreen">수정</button>
+              <button class="btngreen" th:onclick="|location.href='@{/donateWrite/modify(donateWriteNumber=${donate.donateWriteNumber})}'|">수정</button>
             </div>
             <div class="execute">
-              <button class="btnred">마감</button>
+              <button class="btnred" th:attr="data-donateWriteNumber=${donate.donateWriteNumber}"
+                      onclick="deleteDonation(this.getAttribute('data-donateWriteNumber'))">삭제</button>
             </div>
+            <div class="execute"
+                 th:if="${donate.donateWriteStatus == '1'}">
+              <button th:attr="data-donateWriteNumber=${donate.donateWriteNumber}"
+                      onclick="recruitDonation(this.getAttribute('data-donateWriteNumber'))"
+                      class="btngray">마감</button>
+            </div>
+          </div>
+          <div class="noResult-text" th:if="${#lists.isEmpty(donateWriteList)}">
+            <h3>일치하는 검색결과가 없습니다</h3>
           </div>
 
         </section>
@@ -116,15 +125,7 @@
         </section>
       </main>
     </div>
-    <script th:inline="javascript">
-      // 페이지 로딩 시
-      $(document).ready(function() {
-        var urlParams = new URLSearchParams(window.location.search);
-        var keywordParam = urlParams.get('keyword');
-        if (keywordParam) {
-          $('.search-bar').val(decodeURIComponent(keywordParam)); // 검색어 입력란에 검색어 설정
-        }
-      });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script defer src="/js/adDonation.js"></script>
   </body>
 </html>

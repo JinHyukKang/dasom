@@ -133,6 +133,7 @@ main {
   border-bottom-right-radius: 6px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 
 /* 회원 목록 */

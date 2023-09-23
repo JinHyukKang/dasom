@@ -38,6 +38,6 @@ public class UserDto {
     String userAddr;
     String userAddExtra;
     String userAddDetail;
-    Date userJoinDate;
+    String userJoinDate;
 
 }

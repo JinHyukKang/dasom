@@ -3,6 +3,7 @@ package com.example.dasom.service;
 import com.example.dasom.domain.dto.CsWriteDto;
 import com.example.dasom.domain.dto.DonateWriteDto;
 import com.example.dasom.domain.vo.Criteria;
+import com.example.dasom.domain.vo.CsWriteVo;
 import com.example.dasom.domain.vo.SearchVo;
 import com.example.dasom.mapper.CsWriteMapper;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,12 +56,51 @@ public class CsWriteService {
 
         return csWriteMapper.selectAll(criteria, searchVo);
     }
-    //    후원글 총 개수 조회
+    //    봉사글 총 개수 조회
     public int getTotal(String keyword){
         return csWriteMapper.selectTotal(keyword);
     }
 
-}
+//    봉사글 상세조회(수정페이지 이동)
+    public CsWriteVo find(Long csWriteNumber){
+        if(csWriteNumber == null){
+            throw new IllegalArgumentException("봉사 글 번호 누락!!");
+        }
+        return Optional.ofNullable(csWriteMapper.select(csWriteNumber))
+                .orElseThrow(() -> {throw  new IllegalArgumentException("봉사 글 번호 누락!!");});
+    }
 
+//    봉사 글 삭제
+    public void remove(Long csWriteNumber){
+        if(csWriteNumber == null){
+            throw new IllegalArgumentException("봉사 글 번호 누락!");
+        }
+        csFileService.remove(csWriteNumber);
+        csWriteMapper.delete(csWriteNumber);
+    }
+
+//    봉사 글 수정
+    public void modify(CsWriteDto csWriteDto, MultipartFile file){
+        if(!file.isEmpty()){
+
+            csFileService.remove(csWriteDto.getCsWriteNumber());
+            try {
+                csFileService.registerAndSaveFile(file,csWriteDto.getCsWriteNumber());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        csWriteMapper.update(csWriteDto);
+    }
+
+//    봉사 글 모집 완료
+    public void recruit(Long csWriteNumber){
+        if(csWriteNumber == null){
+            throw new IllegalArgumentException("후원글 번호 누락!");
+        }
+        csWriteMapper.updateStatus(csWriteNumber);
+    }
+
+}
 
 

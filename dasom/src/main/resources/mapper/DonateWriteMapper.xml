@@ -38,6 +38,43 @@
                 </otherwise>
             </choose>
         )X
-        WHERE DONATEWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%' AND RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+        <choose>
+            <when test="'campaign'.equals(searchVo.cate)">
+                WHERE DONATEWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%' AND RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+                ORDER BY DONATEWRITE_NUMBER
+            </when>
+            <otherwise>
+                WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+                ORDER BY DONATEWRITE_NUMBER
+            </otherwise>
+        </choose>
+
     </select>
+
+    <!--    후원글 조회  -->
+    <select id="select" resultType="donateWriteVo">
+        SELECT W.DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE,
+               DONATEWRITE_STATUS, DONATEFILE_NUMBER,
+               DONATEFILE_NAME, DONATEFILE_UPLOAD_PATH, DONATEFILE_UUID
+        FROM TBL_DONATEWRITE W JOIN TBL_DONATEFILE F
+                            ON W.DONATEWRITE_NUMBER = F.DONATEWRITE_NUMBER
+        WHERE W.DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_DONATEWRITE
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </delete>
+
+    <update id="update">
+        UPDATE TBL_DONATEWRITE
+        SET DONATEWRITE_TITLE = #{donateWriteTitle}
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE TBL_DONATEWRITE
+        SET DONATEWRITE_STATUS = '0'
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </update>
 </mapper>

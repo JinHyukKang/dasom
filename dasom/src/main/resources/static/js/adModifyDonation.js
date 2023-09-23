@@ -67,3 +67,28 @@ function appendImg(files) {
     }
 }
 
+// 이미지 띄우기 처리
+displayAjax();
+
+function displayAjax() {
+    let donateWriteNumber = $('.board-num').val();
+    console.log("donateWriteNumber : " + donateWriteNumber)
+    $.ajax({
+        url: '/donateFile/imgList',
+        type: 'get',
+        data: { donateWriteNumber: donateWriteNumber },
+        success: function (fileList) {
+            console.log("fileList : " +fileList);
+            let text = '';
+
+            // console.log(file);
+            let fileName = fileList.donateFileUploadPath + '/' + fileList.donateFileUuid + '_' + fileList.donateFileName;
+            console.log("fileName : "+fileName);
+
+            text += `<img src="/donateFile/display?fileName=${fileName}" data-number=${fileList.donateFileNumber} class="post-image" />`; // 변수 이름을 fileName으로 수정
+
+
+            $('.post-images').html(text);
+        }
+    });
+}

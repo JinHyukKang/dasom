@@ -3,9 +3,7 @@ package com.example.dasom.controller;
 import com.example.dasom.domain.vo.Criteria;
 import com.example.dasom.domain.vo.PageVo;
 import com.example.dasom.domain.vo.SearchVo;
-import com.example.dasom.service.AdminService;
-import com.example.dasom.service.CsWriteService;
-import com.example.dasom.service.DonateWriteService;
+import com.example.dasom.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +23,8 @@ public class AdminController {
     private final AdminService adminService;
     private final DonateWriteService donateWriteService;
     private final CsWriteService csWriteService;
+    private final AdUserService adUserService;
+    private final AdDonateService adDonateService;
 
 //    관리자 로그인 페이지 이동
     @GetMapping("/adLogin")
@@ -53,13 +53,21 @@ public class AdminController {
 
 //    관리자페이지 회원관리 이동
     @GetMapping("/adUser")
-    public String showAdUser(){
+    public String showAdUser(Criteria criteria, Model model, SearchVo searchVo,
+                             @RequestParam(name = "keyword", required = false) String keyword){
+
+        model.addAttribute("userList", adUserService.findAll(criteria,searchVo));
+        model.addAttribute("pageInfo", new PageVo(adUserService.getTotal(keyword,searchVo),criteria));
+
         return "admin/adUser/adUser";
     }
 
 //    관리자페이지 후원금리스트 페이지 이동
     @GetMapping("/adDonationList")
-    public String showAdDonationList(){
+    public String showAdDonationList(Criteria criteria, Model model, SearchVo searchVo,
+                                     @RequestParam(name = "keyword", required = false) String keyword){
+        model.addAttribute("donateList", adDonateService.findAll(criteria,searchVo));
+        model.addAttribute("pageInfo", new PageVo(adDonateService.getTotal(keyword,searchVo),criteria));
         return "admin/adDonationList/adDonationList";
     }
 

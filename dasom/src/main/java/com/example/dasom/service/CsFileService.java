@@ -1,6 +1,7 @@
 package com.example.dasom.service;
 
 import com.example.dasom.domain.dto.CsFileDto;
+import com.example.dasom.domain.dto.CsWriteDto;
 import com.example.dasom.domain.dto.DonateFileDto;
 import com.example.dasom.mapper.CsFileMapper;
 import lombok.RequiredArgsConstructor;
@@ -91,6 +92,37 @@ public class CsFileService {
 
     private String getUploadPath(){
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+    }
+
+//    삭제
+    public void remove(Long csWriteNumber){
+        if(csWriteNumber == null){
+            throw new IllegalArgumentException("봉사글 번호 누락!");
+        }
+
+        CsFileDto file = find(csWriteNumber);
+
+        File target = new File(fileDir, file.getCsFileUploadPath() + "/" + file.getCsFileUuid() + "_" + file.getCsFileName());
+        File thumbnail = new File(fileDir, file.getCsFileUploadPath() + "/th_" + file.getCsFileUuid() + "_" + file.getCsFileName());
+
+        if (target.exists()) {
+            target.delete();
+        }
+
+        if (thumbnail.exists()) {
+            thumbnail.delete();
+        }
+
+        csFileMapper.delete(csWriteNumber);
+    }
+
+//    파일 조회
+    public CsFileDto find(Long csWriteNumber){
+        if(csWriteNumber == null){
+            throw new IllegalArgumentException("봉사글 번호 누락!!");
+        }
+
+        return csFileMapper.select(csWriteNumber);
     }
 
 }

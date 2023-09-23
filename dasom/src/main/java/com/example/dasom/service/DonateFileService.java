@@ -28,8 +28,8 @@ public class DonateFileService {
     @Value("${file.dir}")
     private String fileDir;
 
-//    후원 글 이미지 업로드
-    public void register(DonateFileDto donateFileDto){
+    //    후원 글 이미지 업로드
+    public void register(DonateFileDto donateFileDto) {
         donateFileMapper.insert(donateFileDto);
     }
 
@@ -48,20 +48,20 @@ public class DonateFileService {
         File uploadPath = new File(fileDir, getUploadPath());
 
 //        경로가 존재하지 않는다면 (폴더가 없다면)
-        if(!uploadPath.exists()){
+        if (!uploadPath.exists()) {
 //            경로를 만들어준다.(폴더를 만든다)
             uploadPath.mkdirs();
         }
 
 //        전체 경로와 파일이름을 연결한다.
-        File uploadFile = new File(uploadPath,sysName);
+        File uploadFile = new File(uploadPath, sysName);
 
 //        매개변수로 받은 파일을 우리가 만든 경로와 이름으로 저장한다.
         file.transferTo(uploadFile);
 
 //        썸내일을 저장한다
 //        이미지 파일인 경우에만 썸네일을 저장해야한다.
-        if(Files.probeContentType(uploadFile.toPath()).startsWith("image")){
+        if (Files.probeContentType(uploadFile.toPath()).startsWith("image")) {
             FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_" + sysName));
             Thumbnailator.createThumbnail(file.getInputStream(), out, 300, 200);
             out.close();
@@ -78,11 +78,11 @@ public class DonateFileService {
     /**
      * 파일 DB등록 및 파일 저장 처리
      *
-     * @param file 파일을 담은 파라미터
+     * @param file              파일을 담은 파라미터
      * @param donateWriteNumber 파일이 속하는 게시글 번호
      * @throws IOException
      */
-    public void registerAndSaveFile(MultipartFile file, Long donateWriteNumber) throws IOException{
+    public void registerAndSaveFile(MultipartFile file, Long donateWriteNumber) throws IOException {
 
         DonateFileDto donateFileDto = saveFile(file);
         donateFileDto.setDonateWriteNumber(donateWriteNumber);
@@ -91,8 +91,39 @@ public class DonateFileService {
     }
 
 
-    private String getUploadPath(){
+    private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
 
+    //    삭제
+    public void remove(Long donateWriteNumber) {
+        if (donateWriteNumber == null) {
+            throw new IllegalArgumentException("후원글 번호 누락!!");
+        }
+
+        DonateFileDto file = find(donateWriteNumber);
+
+        File target = new File(fileDir, file.getDonateFileUploadPath() + "/" + file.getDonateFileUuid() + "_" + file.getDonateFileName());
+        File thumbnail = new File(fileDir, file.getDonateFileUploadPath() + "/th_" + file.getDonateFileUuid() + "_" + file.getDonateFileName());
+
+        if (target.exists()) {
+            target.delete();
+        }
+
+        if (thumbnail.exists()) {
+            thumbnail.delete();
+        }
+
+        donateFileMapper.delete(donateWriteNumber);
+    }
+
+    //파일 조회
+    public DonateFileDto find(Long donateWriteNumber) {
+        if (donateWriteNumber == null) {
+            throw new IllegalArgumentException("후원글 번호 누락!!");
+        }
+
+        return donateFileMapper.select(donateWriteNumber);
+    }
 }
+

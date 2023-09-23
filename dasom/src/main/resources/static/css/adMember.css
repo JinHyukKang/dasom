@@ -133,6 +133,7 @@ main {
   border-bottom-right-radius: 6px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 
 /* 회원 목록 */
@@ -191,7 +192,10 @@ main {
   /* border: 1px solid black; */
   font-size: 13px;
 }
-
+.name,
+.id{
+  cursor: pointer;
+}
 /* 회원번호 */
 .member-num {
   width: 10%;
@@ -229,5 +233,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.noResult-text{
+  margin: auto;
+  margin-top: 30px;
 }
 
