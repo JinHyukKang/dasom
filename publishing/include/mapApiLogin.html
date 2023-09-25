@@ -1,23 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대피소안내</title>
-    <link rel="stylesheet" href="/css/mapApi.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/headerLogin.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <title>대피소안내(로그인)</title>
+    <link rel="stylesheet" href="../resource/css/mapApiLogin.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f49922a8774592c118e15c56666d5011&libraries=services"></script>
     
 </head>
 <body>
     <!-- 카카오맵 api -->
-    <header class="header" th:replace="fragments/header :: header">
-    </header>
     <main>
         <div class="map-title">
-           | 대피소 안내 
+           | 대피소 안내
         </div>
         <div class="option">
             <div class="main-section4-map-keyword">
@@ -28,6 +23,11 @@
                     <div class="main-section4-map-keyword-text">대피소</div>
                     <button class="main-section4-map-keyword-button" type="submit">검색하기</button> 
                 </form>
+                <div class="map-region">
+                    <button class="region-top" onclick="searchByRegion('서울시')">서울시</button>
+                    <button class="region-middle" onclick="searchByRegion('노원구')">노원구</button>
+                    <button class="region-bottom" onclick="searchByRegion('상계동')">상계동</button>
+                </div>
             </div>
         </div>
         <div class="map_wrap">
@@ -42,7 +42,7 @@
             ※ 지역에 따라 검색결과가 존재하지 않을 수 있습니다.
         </div>
     </main>
-<script defer src="/js/mapApi.js"></script>
+<script defer src="../resource/js/mapApiLogin.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 </body>
 </html>

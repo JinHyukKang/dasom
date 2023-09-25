@@ -102,7 +102,18 @@ input[type='file'] {
     no-repeat 50% #f2f2f2;
     position: relative;
 }
-
+.post-images{
+    width: 90px;
+    height: 90px;
+    border: 0.0625rem dashed #e1e1e1;
+    border-radius: 8px;
+}
+.post-image{
+    width: 90px;
+    height: 90px;
+    border: 0.0625rem dashed #e1e1e1;
+    border-radius: 8px;
+}
 input[type='file'] {
     cursor: pointer;
 }

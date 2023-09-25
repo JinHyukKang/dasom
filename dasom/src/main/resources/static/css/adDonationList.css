@@ -133,6 +133,7 @@ main {
   border-bottom-right-radius: 6px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 
 /* 회원 목록 */
@@ -228,4 +229,8 @@ main {
   width: 70%;
   height: 70%;
   border: 1px black solid;
+}
+.noResult-text{
+  margin: auto;
+  margin-top: 30px;
 }

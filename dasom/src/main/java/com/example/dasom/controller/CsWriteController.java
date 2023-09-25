@@ -1,9 +1,13 @@
 package com.example.dasom.controller;
 
 import com.example.dasom.domain.dto.CsWriteDto;
+import com.example.dasom.domain.vo.CsWriteVo;
 import com.example.dasom.service.CsWriteService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/csWrite/*")
 @RequiredArgsConstructor
+@Slf4j
 public class CsWriteController {
 
     private final CsWriteService csWriteService;
@@ -43,5 +48,40 @@ public class CsWriteController {
         redirectAttributes.addFlashAttribute("csWriteNumber", csWriteNumber);
 
         return new RedirectView("/admin/adCs");
+    }
+
+//    관리자 봉사 글 수정 페이지 이동
+    @GetMapping("/modify")
+    public String showModify(@RequestParam("csWriteNumber") Long csWriteNumber, Model model){
+        CsWriteVo csWriteVo = csWriteService.find(csWriteNumber);
+        model.addAttribute("cs", csWriteVo);
+        return "admin/adModify/adModifyCs";
+    }
+
+//    봉사 글 삭제
+    @GetMapping("/remove")
+    public ResponseEntity<String> remove(Long csWriteNumber){
+        csWriteService.remove(csWriteNumber);
+        return ResponseEntity.ok("삭제 성공!");
+    }
+
+//    봉사 글 수정
+    @PostMapping("/modify")
+    public RedirectView modify(CsWriteDto csWriteDto, RedirectAttributes redirectAttributes,
+                               @RequestParam("csWriteFile") MultipartFile file){
+
+        log.info("============================= {}", file.toString());
+        csWriteService.modify(csWriteDto, file);
+
+        redirectAttributes.addAttribute("csWriteNumber", csWriteDto.getCsWriteNumber());
+
+        return new RedirectView("/admin/adCs");
+    }
+
+//    봉사 글 모집 완료
+    @GetMapping("/recruit")
+    public ResponseEntity<String> recruit(Long csWriteNumber){
+        csWriteService.recruit(csWriteNumber);
+        return ResponseEntity.ok("모집완료 성공!");
     }
 }

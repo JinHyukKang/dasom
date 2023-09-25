@@ -7,17 +7,77 @@
   font-weight: bold;
   color: white;
   background-color: tomato;
+  cursor: pointer;
+}
+
+.btngray {
+  height: 35%;
+  width: 50%;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: #8a8a8a;
+  cursor: pointer;
+}
+.btnred1 {
+  height: 35%;
+  width: 60%;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: tomato;
+  cursor: pointer;
+}
+.btnred2{
+  height: 35%;
+  width: 40%;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: tomato;
+  cursor: pointer;
+}
+.btngray1 {
+  height: 35%;
+  width: 60%;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: #8a8a8a;
+  cursor: pointer;
 }
 .btnred:active,
-.btnred:hover,
-.btnred:focus {
+.btnred:hover{
+  background: darkred;
+  outline: 0;
+}
+.btnred1:active,
+.btnred1:hover {
+  background: darkred;
+  outline: 0;
+}
+.btnred2:active,
+.btnred2:hover {
   background: darkred;
   outline: 0;
 }
 .btnred:disabled {
   opacity: 0.5;
 }
-
+.btnred1:disabled {
+  opacity: 0.5;
+}
+.btnred2:disabled {
+  opacity: 0.5;
+}
 .btngreen {
   height: 35%;
   width: 50%;
@@ -27,13 +87,49 @@
   font-weight: bold;
   color: white;
   background-color: #39b54a;
+  cursor: pointer;
+}
+.btngreen1 {
+  height: 35%;
+  width: 60%;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: #39b54a;
+  cursor: pointer;
 }
 .btngreen:active,
-.btngreen:hover,
-.btngreen:focus {
+.btngreen:hover {
+  background: #16a729;
+  outline: 0;
+}
+.btngreen1:active,
+.btngreen1:hover {
   background: #16a729;
   outline: 0;
 }
 .btngreen:disabled {
+  opacity: 0.5;
+}
+.btngreen1:disabled {
+  opacity: 0.5;
+}
+
+.btngray:active,
+.btngray:hover{
+  background: #323232;
+  outline: 0;
+}
+.btngray1:active,
+.btngray1:hover {
+  background: #323232;
+  outline: 0;
+}
+.btngray:disabled {
+  opacity: 0.5;
+}
+.btngray1:disabled {
   opacity: 0.5;
 }

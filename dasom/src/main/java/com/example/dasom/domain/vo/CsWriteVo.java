@@ -1,17 +1,14 @@
-package com.example.dasom.domain.dto;
+package com.example.dasom.domain.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Component
 @Data
 @NoArgsConstructor
-public class CsWriteDto {
+public class CsWriteVo {
+
     private Long csWriteNumber;
     private Long adminNumber;
     private String csWriteTitle;
@@ -21,8 +18,11 @@ public class CsWriteDto {
     private String csWritePlace;
     private String csWriteActStart;
     private String csWriteActEnd;
-    private String csWriteStatus;
-    private String csWriteDate;
+    private Long csWriteStatus;
     private String csWriteManager;
     private String csWritePhone;
+    private Long csFileNumber;
+    private String csFileName;
+    private String csFileUploadPath;
+    private String csFileUuid;
 }

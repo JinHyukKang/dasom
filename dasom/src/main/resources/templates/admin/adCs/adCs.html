@@ -68,6 +68,9 @@
           <div class="section-board-top">
             <div class="num">번호</div>
             <div class="campaign">캠페인명</div>
+            <div class="recruitDate">모집기간</div>
+            <div class="manager">담당자</div>
+            <div class="managerPhone">담당자 번호</div>
             <div class="writeDate">작성일자</div>
             <div class="state">상태</div>
             <div class="empty"></div>
@@ -78,15 +81,28 @@
           <div class="section-board-bottom" th:each="cs : ${csWriteList}">
             <div class="num" th:text="${cs.csWriteNumber}">1</div>
             <div class="campaign" th:text="${cs.csWriteTitle}">캠페인명</div>
+            <div class="recruitDate" th:text="${cs.csWriteRecruitStart}+'~'+${cs.csWriteRecruitEnd}">모집기간</div>
+            <div class="manager" th:text="${cs.csWriteManager}">담당자</div>
+            <div class="managerPhone" th:text="${cs.csWritePhone}">담당자 번호</div>
             <div class="writeDate" th:text="${cs.csWriteDate}">23.09.13</div>
-            <div class="state" th:if="${cs.csWriteStatus} == '1'">모집중</div>
-            <div class="state" th:unless="${cs.csWriteStatus} == '1'">모집중</div>
+            <div class="state" th:text="${cs.csWriteStatus == '1' ? '모집중' : '모집완료'}"></div>
             <div class="execute">
-              <button class="btngreen">수정</button>
+              <button class="btngreen1" th:onclick="|location.href='@{/csWrite/modify(csWriteNumber=${cs.csWriteNumber})}'|">수정</button>
             </div>
             <div class="execute">
-              <button class="btnred">마감</button>
+              <button class="btnred1" th:attr="data-csWriteNumber=${cs.csWriteNumber}"
+                      onclick="deleteCs(this.getAttribute('data-csWriteNumber'))">삭제</button>
             </div>
+            <div class="execute"
+                 th:onclick="|location.href='@{/csWrite/recruit(csWriteNumber=${cs.csWriteNumber})}'|"
+                 th:if="${cs.csWriteStatus == '1'}">
+              <button th:attr="data-csWriteNumber=${cs.csWriteNumber}"
+                      onclick="recruitCs(this.getAttribute('data-csWriteNumber'))"
+                      class="btngray1">마감</button>
+            </div>
+          </div>
+          <div class="noResult-text" th:if="${#lists.isEmpty(csWriteList)}">
+            <h3>일치하는 검색결과가 없습니다</h3>
           </div>
 
         </section>
@@ -114,5 +130,7 @@
       </section>
       </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script defer src="/js/adCs.js"></script>
   </body>
 </html>
