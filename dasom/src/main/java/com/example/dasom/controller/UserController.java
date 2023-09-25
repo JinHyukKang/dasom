@@ -47,7 +47,7 @@ public class UserController {
         UserDto userDto = userService.find(userId, userPassword);
         req.getSession().setAttribute("userNumber", userDto.getUserNumber());
 
-        return new RedirectView("/mainPageLogin");
+        return new RedirectView("/donate/list");
     }
 
 //    @PostMapping("/joinProc")
