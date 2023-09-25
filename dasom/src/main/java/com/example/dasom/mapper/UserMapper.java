@@ -4,11 +4,6 @@ import com.example.dasom.domain.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-
-
-
-
-
 @Mapper
 public interface UserMapper {
 
@@ -17,6 +12,9 @@ public interface UserMapper {
 
 //    회원가입
     public void insert(UserDto userDto);
+
+//    회원가입 아이디 중복 확인
+    public int checkId(String userId) throws Exception;
 
 //    로그인
     public UserDto select(@Param("userId")String userId, @Param("userPassword")String userPassword);
