@@ -17,7 +17,7 @@ public class FindController {
 
     @GetMapping("/findId")
     public String findId() {
-        return "/login/find/findId";
+        return "/user/find/findId";
     }
 
     @PostMapping("/findId")
@@ -37,7 +37,7 @@ public class FindController {
             model.addAttribute("userId", " ");
         }
 
-        return "/login/find/findId";
+        return "/user/find/findId";
     }
 }
 

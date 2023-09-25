@@ -106,7 +106,7 @@
 
 //개인정보처리 모달창으로 불러오기
 $(document).ready(function () {
-    $("#termOfUse").load("/include/termOfUse.html", function () {
+    $("#termOfUse").load("/user/termOfUse", function () {
 
         
     });
@@ -208,3 +208,99 @@ function PhoneCheck() {
     var CheckDiv = document.querySelector(".phone-check");
     CheckDiv.style.display = "none";
 }
+
+
+ $('.join-id-btn').on('click', function checkId(){
+     let userId = $('.join-id-input').val();
+
+     console.log(userId)
+     if(userId.search(/\s/) != -1) {
+         alert("공백 사용 불가");
+         return;
+     }
+
+     if(userId.trim().length == 0) {
+         alert("아이디를 입력하세요");
+         return;
+     }
+
+     $.ajax({
+         url : "/users/checkId",
+         type : "get",
+         data : {userId : userId},
+         dataType : 'json',
+         success :function (result){
+             if(result == 0){
+                alert("사용 가능한 아이디입니다.")
+             }else{
+                alert("중복된 아이디입니다. 다른 아이디를 입력해주세요.")
+             }
+         }
+     })
+ })
+
+ // SMS를 보내는 함수
+ $('.join-phone-btn').on('click', function sendSms() {
+     const phoneNumber = document.getElementById("userPhone").value;
+     if (!phoneNumber) {
+         alert("휴대전화 번호를 입력하세요.");
+         return;
+     }
+
+     // 서버로 휴대전화 번호를 보내고 SMS를 전송합니다.
+     fetch("/users/send", {
+         method: "POST",
+         headers: {
+             "Content-Type": "application/json"
+         },
+         body: JSON.stringify({ phoneNumber })
+     })
+         .then(response => response.json())
+         .then(data => {
+             if (data.error) {
+                 alert("SMS 전송에 실패했습니다.");
+             } else {
+                 alert("SMS가 전송되었습니다.");
+                 startCountdown(); // SMS 전송 후 카운트다운 시작
+             }
+         })
+         .catch(error => {
+             console.error("SMS 전송 오류:", error);
+         });
+ });
+
+ // SMS 인증번호 확인 함수
+ $('.user-check-btn').on('click', function verifySms() {
+     const verificationCode = document.getElementById("verificationCode").value;
+     if (!verificationCode) {
+         alert("인증번호를 입력하세요.");
+         return;
+     }
+
+     // 서버로 인증번호를 보내고 확인합니다.
+     fetch("/users/check", {
+         method: "POST",
+         headers: {
+             "Content-Type": "application/json"
+         },
+         body: JSON.stringify({ checkNumber: verificationCode })
+     })
+         .then(response => response.json())
+         .then(data => {
+             if (data) {
+                 alert("인증이 완료되었습니다.");
+                 PhoneCheck();
+             } else {
+                 alert("인증번호가 일치하지 않습니다.");
+             }
+         })
+         .catch(error => {
+
+             console.error("인증 오류:", error);
+         });
+ })
+
+
+
+
+
