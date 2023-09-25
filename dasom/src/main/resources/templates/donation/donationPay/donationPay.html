@@ -5,28 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/donationPay.css" />
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/headerLogin.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body> 
-    <!-- header -->
-<!--    <header class="header" th:replace="fragments/header :: header">-->
-<!--    </header>-->
+    <!-- header -->k
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
     <!-- out:container -->
     <div class="container">
         <h1> 다솜아띠 후원 </h1>
       <!-- form -->
       <div class="form-wrap">
-        <form class="pay-form" action="/donate/donationComplete" method="post" enctype="multipart/form-data">
-          <div class="form-group">
+        <form class="pay-form" action="/donate/complete" method="get">
+          <div class="form-group-hidden">
             <label for="campaign">캠페인명</label>
-            <input type="text" id="campaign" name="campaign" required />
+            <input type="hidden" id="campaign" name="campaign" th:value="${campaign}" th:text="${campaign}" />
           </div>
           <div class="form-group">
             <label for="pay">후원금액</label>
             <input type="text" id="pay-amount" name="payAmount" placeholder="후원 금액을 입력하세요" required />
           </div>
-          <div class="form-group">
+          <div class="form-group-hidden">
             <label for="name">후원자명</label>
-            <input type="text" id="name" name="name" required />
+            <input type="hidden" id="name" name="name" th:value="${name}" th:text="${name}" />
           </div>
           <!-- btn -->
           <button id="check_module">후원하기</button>

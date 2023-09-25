@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/donate/*")
+@RequestMapping("/donate1/*")
 public class DonateListController {
     private final DonateListService donateListService;
 
