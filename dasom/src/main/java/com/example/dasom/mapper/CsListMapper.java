@@ -1,5 +1,6 @@
 package com.example.dasom.mapper;
 
+import com.example.dasom.domain.dto.CsWriteDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
