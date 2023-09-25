@@ -35,7 +35,6 @@ public class FindController {
         } else {
             model.addAttribute("userId", " ");
         }
-
         return "/user/find/findId";
     }
 

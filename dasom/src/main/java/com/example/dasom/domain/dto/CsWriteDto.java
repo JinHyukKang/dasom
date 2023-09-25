@@ -21,7 +21,7 @@ public class CsWriteDto {
     private String csWritePlace;
     private String csWriteActStart;
     private String csWriteActEnd;
-    private Long csWriteStatus;
+    private String csWriteStatus;
     private String csWriteDate;
     private String csWriteManager;
     private String csWritePhone;

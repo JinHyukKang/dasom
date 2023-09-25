@@ -159,6 +159,7 @@ main {
   border-bottom-right-radius: 6px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 
 /* 회원 목록 */
@@ -208,6 +209,9 @@ main {
 .birth,
 .state,
 .writeDate,
+.recruitDate,
+.manager,
+.managerPhone,
 .empty,
 .execute {
   height: 100%;
@@ -220,24 +224,34 @@ main {
 
 /* 회원번호 */
 .num {
-  width: 10%;
+  width: 5%;
 }
 /* 캠페인 */
 .campaign {
-  width: 30%;
+  width: 10%;
+}
+/*모집기간*/
+.recruitDate{
+  width: 20%;
+}
+.manager{
+  width: 10%;
+}
+.managerPhone{
+  width: 12%;
 }
 /* 상태 */
 .state {
-  width: 15%;
+  width: 5%;
 }
 /* 작성일자 */
 .writeDate {
-  width: 15%;
+  width: 10%;
 }
 /* 빈공간 & 버튼 */
 .empty,
 .execute {
-  width: 15%;
+  width: 9%;
 }
 
 /* 페이징 */
@@ -252,4 +266,8 @@ main {
   width: 70%;
   height: 70%;
   border: 1px black solid;
+}
+.noResult-text{
+  margin: auto;
+  margin-top: 30px;
 }

@@ -6,4 +6,14 @@
         values (SEQ_CSFILE.NEXTVAL, #{csWriteNumber}, #{csFileName}, #{csFileUploadPath}, #{csFileUuid})
     </insert>
 
+    <delete id="delete">
+        DELETE FROM TBL_CSFILE
+        WHERE CSWRITE_NUMBER = #{csWriteNumber}
+    </delete>
+
+    <select id="select" resultType="csFileDto">
+        SELECT CSFILE_NUMBER, CSWRITE_NUMBER, CSFILE_NAME, CSFILE_UPLOAD_PATH, CSFILE_UUID
+        FROM TBL_CSFILE
+        WHERE CSWRITE_NUMBER = #{csWriteNumber}
+    </select>
 </mapper>

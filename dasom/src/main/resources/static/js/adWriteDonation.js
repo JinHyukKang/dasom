@@ -66,3 +66,4 @@ function appendImg(files) {
         }
     }
 }
+

@@ -2,6 +2,7 @@ package com.example.dasom.service;
 
 import com.example.dasom.domain.dto.DonateWriteDto;
 import com.example.dasom.domain.vo.Criteria;
+import com.example.dasom.domain.vo.DonateWriteVo;
 import com.example.dasom.domain.vo.SearchVo;
 import com.example.dasom.mapper.DonateWriteMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -57,4 +59,46 @@ public class DonateWriteService {
     public int getTotal(String keyword){
     return donateWriteMapper.selectTotal(keyword);
 }
+
+//    후원글 상세조회(수정페이지 이동)
+    public DonateWriteVo find(Long donateWriteNumber){
+        if(donateWriteNumber == null){
+            throw new IllegalArgumentException("후원글 번호 누락!");
+        }
+        return Optional.ofNullable(donateWriteMapper.select(donateWriteNumber))
+                .orElseThrow(() -> { throw new IllegalArgumentException("존재하지 않는 글 번호!"); });
+    }
+
+//    후원 글 삭제
+    public void remove(Long donateWriteNumber){
+        if(donateWriteNumber == null){
+            throw new IllegalArgumentException("후원글 번호 누락!");
+        }
+        donateFileService.remove(donateWriteNumber);
+        donateWriteMapper.delete(donateWriteNumber);
+    }
+
+//    후원 글 수정
+    public void modify(DonateWriteDto donateWriteDto, MultipartFile file){
+        if(!file.isEmpty()){
+
+            donateFileService.remove(donateWriteDto.getDonateWriteNumber());
+            try {
+                donateFileService.registerAndSaveFile(file,donateWriteDto.getDonateWriteNumber());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        donateWriteMapper.update(donateWriteDto);
+    }
+//    후원 글 모집완료
+    public void recruit(Long donateWriteNumber){
+        if(donateWriteNumber == null){
+            throw new IllegalArgumentException("후원글 번호 누락!");
+        }
+        donateWriteMapper.updateStatus(donateWriteNumber);
+
+    }
+
+
 }

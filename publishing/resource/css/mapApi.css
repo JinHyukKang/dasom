@@ -212,4 +212,11 @@ main{
 .main-section4-map-keyword-input{
     height: 30px;
 }
-
+.map-title{
+    margin-bottom: 80px;
+    font-size: 20px;
+}
+.map-bottom-text{
+    margin-top: 60px;
+    font-size: 14px;
+}

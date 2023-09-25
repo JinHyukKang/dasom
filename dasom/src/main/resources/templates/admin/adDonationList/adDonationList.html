@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,11 +48,11 @@
         <section class="section-search">
           <form class="search-form" action="">
             <div class="search-inner">
-              <select class="search-dropdown" name="" id="">
-                <option value="NAME">이름</option>
-                <option value="ID">아이디</option>
+              <select class="search-dropdown" name="cate">
+                <option value="name">이름</option>
+                <option value="id">아이디</option>
               </select>
-              <input class="search-bar" type="text" />
+              <input class="search-bar" type="text" name="keyword" th:value="${param.keyword}" />
               <button class="search-button" type="submit">검색</button>
             </div>
           </form>
@@ -69,109 +69,42 @@
             <div class="amount">후원금액</div>
             <div class="amount-date">후원일자</div>
           </div>
-
+        </section>
           <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
+          <div class="section-board-bottom" th:each="donate : ${donateList}">
+            <div class="member-num" th:text="${donate.donateNumber}">1</div>
+            <div class="campaign" th:text="${donate.donateWriteTitle}">1962.05.07</div>
+            <div class="id" th:text="${donate.userId}">abb60455</div>
+            <div class="name" th:text="${donate.userName}">이우진</div>
+            <div class="amount" th:text="${donate.donateAmount}">10000</div>
+            <div class="amount-date" th:text="${donate.donateDate}">23.02.10</div>
           </div>
+        <div class="noResult-text" th:if="${#lists.isEmpty(donateList)}">
+          <h3>일치하는 검색결과가 없습니다</h3>
+        </div>
 
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
-          </div>
+        <!-- 페이징  -->
+        <section class="section-paging">
+          <div class="page_wrap">
+            <div class="page_nation">
+              <!-- 이전 페이지 링크 -->
+              <a th:href="@{/admin/adDonationList(page=${pageInfo.startPage-1}, keyword=${param.keyword})}"
+                 class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
 
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
-          </div>
+              <!-- 페이지 번호 순환 출력 -->
+              <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <a th:href="@{/admin/adDonationList(page=${i}, keyword=${param.keyword})}" class="active"
+                   th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
+                <a th:href="@{/admin/adDonationList(page=${i}, keyword=${param.keyword})}" class="active"
+                   th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
+              </th:block>
 
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
-          </div>
-
-          <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom">
-            <div class="member-num">1</div>
-            <div class="campaign">1962.05.07</div>
-            <div class="id">abb60455</div>
-            <div class="name">이우진</div>
-            <div class="amount">10000</div>
-            <div class="amount-date">23.02.10</div>
+              <!-- 다음 페이지 링크 -->
+              <a th:href="@{/admin/adDonationList(page=${pageInfo.endPage+1}, keyword=${param.keyword})}"
+                 class="arrow next" th:if="${pageInfo.next}">&gt;</a>
+            </div>
           </div>
         </section>
-
-<!-- 페이징  -->
-<section class="section-paging">
-  <div class="page_wrap">
-    <div class="page_nation">
-       <a class="arrow pprev" href="#">&lt;&lt;</a>
-       <a class="arrow prev" href="#">&lt;</a>
-       <a href="#" class="active">1</a>
-       <a href="#">2</a>
-       <a href="#">3</a>
-       <a href="#">4</a>
-       <a href="#">5</a>
-       <a href="#">6</a>
-       <a href="#">7</a>
-       <a href="#">8</a>
-       <a href="#">9</a>
-       <a href="#">10</a>
-       <a class="arrow next" href="#">&gt;</a>
-       <a class="arrow nnext" href="#">&gt;&gt;</a>
-    </div>
- </div>
-</section>
       </main>
     </div>
   </body>
