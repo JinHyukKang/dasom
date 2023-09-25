@@ -42,16 +42,16 @@
 <script>
 
     //페이지 진입시 비동기 게시판 구성
-    myModule('0', showResult);
+    myModule('1', showResult);
 
     //비동기식 게시판 리스트 출력 함수
-    function myModule(status,callback) {
+    function myModule(status, callback) {
         $.ajax({
             url: `/donations/${status}`,
             type: 'get',
             dataType: 'json',
             success: function (result) {
-                console.log("result");
+                console.log(result);
                 if (callback) {
                     callback(result);
                 }
@@ -63,16 +63,30 @@
     }
 
     //html에 들어갈 양식
+
     function showResult(result) {
         let text = '';
         result.forEach(r => {
 
             text += `
-                <a href="" class="board-a">
+                <a href="/donate/detail?donateWriteTitle=${r.donateWriteTitle}" class="board-a">
                     <div class="board-item-box">
                         <div class="box-top">
-                            <img class="box-top-img" src="/img/dog.jpeg" alt=""/>
-                            <div class="box-top-text flex-center">${r.donateWriteTitle}</div>
+                        `;
+
+                        if(r.donatefileName== null) {
+                            text+=
+                            `<div  class="box-top-img" style="background-image: url(https://via.placeholder.com/300x200)"></div>`
+                       ; }
+                        else{
+                            console.log(r.donatefileUploadPath);
+                            console.log(r.donatefileUuid);
+                            console.log(r.donatefileName);
+                            text+=
+                        `<div class="box-top-img" style="background-image: url(/upload/${r.donatefileUploadPath}/th_${r.donatefileUuid}_${r.donatefileName})"></div>`
+                        ;}
+                        text+=
+                        `<div class="box-top-text flex-center">${r.donateWriteTitle}</div>
                         </div>
                         <div class="box-bottom-donate">
                             <div class="bottom-donate-text">후원하기</div>
@@ -86,29 +100,29 @@
 
 
     //진행중 캠페인 클릭
-    $('#campaign-ongoing').on('click',function (){
+    $('#campaign-ongoing').on('click', function () {
 
         //버튼 css 조정
-        document.getElementById("hr-end").style.display="none";
-        document.getElementById("hr-end").style.color="black";
-        document.getElementById("hr-on").style.display="";
-        document.getElementById("campaign-ongoing").style.color="#39b54a";
-        document.getElementById("campaign-end").style.color="#black";
+        document.getElementById("hr-end").style.display = "none";
+        document.getElementById("hr-end").style.color = "black";
+        document.getElementById("hr-on").style.display = "";
+        document.getElementById("campaign-ongoing").style.color = "#39b54a";
+        document.getElementById("campaign-end").style.color = "#black";
 
-        myModule('0', showResult);
+        myModule('1', showResult);
     });
 
     //종료된 캠페인 클릭
-    $('#campaign-end').on('click',function (){
+    $('#campaign-end').on('click', function () {
 
         //버튼 css 조정
-        document.getElementById("hr-on").style.display="none";
-        document.getElementById("hr-on").style.color="black";
-        document.getElementById("hr-end").style.display="block";
-        document.getElementById("campaign-ongoing").style.color="black";
-        document.getElementById("campaign-end").style.color="#39b54a";
+        document.getElementById("hr-on").style.display = "none";
+        document.getElementById("hr-on").style.color = "black";
+        document.getElementById("hr-end").style.display = "block";
+        document.getElementById("campaign-ongoing").style.color = "black";
+        document.getElementById("campaign-end").style.color = "#39b54a";
 
-        myModule('1', showResult);
+        myModule('0', showResult);
     });
 
 </script>

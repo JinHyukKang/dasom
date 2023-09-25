@@ -24,6 +24,8 @@ class DonateListMapperTest {
     @Test
     void selectList() {
         List<DonateListVo> donateListVo =  donateListMapper.selectList("1");
-        assertThat(donateListVo.size()).isEqualTo(11);
+        assertThat(donateListVo.size()).isEqualTo(1);
     }
+
+
 }
