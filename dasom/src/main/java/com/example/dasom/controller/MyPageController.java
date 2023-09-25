@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -47,19 +48,36 @@ public class MyPageController {
         return "/myPage/myPageUser";
     }
 
-    @PostMapping("/myPageUser")
-    public String myPageUserUpdate(Long userNumber,
-                             String userEmail,
-                             String userPhone,
-                             String userPostCode,
-                             String userAddr,
-                             String userAddExtra,
-                             String userAddDetail,
-                             HttpServletRequest req) {
+    @PostMapping("/myPageUserOk")
+    public RedirectView myPageUserUpdate(Long userNumber, UserDto userDto, HttpServletRequest req) {
         userNumber = (Long) req.getSession().getAttribute("userNumber");
         log.info(userNumber.toString());
-        myPageService.userUpdate(userNumber, userEmail, userPhone, userPostCode, userAddr, userAddExtra, userAddDetail);
+        userDto.setUserNumber(userNumber);
+        myPageService.userUpdate(userDto);
 
-        return "/myPage/myPageUser";
+        return new RedirectView("/myPage/myPageUser");
+    }
+
+
+    @PostMapping("/myPageUserPassword")
+    public RedirectView userPasswordUpdate(Long userNumber, String userPassword,UserDto userDto, HttpServletRequest req) {
+        userNumber = (Long) req.getSession().getAttribute("userNumber");
+        log.info(userNumber.toString());
+        userDto.setUserNumber(userNumber);
+        myPageService.userPasswordUpdate(userDto);
+
+        return new RedirectView("/myPage/myPageUser");
+    }
+
+    @GetMapping("/myPageUserDelete")
+    public RedirectView myPageUserDelete(Long userNumber,
+                                         UserDto userDto,
+                                         HttpServletRequest req) {
+        userNumber = (Long) req.getSession().getAttribute("userNumber");
+        log.info(userNumber.toString());
+        userDto.setUserNumber(userNumber);
+        myPageService.userDelete(userDto);
+
+        return new RedirectView("/user/login");
     }
 }

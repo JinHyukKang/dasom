@@ -49,23 +49,43 @@
 
     <!-- 이우진 내후원리스트   -->
     <select id="donateUserSelectAll" resultType="UserVo">
-        SELECT donate_number, TBL_DONATE.user_number, TBL_DONATEWRITE.donatewrite_title, donate_amount, TO_CHAR(TO_DATE(donate_date, 'YYYY-MM-DD'), 'YY-MM-DD') AS donate_date
+        SELECT donate_number,
+               TBL_DONATE.user_number,
+               TBL_DONATEWRITE.donatewrite_title,
+               donate_amount,
+               TO_CHAR(TO_DATE(donate_date, 'YYYY-MM-DD'), 'YY-MM-DD') AS donate_date
         FROM TBL_DONATE
                  INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
         where TBL_DONATE.user_number = ${userNumber}
     </select>
     <!-- 이우진 나의 참여 리스트   -->
     <select id="csUserSelectAll" resultType="UserVo">
-        SELECT cs_number, TBL_CS.user_number, TBL_CSWRITE.CSwrite_title, TO_CHAR(TO_DATE(csWrite_Act_Start, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_Start,TO_CHAR(TO_DATE(csWrite_Act_END, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_END,csWrite_Status
+        SELECT cs_number,
+               TBL_CS.user_number,
+               TBL_CSWRITE.CSwrite_title,
+               TO_CHAR(TO_DATE(csWrite_Act_Start, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_Start,
+               TO_CHAR(TO_DATE(csWrite_Act_END, 'YYYY-MM-DD'), 'YY-MM-DD')   AS csWrite_Act_END,
+               csWrite_Status
         FROM TBL_CS
                  INNER JOIN TBL_CSWRITE ON TBL_CS.CSwrite_number = TBL_CSWRITE.CSwrite_number
         where TBL_CS.user_number = ${userNumber}
     </select>
     <!-- 이우진 내정보   -->
     <select id="userSelect" resultType="UserDto">
-        SELECT USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR,
-               USER_BIRTH_MONTH, USER_BIRTH_DAY, USER_PHONE, USER_EMAIL,
-               USER_GENDER, USER_POST_CODE, USER_ADDR, USER_ADDR_EXTRA as USER_ADD_EXTRA, USER_ADDR_DETAIL as USER_ADD_DETAIL,
+        SELECT USER_NUMBER,
+               USER_ID,
+               USER_PASSWORD,
+               USER_NAME,
+               USER_BIRTH_YEAR,
+               USER_BIRTH_MONTH,
+               USER_BIRTH_DAY,
+               USER_PHONE,
+               USER_EMAIL,
+               USER_GENDER,
+               USER_POST_CODE,
+               USER_ADDR,
+               USER_ADDR_EXTRA                      as USER_ADD_EXTRA,
+               USER_ADDR_DETAIL                     as USER_ADD_DETAIL,
                TO_CHAR(USER_JOINDATE, 'YYYY.MM.DD') AS USER_JOINDATE
         FROM TBL_USERS
         where user_number = ${userNumber}
@@ -73,9 +93,27 @@
     <!-- 이우진 내정보 수정  -->
     <update id="userUpdate" parameterType="UserDto">
         update TBL_USERS
-        set  user_email = #{userEmail},user_phone = #{userPhone},user_post_code = #{userPostCode},user_addr = #{userAddr},user_addr_extra = #{userAddExtra},user_addr_detail = #{userAddDetail}
+        set user_email       = #{userEmail},
+            user_phone       = #{userPhone},
+            user_post_code   = #{userPostCode},
+            user_addr        = #{userAddr},
+            user_addr_extra  = #{userAddExtra},
+            user_addr_detail = #{userAddDetail}
         where user_number = ${userNumber}
     </update>
 
+    <!-- 이우진 내비밀번호 수정  -->
+    <update id="userPasswordUpdate" parameterType="UserDto">
+        update TBL_USERS
+        set user_password       = #{userPassword}
+        where user_number = ${userNumber}
+    </update>
+
+    <!-- 이우진 회원탈퇴  -->
+    <delete id="userDelete" parameterType="UserDto">
+        delete
+        from TBL_USERS
+        where user_number = ${userNumber}
+    </delete>
 
 </mapper>

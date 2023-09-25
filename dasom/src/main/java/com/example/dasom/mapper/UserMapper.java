@@ -35,16 +35,13 @@ public interface UserMapper {
     UserDto userSelect(@Param("userNumber") Long userNumber);
 
     //    마이페이지 나의 정보 수정
-    UserDto userUpdate(
-            @Param("userNumber") Long userNumber,
-            @Param("userEmail") String userEmail,
-            @Param("userPhone") String userPhone,
-            @Param("userPostCode") String userPostCode,
-            @Param("userAddr") String userAddr,
-            @Param("userAddExtra") String userAddExtra,
-            @Param("userAddDetail") String userAddDetail
-    );
+    void userUpdate(UserDto userDto);
 
+    //    마이페이지 나의 Pw 수정
+    void userPasswordUpdate(UserDto userDto);
+
+    //  마이페이지 회원탈퇴
+    void userDelete(UserDto userDto);
 //    Long userNumber;
 //    String userId;
 //    String userPassword;

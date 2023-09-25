@@ -29,7 +29,15 @@ public class MyPageService {
         return userSelect;
     }
 
-    public void userUpdate( Long userNumber, String userEmail, String userPhone, String userPostCode, String userAddr, String userAddExtra, String userAddDetail) {
-        userMapper.userUpdate(userNumber, userEmail, userPhone, userPostCode, userAddr, userAddExtra, userAddDetail);
+    public void userUpdate(UserDto userDto) {
+                userMapper.userUpdate(userDto);
+    }
+
+    public void userPasswordUpdate(UserDto userDto) {
+        userMapper.userPasswordUpdate(userDto);
+    }
+
+    public void userDelete(UserDto userDto) {
+        userMapper.userDelete(userDto);
     }
 }
