@@ -20,24 +20,27 @@ public class FindController {
         return "/user/find/findId";
     }
 
-    @PostMapping("/findId")
+    @PostMapping("/findIdOk")
     public String findId(
             String userName, String userPhone,
             String userBirthYear, String userBirthMonth, String userBirthDay,
             Model model
     ) {
-        // Additional validation or null checks can be added if necessary
 
         UserDto userDto = findService.findId(userName, userPhone, userBirthYear, userBirthMonth, userBirthDay);
 
-            model.addAttribute("userDto", userDto);
+        model.addAttribute("userDto", userDto);
         if (userDto != null) {
             model.addAttribute("userId", userDto.getUserId());
         } else {
             model.addAttribute("userId", " ");
         }
-
         return "/user/find/findId";
+    }
+
+    @GetMapping("/findPassword")
+    public String findPassword() {
+        return "/user/find/findPw";
     }
 }
 

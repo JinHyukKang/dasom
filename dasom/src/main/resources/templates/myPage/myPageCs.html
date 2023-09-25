@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지(나의참여)</title>
     <link rel="stylesheet" href="/css/myPageCs.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/headerLogin.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
+<!-- header -->
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
 <main>
     
     <h2 class="cs-title">나의참여</h2>
@@ -62,36 +68,23 @@
             </ul>
 
             <!-- 봉사내역 리스트 -->
-            <ul class="cs-list">
-                <li class="list-num">1</li>
-                <li class="list-title">강원도 수해 재난 봉사</li>
-                <li class="list-date">2023-09-10 ~ 2023-10-10</li>
-                <li class="list-status">모집중</li>
+
+
+
+            <ul class="cs-list" th:each="board : ${List}">
+                <li class="list-num" th:text="${board.csNumber}"></li>
+                <li class="list-title" th:text="${board.csWriteTitle}"></li>
+                <li class="list-date" th:text="${board.csWriteActStart} + '~'+ ${board.csWriteActEnd}"></li>
+                <li class="list-status" th:if="${board.csWriteStatus}== '1'">모집중</li>
+                <li class="list-status" th:unless="${board.csWriteStatus}== '1'">모집종료</li>
             </ul>
-            <ul class="cs-list">
-                <li class="list-num">1</li>
-                <li class="list-title">강원도 수해 재난 봉사</li>
-                <li class="list-date">2023-09-10 ~ 2023-10-10</li>
-                <li class="list-status">모집중</li>
-            </ul>
-            <ul class="cs-list">
-                <li class="list-num">1</li>
-                <li class="list-title">강원도 수해 재난 봉사</li>
-                <li class="list-date">2023-09-10 ~ 2023-10-10</li>
-                <li class="list-status">모집중</li>
-            </ul>
-            <ul class="cs-list">
-                <li class="list-num">1</li>
-                <li class="list-title">강원도 수해 재난 봉사</li>
-                <li class="list-date">2023-09-10 ~ 2023-10-10</li>
-                <li class="list-status">모집중</li>
-            </ul>
-            <ul class="cs-list">
-                <li class="list-num">1</li>
-                <li class="list-title">강원도 수해 재난 봉사</li>
-                <li class="list-date">2023-09-10 ~ 2023-10-10</li>
-                <li class="list-status">모집중</li>
-            </ul>
+<!--            <ul class="cs-list">-->
+<!--                <li class="list-num">1</li>-->
+<!--                <li class="list-title">강원도 수해 재난 봉사</li>-->
+<!--                <li class="list-date">2023-09-10 ~ 2023-10-10</li>-->
+<!--                <li class="list-status">모집중</li>-->
+<!--            </ul>-->
+
             
         </div>
 

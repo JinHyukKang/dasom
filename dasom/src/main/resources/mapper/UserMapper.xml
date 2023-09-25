@@ -24,7 +24,8 @@
     <!--나예은 회원가입-->
     <insert id="insert">
         insert into TBL_USERS (USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR, USER_BIRTH_MONTH,
-                               USER_BIRTH_DAY, USER_PHONE, USER_EMAIL, USER_GENDER, USER_POST_CODE, USER_ADDR, USER_ADDR_EXTRA,
+                               USER_BIRTH_DAY, USER_PHONE, USER_EMAIL, USER_GENDER, USER_POST_CODE, USER_ADDR,
+                               USER_ADDR_EXTRA,
                                USER_ADDR_DETAIL)
         values (seq_users.nextval, #{userId}, #{userPassword}, #{userName}, #{userBirthYear}, #{userBirthMonth},
                 #{userBirthDay}, #{userPhone}, #{userEmail}, #{userGender}, #{userPostCode}, #{userAddr},
@@ -35,7 +36,8 @@
     <select id="select" resultType="userDto">
         select user_number, user_id, user_name
         from tbl_users
-        where user_id = #{userId} and user_password = #{userPassword}
+        where user_id = #{userId}
+          and user_password = #{userPassword}
     </select>
 
     <!--나예은 아이디 중복확인-->
@@ -45,7 +47,26 @@
         where user_id = #{userId}
     </select>
 
-
+    <!-- 이우진 내후원리스트   -->
+    <select id="donateUserSelectAll" resultType="UserVo">
+        SELECT donate_number, TBL_DONATE.user_number, TBL_DONATEWRITE.donatewrite_title, donate_amount, TO_CHAR(TO_DATE(donate_date, 'YYYY-MM-DD'), 'YY-MM-DD') AS donate_date
+        FROM TBL_DONATE
+                 INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
+        where TBL_DONATE.user_number = ${userNumber}
+    </select>
+    <!-- 이우진 나의 참여 리스트   -->
+    <select id="csUserSelectAll" resultType="UserVo">
+        SELECT cs_number, TBL_CS.user_number, TBL_CSWRITE.CSwrite_title, TO_CHAR(TO_DATE(csWrite_Act_Start, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_Start,TO_CHAR(TO_DATE(csWrite_Act_END, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_END,csWrite_Status
+        FROM TBL_CS
+                 INNER JOIN TBL_CSWRITE ON TBL_CS.CSwrite_number = TBL_CSWRITE.CSwrite_number
+        where TBL_CS.user_number = ${userNumber}
+    </select>
+    <!-- 이우진 내정보   -->
+    <select id="userSelect" resultType="UserDto">
+        SELECT *
+        FROM TBL_USERS
+        where user_number = ${userNumber}
+    </select>
 
 
 </mapper>

@@ -4,14 +4,13 @@
     font-weight: 700;
     font-style: normal;
 }
-    
+
 body{
     font-family: 'LINESeedKR-Bd';
 }
 
 article{
-    margin: 100px;  
-    
+    margin: 100px;
 }
 
 .title {
@@ -19,15 +18,16 @@ article{
 }
 
 .page-title {
-    text-align: center; 
+    text-align: center;
 }
 
 .form-group, .width {
     margin-bottom: 20px;
+    width: 600px;
 }
 .form-wrap {
     margin: 70px;
-    padding-inline-start: 29%;
+    padding-inline-start: 12%;
 }
 
 .tab{
@@ -44,6 +44,8 @@ a{
     width: 50%;
     height: 100%;
     display: flex;
+    text-decoration-line: none;
+    color: inherit; /* 링크의 색상 제거 */
 }
 
 .id-tab, .pw-tab {
@@ -87,21 +89,21 @@ select.box {
 
 .birth#birth-info select::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  .birth#birth-info select::-webkit-scrollbar-thumb {
+}
+
+.birth#birth-info select::-webkit-scrollbar-thumb {
     background-color: #b6b6b6;
     border-radius: 3px;
-  }
-  
-  .birth#birth-info select::-webkit-scrollbar-track {
+}
+
+.birth#birth-info select::-webkit-scrollbar-track {
     background-color: #ebe9e9;
     border-radius: 6px;
-  }
+}
 
 .submit-btn {
     width: 53%;
-    height: 60px;   
+    height: 60px;
     padding: 10px;
     background-color: #39b54a;
     color: #fff;
@@ -109,7 +111,9 @@ select.box {
     cursor: pointer;
     border-radius: 5px;
     margin: 40px 0 0 0;
+    margin-left: 15%;
 }
+
 
 .submit-btn:hover {
     background-color: #16a729;
