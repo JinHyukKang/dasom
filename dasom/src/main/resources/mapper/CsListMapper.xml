@@ -20,6 +20,10 @@
         WHERE CSWRITE_NUMBER = ${csNum}
     </select>
 
+    <insert id="insert">
+        INSERT INTO TBL_CS (CS_NUMBER, USER_NUMBER, CSWRITE_NUMBER, CS_APPLY_DATE)
+        values (SEQ_CS.nextval, ${userNumber}, ${csWriteNumber},1,SYSDATE)
+    </insert>
 
 
 </mapper>

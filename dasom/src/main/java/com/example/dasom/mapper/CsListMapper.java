@@ -13,6 +13,8 @@ public interface CsListMapper {
 
 //         기부 리스트 전체 게시글 조회
     public List<CsWriteDto> selectList(String status);
-//    기부 게시글 상세보기 입력될 정보조회
+//    봉사 게시글 상세보기 입력될 정보조회
     public CsWriteDto selectDetail(Long csNum);
+//    봉사 신청 정보 DB테이블에 입력
+    public void insert(Long userNumber, Long csWriteNumber);
 }
