@@ -81,7 +81,7 @@
             <div class="birth"
             th:text="${user.userBirthYear}+'.'+${user.userBirthMonth}+'.'+${user.userBirthDay}"
             >1962.05.07</div>
-            <div class="gender" th:text="${user.userName} == 'M' ? '남':'여'">남자</div>
+            <div class="gender" th:text="${user.userGender} == 'M' ? '남':'여'">남자</div>
             <div class="join-date" th:text="${user.userJoinDate}">23.02.10</div>
             <div class="execute">
               <button class="btnred2" th:attr="data-userNumber=${user.userNumber}"

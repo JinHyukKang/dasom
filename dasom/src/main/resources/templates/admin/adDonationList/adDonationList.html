@@ -79,6 +79,9 @@
             <div class="amount" th:text="${donate.donateAmount}">10000</div>
             <div class="amount-date" th:text="${donate.donateDate}">23.02.10</div>
           </div>
+        <div class="noResult-text" th:if="${#lists.isEmpty(donateList)}">
+          <h3>일치하는 검색결과가 없습니다</h3>
+        </div>
 
         <!-- 페이징  -->
         <section class="section-paging">

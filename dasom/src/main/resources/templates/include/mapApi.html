@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>대피소안내</title>
     <link rel="stylesheet" href="/css/mapApi.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/headerLogin.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f49922a8774592c118e15c56666d5011&libraries=services"></script>
     
 </head>
 <body>
     <!-- 카카오맵 api -->
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
     <main>
+        <div class="map-title">
+           | 대피소 안내 
+        </div>
         <div class="option">
             <div class="main-section4-map-keyword">
                 <form class="main-section4-map-keyword-form" onsubmit="searchPlaces(); return false;">
@@ -29,6 +37,9 @@
                 <ul id="placesList"></ul>
                 <div id="pagination"></div>
             </div>
+        </div>
+        <div class="map-bottom-text">
+            ※ 지역에 따라 검색결과가 존재하지 않을 수 있습니다.
         </div>
     </main>
 <script defer src="/js/mapApi.js"></script>
