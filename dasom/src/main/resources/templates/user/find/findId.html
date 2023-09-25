@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/findId.css"/>
+    <link rel="stylesheet" href="/css/findId.css" />
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/headerLogin.css">
     <link rel="stylesheet" href="/css/footer.css">
@@ -22,29 +22,29 @@
 
             <!-- tab -->
             <div class="tab">
-                <a><span class="id-tab">아이디 찾기</span></a>
-                <a><span class="pw-tab">비밀번호 찾기</span></a>
+                <a href="/find/findId"><span class="id-tab">아이디 찾기</span></a>
+                <a href="/find/findPassword"><span class="pw-tab">비밀번호 찾기</span></a>
             </div>
         </div>
 
         <!-- form -->
         <div class="form-wrap">
-            <form class="find-id-form" action="findId" method="post" enctype="multipart/form-data">
+            <form class="find-id-form" action="findIdOk" method="post" enctype="multipart/form-data">
                 <!-- name -->
                 <div class="form-group">
                     <label for="id-name">이름</label>
-                    <input type="text" id="id-name" name="userName" required/>
+                    <input type="text" id="id-name" name="userName" required />
                 </div>
                 <!-- phone-number -->
                 <div class="form-group">
                     <label for="id-name">휴대전화</label>
-                    <input type="text" id="id-phnum" name="userPhone" required/>
+                    <input type="text" id="id-phnum" name="userPhone" required />
                 </div>
                 <!-- birth -->
                 <div class="form-group">
                     <label for="id-birth">생년월일</label>
                     <div class="birth" id="birth-info">
-                        <select class="box" id="birth-year" name="userBirthYear">
+                        <select class="box" id="birth-year"  name="userBirthYear">
                             <option disabled selected>출생 연도</option>
                         </select>
                         <select class="box" id="birth-month" name="userBirthMonth">
@@ -54,6 +54,9 @@
                             <option disabled selected>일</option>
                         </select>
                     </div>
+                </div>
+                <!--                    -->
+                <div>
                     <!--                    <p th:text="${userId}"></p>-->
                     <div th:if="${userDto != null}">
                         <!-- Display the user ID -->
@@ -63,15 +66,11 @@
                         <!-- Display a message for no query result -->
                         <p>조회 결과 없음</p>
                     </div>
-
                 </div>
                 <!-- btn -->
                 <button type="submit" class="submit-btn">확인하기</button>
-
-
-            </form>
+        </form>
         </div>
-
     </div>
 </article>
 
@@ -82,9 +81,9 @@
     isYearOptionExisted = false;
     birthYear.addEventListener('focus', function () {
         // year 목록 생성되지 않았을 때 (최초 클릭 시)
-        if (!isYearOptionExisted) {
+        if(!isYearOptionExisted) {
             isYearOptionExisted = true
-            for (var i = 1940; i <= 2023; i++) {
+            for(var i = 1940; i <= 2022; i++) {
                 // option element 생성
                 const yearOption = document.createElement('option')
                 yearOption.setAttribute('value', i)
@@ -101,9 +100,9 @@
     isMonthOptionExisted = false;
     birthMonth.addEventListener('focus', function () {
         // month 목록 생성되지 않았을 때 (최초 클릭 시)
-        if (!isMonthOptionExisted) {
+        if(!isMonthOptionExisted) {
             isMonthOptionExisted = true
-            for (var i = 1; i <= 12; i++) {
+            for(var i = 1; i <= 12; i++) {
                 // option element 생성
                 const monthOption = document.createElement('option')
                 monthOption.setAttribute('value', i)
@@ -120,9 +119,9 @@
     isDayOptionExisted = false;
     birthDay.addEventListener('focus', function () {
         // month 목록 생성되지 않았을 때 (최초 클릭 시)
-        if (!isMonthOptionExisted) {
+        if(!isMonthOptionExisted) {
             isDayOptionExisted = true
-            for (var i = 1; i <= 31; i++) {
+            for(var i = 1; i <= 31; i++) {
                 // option element 생성
                 const dayOption = document.createElement('option')
                 dayOption.setAttribute('value', i)

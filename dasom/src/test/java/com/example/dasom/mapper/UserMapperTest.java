@@ -1,11 +1,14 @@
 package com.example.dasom.mapper;
 
 import com.example.dasom.domain.dto.UserDto;
+import com.example.dasom.domain.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,4 +37,11 @@ class UserMapperTest {
 //        assertNotNull(foundUser);
 
     }
+        @Test
+    void DonateUserSelectAll(){
+        UserVo userVo = new UserVo();
+        userVo.setUserNumber(1L);
+
+        List<UserVo> userVoList =userMapper.DonateUserSelectAll(userVo.getUserNumber());
+        }
 }
