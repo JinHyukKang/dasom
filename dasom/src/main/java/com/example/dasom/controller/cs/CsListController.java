@@ -1,6 +1,7 @@
 package com.example.dasom.controller.cs;
 
 import com.example.dasom.domain.dto.CsWriteDto;
+import com.example.dasom.domain.vo.CsDetailVo;
 import com.example.dasom.service.CsListService;
 import com.example.dasom.service.DonateListService;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +32,9 @@ public class CsListController {
 //    봉사 게시글 상세보기
     @GetMapping("/detail")
     public String showDetail(@RequestParam("csNum")Long csNum , Model model){
-        CsWriteDto csDto = csListService.showDetail(csNum);
-        model.addAttribute("csInfo", csDto);
+        CsDetailVo csDetailVo = csListService.showDetail(csNum);
+
+        model.addAttribute("csInfo", csDetailVo);
         model.addAttribute("csNum",csNum);
         return "cs/csDetail/csDetail";
     }
@@ -41,9 +43,15 @@ public class CsListController {
     @GetMapping("/csComplete")
     //정보 테이블에넣기
     // 메인페이지로 회원이름 보내기
-    public void csComplete(@RequestParam("csNum")Long csNum, HttpServletRequest req, Model model){
+    public String csComplete(@RequestParam("csNum")Long csWriteNumber, HttpServletRequest req, Model model){
+        //봉사 신청자 이름
         Long  userNumber = (Long)req.getSession().getAttribute("userNumber");
         String userName = donateListService.selectKakaoUserName(userNumber);
-        //cswrite넘버 / 유저넘버 넘기기
+
+        //기부 테이블에 DB삽입
+        csListService.csApply(userNumber,csWriteNumber);
+
+        model.addAttribute("userName", userName);
+        return "cs/csComplete/csComplete";
     }
 }

@@ -75,7 +75,7 @@
                         `;
 
                         if(r.donatefileName== null) {
-                            text+
+                            text+=
                             `<div  class="box-top-img" style="background-image: url(https://via.placeholder.com/300x200)"></div>`
                        ; }
                         else{
@@ -83,7 +83,7 @@
                             console.log(r.donatefileUuid);
                             console.log(r.donatefileName);
                             text+=
-                        `<div class="box-top-img" style="'background-image: url(/upload/' + ${r.donatefileUploadPath} + '/th_' + ${r.donatefileUuid} + '_' + ${r.donatefileName} + ')'"></div>`
+                        `<div class="box-top-img" style="background-image: url(/upload/${r.donatefileUploadPath}/th_${r.donatefileUuid}_${r.donatefileName})"></div>`
                         ;}
                         text+=
                         `<div class="box-top-text flex-center">${r.donateWriteTitle}</div>

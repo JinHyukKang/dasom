@@ -18,7 +18,4 @@ public interface DonateListMapper {
 //    카카오페이 페이지에 입력될 유저이름 출력
     public String selectKakaoUserName(Long UserNumber);
 
-
-//    카카오페이 페이지에 입력될 캠페인 이름 출력
-    public String selectKakaoDonateWriteTitle(Long donateWriteNumber);
 }

@@ -2,6 +2,7 @@ package com.example.dasom.service;
 
 import com.example.dasom.domain.dto.CsDto;
 import com.example.dasom.domain.dto.CsWriteDto;
+import com.example.dasom.domain.vo.CsDetailVo;
 import com.example.dasom.domain.vo.DonateListVo;
 import com.example.dasom.mapper.CsListMapper;
 import com.example.dasom.mapper.DonateListMapper;
@@ -28,17 +29,14 @@ public class CsListService {
         return csListMapper.selectList(status);
     };
 
-
 //    봉사 게시물 상세보기
-    public CsWriteDto showDetail(Long csNum){
+    public CsDetailVo showDetail(Long csNum){
        return csListMapper.selectDetail(csNum);
-    }
+    };
 
-//    봉사신청 완료페이지 이동
-    //입력받은 데이터 테이블에 넣고 이동!
-//    public String csComplete(){
-//
-//
-//    }
+//    봉사 신청 정보 DB테이블에 입력
+    public void csApply(Long userNumber, Long csWriteNumber){
+        csListMapper.insert(userNumber,csWriteNumber);
+    };
 
 }

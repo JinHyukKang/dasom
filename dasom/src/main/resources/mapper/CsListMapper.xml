@@ -14,10 +14,13 @@
         WHERE CSWRITE_STATUS = '${status}'
     </select>
 
-    <select id="selectDetail" resultType="csWriteDto">
-        SELECT *
-        FROM TBL_CSWRITE
-        WHERE CSWRITE_NUMBER = ${csNum}
+    <select id="selectDetail" resultType="csDetailVo">
+        SELECT W.CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+                CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+                CSWRITE_MANAGER, CSWRITE_PHONE, CSFILE_NUMBER, CSFILE_NAME, CSFILE_UPLOAD_PATH, CSFILE_UUID
+        FROM  TBL_CSFILE F JOIN TBL_CSWRITE W
+        ON F.CSWRITE_NUMBER = W.CSWRITE_NUMBER
+        WHERE W.CSWRITE_NUMBER = ${csWriteNum}
     </select>
 
     <insert id="insert">

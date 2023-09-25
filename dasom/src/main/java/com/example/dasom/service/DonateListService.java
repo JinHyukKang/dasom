@@ -26,11 +26,9 @@ public class DonateListService {
         return donateListMapper.selectList(status);
     };
 
-//     카카오페이 페이지에 입력될 유저이 름 출력
+//     카카오페이 페이지에 입력될 유저이름 출력
     public String selectKakaoUserName(Long userNumber){
         return donateListMapper.selectKakaoUserName(userNumber);
     };
-
-
 
 }
