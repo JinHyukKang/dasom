@@ -63,10 +63,19 @@
     </select>
     <!-- 이우진 내정보   -->
     <select id="userSelect" resultType="UserDto">
-        SELECT *
+        SELECT USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR,
+               USER_BIRTH_MONTH, USER_BIRTH_DAY, USER_PHONE, USER_EMAIL,
+               USER_GENDER, USER_POST_CODE, USER_ADDR, USER_ADDR_EXTRA as USER_ADD_EXTRA, USER_ADDR_DETAIL as USER_ADD_DETAIL,
+               TO_CHAR(USER_JOINDATE, 'YYYY.MM.DD') AS USER_JOINDATE
         FROM TBL_USERS
         where user_number = ${userNumber}
     </select>
+    <!-- 이우진 내정보 수정  -->
+    <update id="userUpdate" parameterType="UserDto">
+        update TBL_USERS
+        set  user_email = #{userEmail},user_phone = #{userPhone},user_post_code = #{userPostCode},user_addr = #{userAddr},user_addr_extra = #{userAddExtra},user_addr_detail = #{userAddDetail}
+        where user_number = ${userNumber}
+    </update>
 
 
 </mapper>
