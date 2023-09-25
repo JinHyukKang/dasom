@@ -81,13 +81,13 @@ main{
     border: 1px solid rgba(0.1,0.1,0.1,0.1);
 }
 .arrow-next{
-    right: 10;
+    right: 1%;
     margin-right: 0.5%;
     display: block;
     font-size: 20px;
 }
 .arrow-prev{
-    left: 10;
+    left: 1%;
     margin-left: 0.5%;
     display: none;
     font-size: 20px;
