@@ -20,7 +20,7 @@
 
         <!-- 봉사정보 -->
         <section class="info">
-            <div class="info-top" th:text="${csInfo.csWriteTitle}">2023 청년기대봉사단</div>
+            <div class="info-top" th:text="${csInfo.csWriteTitle}"></div>
             <div class="info-bottom">
                 <div class="info-bottom-left">
                     <!-- 모집기간  -->
@@ -49,7 +49,7 @@
                     <!-- 담당자 연락처  -->
                     <div class="left-info-title">
                         <div>담당자 연락처 : </div>
-                        <div th:text="${csInfo.csWritePhone}">010-1234-1234</div>
+                        <div th:text="${csInfo.csWritePhone}"></div>
                     </div>
 
                 </div>
@@ -68,13 +68,12 @@
 
         <!-- 버튼 -->
         <section class="btn">
-            <a href="cs/csComplete?csNum=${csNum}"><button class="apply-btn">신청하기</button></a>
+            <a th:href="'/cs/csComplete?csNum='+${csNum}"><button class="apply-btn">신청하기</button></a>
         </section>
         
         <!-- 상세페이지 이미지 -->
         <section class="info-detail">
-            <img class="info-detail-img" src="/img/detail.jpg" alt="">
-
+            <img class="info-detail-img" th:src="'/upload/' + ${csInfo.csFileUploadPath}+ '/' + ${csInfo.csFileUuid} + '_' + ${csInfo.csFileName}" alt="">
         </section>
     </main>
 </body>

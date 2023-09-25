@@ -40,6 +40,7 @@ public class UserController {
         req.getSession().setAttribute("userNumber", userDto.getUserNumber());
 
         return new RedirectView("/main/mainPage");
+
     }
 
 

@@ -10,13 +10,13 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class DonateListVo {
-//    private Long donatewriteNumber;
-//    private Long adminNumber;
+    private Long donatewriteNumber;
+    private Long adminNumber;
     private String donateWriteTitle;
-//    private String donatewriteStatus;
-//    private Date donatewriteDate;
-//    private Long donatefileNumber;
-//    private String donatefileName;
-//    private String donatefileUploadPath;
-//    private String donatefileUuid;
+    private String donatewriteStatus;
+    private Date donatewriteDate;
+    private Long donatefileNumber;
+    private String donatefileName;
+    private String donatefileUploadPath;
+    private String donatefileUuid;
 }
