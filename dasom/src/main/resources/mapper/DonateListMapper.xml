@@ -8,14 +8,21 @@
         FROM TBL_DONATEWRITE
     </select>
 
-
+<!--총 기부 게시글 출력-->
     <select id="selectList" resultType="donateListVo">
-        SELECT DONATEWRITE_TITLE
-        FROM TBL_DONATEWRITE
+        SELECT w. DONATEWRITE_NUMBER, DONATEWRITE_TITLE, DONATEWRITE_STATUS, DONATEWRITE_DATE,
+               DONATEFILE_NUMBER, DONATEFILE_NAME, DONATEFILE_UPLOAD_PATH, DONATEFILE_UUID
+        FROM TBL_DONATEWRITE W JOIN TBL_DONATEFILE F
+        ON W.DONATEWRITE_NUMBER = F.DONATEWRITE_NUMBER
         WHERE DONATEWRITE_STATUS = ${status}
     </select>
 
-
+<!--   카카오페이 페이지에 입력될 유저이름 출력-->
+    <select id="selectKakaoUserName" resultType="String">
+        SELECT USER_NAME
+        FROM TBL_USERS
+        WHERE USER_NUMBER = ${userNumber}
+    </select>
 
 
 </mapper>
