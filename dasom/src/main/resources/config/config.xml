@@ -16,15 +16,15 @@
 
         <typeAlias type="com.example.dasom.domain.vo.UserVo" alias="userVo"/>
         <typeAlias type="com.example.dasom.domain.vo.DonateListVo" alias="donateListVo"/>
-<!--        <typeAlias type="com.example.dasom.domain.vo.DonateWriteVo" alias="donateWriteVo"/>-->
+        <typeAlias type="com.example.dasom.domain.vo.DonateWriteVo" alias="donateWriteVo"/>
         <typeAlias type="com.example.dasom.domain.vo.SearchVo" alias="searchVo"/>
-<<<<<<< HEAD
+
         <typeAlias type="com.example.dasom.domain.vo.CsWriteVo" alias="csWriteVo"/>
         <typeAlias type="com.example.dasom.domain.vo.AdDonateVo" alias="adDonateVo"/>
-=======
+
         <typeAlias type="com.example.dasom.domain.vo.CsDetailVo" alias="csDetailVo"/>
 
->>>>>>> cs
+
 
     </typeAliases>
 </configuration>
