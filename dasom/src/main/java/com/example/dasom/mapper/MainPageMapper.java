@@ -15,4 +15,7 @@ public interface MainPageMapper {
 //    메이페이지 봉사글 가져오기
     public List<CsWriteDto> selectCs();
 
+    //    메인페이지 누적 후원금 가져오기
+    public int selectAmount();
+
 }

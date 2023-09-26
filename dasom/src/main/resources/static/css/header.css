@@ -121,3 +121,38 @@ header{
     border-radius: 6px;
     transition: background-color 0.3s ease,color 0.3s ease;
 }
+.main-header-service-mypage,
+.main-header-service-logout{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mypage-img{
+    width: 50%;
+    height: 58%;
+}
+.main-header-service-logout-tag:hover{
+    background-color: #39a14a;
+    border-radius: 6px;
+    color: white;
+}
+.main-header-service-mypage{
+    margin-left: 5%;
+}
+.main-header-service-mypage-tag,
+.main-header-service-logout-tag{
+    width: 80%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    border-radius: 6px;
+    transition: background-color 0.3s ease,color 0.3s ease;
+}
