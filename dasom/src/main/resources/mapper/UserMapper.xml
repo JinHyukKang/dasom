@@ -47,6 +47,20 @@
         where user_id = #{userId}
     </select>
 
+<!--  이우진 내후원리스트 건  -->
+    <select id="donateUserSelectAllCount" resultType="Long">
+        SELECT COUNT(*) AS donate_count
+        FROM TBL_DONATE
+                 INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
+        WHERE TBL_DONATE.user_number = #{userNumber}
+    </select>
+<!--  이우진 내후원리스트 금액 총합  -->
+    <select id="donateUserSelectAllAmount" resultType="String">
+        SELECT TO_CHAR(SUM(donate_amount), '999,999,999') AS total_donate_amount
+        FROM TBL_DONATE
+                 INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
+        WHERE TBL_DONATE.user_number = #{userNumber}
+    </select>
     <!-- 이우진 내후원리스트   -->
     <select id="donateUserSelectAll" resultType="UserVo">
         SELECT donate_number,

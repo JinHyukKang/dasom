@@ -109,6 +109,7 @@ $(document).ready(function(){
 });
 
 function pwCheck() {
+
     if($('.user-password-input2').val() ==="" &$('.user-password-input3').val()==="" ){
         $('.Confirm')
         .text("비밀번호를 입력해주세요")
@@ -127,6 +128,8 @@ function pwCheck() {
         .css("color", "gray");
     }
 }
+
+
 
 //비밀번호 변경창(모달)
 let changeModal= document.querySelector(".change-pw-btn");
@@ -149,3 +152,64 @@ xBox.addEventListener('click',function(){
     pw.style.display="none";
     changeBtn.style.display="none";
 });
+
+// SMS를 보내는 함수
+$('.user-phone-btn').on('click', function sendSms() {
+    const phoneNumber = document.getElementById("userPhone").value;
+    if (!phoneNumber) {
+        alert("휴대전화 번호를 입력하세요.");
+        return;
+    }
+
+    // 서버로 휴대전화 번호를 보내고 SMS를 전송합니다.
+    fetch("/users/send", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ phoneNumber })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert("SMS 전송에 실패했습니다.");
+            } else {
+                alert("SMS가 전송되었습니다.");
+                startCountdown(); // SMS 전송 후 카운트다운 시작
+            }
+        })
+        .catch(error => {
+            console.error("SMS 전송 오류:", error);
+        });
+});
+
+// SMS 인증번호 확인 함수
+$('.user-check-btn').on('click', function verifySms() {
+    const verificationCode = document.getElementById("verificationCode").value;
+    if (!verificationCode) {
+        alert("인증번호를 입력하세요.");
+        return;
+    }
+
+    // 서버로 인증번호를 보내고 확인합니다.
+    fetch("/users/check", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ checkNumber: verificationCode })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                alert("인증이 완료되었습니다.");
+                PhoneCheck();
+            } else {
+                alert("인증번호가 일치하지 않습니다.");
+            }
+        })
+        .catch(error => {
+
+            console.error("인증 오류:", error);
+        });
+})

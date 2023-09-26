@@ -27,6 +27,8 @@ public class MyPageController {
     public String myPageDonation(Long userNumber, HttpServletRequest req, Model model) {
         userNumber = (Long) req.getSession().getAttribute("userNumber");
         log.info(userNumber.toString());
+        model.addAttribute("donateCount", myPageService.donateUserSelectAllCount(userNumber));
+        model.addAttribute("totalDonateAmount", myPageService.donateUserSelectAllAmount(userNumber));
         model.addAttribute("List", myPageService.donateUserSelectAll(userNumber));
         return "/myPage/myPageDonation";
     }

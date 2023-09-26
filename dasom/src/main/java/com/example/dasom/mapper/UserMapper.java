@@ -25,6 +25,12 @@ public interface UserMapper {
     //    로그인
     public UserDto select(@Param("userId") String userId, @Param("userPassword") String userPassword);
 
+    //    마이페이지 후원금리스트 건
+    Long donateUserSelectAllCount(@Param("userNumber") Long userNumber);
+
+    //    마이페이지 후원금리스트 총액수
+    String donateUserSelectAllAmount(@Param("userNumber") Long userNumber);
+
     //    마이페이지 후원금리스트
     List<UserVo> donateUserSelectAll(@Param("userNumber") Long userNumber);
 

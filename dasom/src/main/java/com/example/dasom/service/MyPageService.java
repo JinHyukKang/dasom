@@ -14,6 +14,17 @@ import java.util.Optional;
 public class MyPageService {
     private final UserMapper userMapper;
 
+    public Long donateUserSelectAllCount(Long userNumber) {
+        Long donateCount = userMapper.donateUserSelectAllCount(userNumber);
+        return donateCount;
+    }
+
+    public String donateUserSelectAllAmount(Long userNumber) {
+        String totalDonateAmount = userMapper.donateUserSelectAllAmount(userNumber);
+        return totalDonateAmount;
+    }
+
+
     public List<UserVo> donateUserSelectAll(Long userNumber) {
         List<UserVo> donateUserSelectAll = userMapper.donateUserSelectAll(userNumber);
         return donateUserSelectAll;
