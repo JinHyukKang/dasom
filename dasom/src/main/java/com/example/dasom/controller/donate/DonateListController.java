@@ -14,7 +14,7 @@ import java.net.http.HttpRequest;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/donate/*")
+@RequestMapping("/donate1/*")
 public class DonateListController {
     private final DonateListService donateListService;
 
