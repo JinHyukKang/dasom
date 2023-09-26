@@ -24,5 +24,4 @@
         WHERE USER_NUMBER = ${userNumber}
     </select>
 
-
 </mapper>

@@ -99,9 +99,27 @@
               <button th:attr="data-csWriteNumber=${cs.csWriteNumber}"
                       onclick="recruitCs(this.getAttribute('data-csWriteNumber'))"
                       class="btngray1">마감</button>
-            </div><br>
+            </div>
+            <br>
             <div>
-              <div></div>
+              <!--    봉사참여자 카테고리     -->
+              <ul class="cs-user">
+                <li class="cs-user-num">회원번호</li>
+                <li class="cs-user-id">아이디</li>
+                <li class="cs-user-name">이름</li>
+                <li class="cs-user-phone">핸드폰번호</li>
+                <li class="cs-user-email">이메일</li>
+                <li class="cs-user-date">봉사 신청일</li>
+              </ul>
+
+              <ul class="cs-cate">
+                <li class="cs-cate-num">1</li>
+                <li class="cs-cate-id">jhkang</li>
+                <li class="cs-cate-name">강진혁</li>
+                <li class="cs-cate-phone">01011112222</li>
+                <li class="cs-cate-email">jhkang@naver,com</li>
+                <li class="cs-cate-date">2023.09.01</li>
+              </ul>
             </div>
           </div>
           <div class="noResult-text" th:if="${#lists.isEmpty(csWriteList)}">

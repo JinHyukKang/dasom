@@ -20,10 +20,11 @@ public class MainPageController {
     public String main(Model model){
 
         int amount = mainPageService.findAmount();
+
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         String formattedAmount = decimalFormat.format(amount);
-
         model.addAttribute("amount", formattedAmount);
+
         model.addAttribute("donateList", mainPageService.findDonateAll());
         model.addAttribute("csList", mainPageService.findCsAll());
         return "mainPage";
