@@ -42,5 +42,20 @@ public class FindController {
     public String findPassword() {
         return "/user/find/findPw";
     }
+
+    @PostMapping("/findPasswordOk")
+    public String findPassword(
+            String userName, String userPhone,
+            String userId,
+            Long userNumber
+    ) {
+
+        UserDto userDto = findService.(userName, userPhone, userId);
+
+        userDto.setUserNumber(userNumber);
+        myPageService.userPasswordUpdate(userDto);
+
+        return "/user/find/findId";
+    }
 }
 
