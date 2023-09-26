@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- header -->
-    <header class="header" th:replace="fragments/headerLogin :: header">
+    <header class="header" th:replace="fragments/header :: header">
     </header>
 <main>
 
@@ -94,8 +94,8 @@
                 <div class="user-text">
                     휴대폰 번호
                 </div>
-                <input type="text" class="user-phone-input" th:value="${List.userPhone}" name="userPhone" />
-                <button type="button" class="user-phone-btn" onclick="startCountdown()">인증하기</button>
+                <input type="text" class="user-phone-input" th:value="${List.userPhone}" id="userPhone" name="userPhone" />
+                <button type="button" class="user-phone-btn" >인증하기</button>
             </div>
             <!-- 휴대폰번호 인증 -->
             <div class="phone-check">
@@ -103,7 +103,7 @@
                     번호 인증
                 </div>
                 <input type="text" class="user-check-input"  id="verificationCode"/>
-                <button type="button" class="user-check-btn" onclick="PhoneCheck()">인증확인</button>
+                <button type="button" class="user-check-btn" >인증확인</button>
             </div>
             <div id="countdown" class="countdown"></div>
             <!-- 주소 -->
@@ -170,6 +170,7 @@
     </section>
 
 </main>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>

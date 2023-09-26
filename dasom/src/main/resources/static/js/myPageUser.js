@@ -190,7 +190,6 @@ $('.user-check-btn').on('click', function verifySms() {
         alert("인증번호를 입력하세요.");
         return;
     }
-
     // 서버로 인증번호를 보내고 확인합니다.
     fetch("/users/check", {
         method: "POST",
@@ -204,8 +203,10 @@ $('.user-check-btn').on('click', function verifySms() {
             if (data) {
                 alert("인증이 완료되었습니다.");
                 PhoneCheck();
+
             } else {
                 alert("인증번호가 일치하지 않습니다.");
+
             }
         })
         .catch(error => {
