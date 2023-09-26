@@ -2,18 +2,21 @@ package com.example.dasom.controller;
 
 import com.example.dasom.domain.dto.UserDto;
 import com.example.dasom.service.FindService;
+import com.example.dasom.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/find/*")
 @RequiredArgsConstructor
 public class FindController {
     private final FindService findService;
+    private final MyPageService myPageService;
 
     @GetMapping("/findId")
     public String findId() {
@@ -43,19 +46,16 @@ public class FindController {
         return "/user/find/findPw";
     }
 
-    @PostMapping("/findPasswordOk")
-    public String findPassword(
+    @PostMapping("/findUserNumber")
+    public RedirectView findPassword(
             String userName, String userPhone,
             String userId,
-            Long userNumber
+            Long userNumber,UserDto userDto
     ) {
-
-        UserDto userDto = findService.(userName, userPhone, userId);
-
+        userNumber = findService.findUserNumber(userName, userId, userPhone);
         userDto.setUserNumber(userNumber);
         myPageService.userPasswordUpdate(userDto);
-
-        return "/user/find/findId";
+        return new RedirectView("/user/login");
     }
 }
 

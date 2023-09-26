@@ -18,7 +18,8 @@ public class FindService {
 //                .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음"));
     }
 
-    public UserDto findPassword(String userName, String userPhone, String userId) {
-        return userMapper.findUserPassword(userName, userPhone, userId);
+    public Long findUserNumber(String userName, String userId, String userPhone){
+        return userMapper.findUserPassword(userName,userId,userPhone);
     }
+
 }

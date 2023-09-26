@@ -14,7 +14,10 @@ public interface UserMapper {
     public UserDto findUserId(@Param("userName") String userName, @Param("userPhone") String userPhone, @Param("userBirthYear") String userBirthYear, @Param("userBirthMonth") String userBirthMonth, @Param("userBirthDay") String userBirthDay);
 
     //        비번찾기
-    public UserDto findUserPassword(@Param("userId") String userId, @Param("userName") String userName, @Param("userPhone") String userPhone);
+    public Long findUserPassword(@Param("userId") String userId, @Param("userName") String userName, @Param("userPhone") String userPhone);
+
+    //    마이페이지 나의 Pw 수정
+    public void userPasswordUpdate(UserDto userDto);
 
     //    회원가입
     public void insert(UserDto userDto);
@@ -26,28 +29,25 @@ public interface UserMapper {
     public UserDto select(@Param("userId") String userId, @Param("userPassword") String userPassword);
 
     //    마이페이지 후원금리스트 건
-    Long donateUserSelectAllCount(@Param("userNumber") Long userNumber);
+    public Long donateUserSelectAllCount(@Param("userNumber") Long userNumber);
 
     //    마이페이지 후원금리스트 총액수
-    String donateUserSelectAllAmount(@Param("userNumber") Long userNumber);
+    public String donateUserSelectAllAmount(@Param("userNumber") Long userNumber);
 
     //    마이페이지 후원금리스트
-    List<UserVo> donateUserSelectAll(@Param("userNumber") Long userNumber);
+    public List<UserVo> donateUserSelectAll(@Param("userNumber") Long userNumber);
 
     //    마이페이지 나의 참여 리스트
-    List<UserVo> csUserSelectAll(@Param("userNumber") Long userNumber);
+    public  List<UserVo> csUserSelectAll(@Param("userNumber") Long userNumber);
 
     //    마이페이지 나의 정보
-    UserDto userSelect(@Param("userNumber") Long userNumber);
+    public UserDto userSelect(@Param("userNumber") Long userNumber);
 
     //    마이페이지 나의 정보 수정
-    void userUpdate(UserDto userDto);
-
-    //    마이페이지 나의 Pw 수정
-    void userPasswordUpdate(UserDto userDto);
+    public  void userUpdate(UserDto userDto);
 
     //  마이페이지 회원탈퇴
-    void userDelete(UserDto userDto);
+    public void userDelete(UserDto userDto);
 //    Long userNumber;
 //    String userId;
 //    String userPassword;

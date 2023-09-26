@@ -13,13 +13,21 @@
           and user_Birth_Day = #{userBirthDay}
     </select>
     <!--이우진 비밀번호찾기-->
-    <select id="findUserPassword" parameterType="UserDto" resultType="UserDto">
-        select *
+    <select id="findUserPassword" parameterType="UserDto" resultType="Long">
+        select user_number
         from tbl_users
-        where user_password = #{userPassword}
+        where user_id = #{userId}
           and user_name = #{userName}
           and user_Phone = #{userPhone}
     </select>
+
+    <!-- 이우진 내비밀번호 수정  -->
+    <update id="userPasswordUpdate" parameterType="UserDto">
+        update TBL_USERS
+        set user_password       = #{userPassword}
+        where user_number = ${userNumber}
+    </update>
+
 
     <!--나예은 회원가입-->
     <insert id="insert">
@@ -113,13 +121,6 @@
             user_addr        = #{userAddr},
             user_addr_extra  = #{userAddExtra},
             user_addr_detail = #{userAddDetail}
-        where user_number = ${userNumber}
-    </update>
-
-    <!-- 이우진 내비밀번호 수정  -->
-    <update id="userPasswordUpdate" parameterType="UserDto">
-        update TBL_USERS
-        set user_password       = #{userPassword}
         where user_number = ${userNumber}
     </update>
 
