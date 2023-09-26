@@ -26,7 +26,7 @@
     </select>
 
     <select id="selectAmount" resultType="_int">
-        SELECT SUM(DONATE_AMOUNT)
+        SELECT COALESCE(SUM(DONATE_AMOUNT), 0)
         FROM TBL_DONATE
     </select>
 
