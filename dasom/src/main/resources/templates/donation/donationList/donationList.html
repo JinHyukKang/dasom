@@ -41,6 +41,10 @@
         crossorigin="anonymous"></script>
 <script>
 
+    $('.board-item-box-end').on('click', function () {
+        alert("완료된 후원입니다!");
+    });
+    
     //페이지 진입시 비동기 게시판 구성
     myModule('1', showResult);
 
@@ -66,27 +70,33 @@
 
     function showResult(result) {
         let text = '';
+
         result.forEach(r => {
+            console.log("@@@@@" + r.donatewriteStatus);
+            if (r.donatewriteStatus == 1) {
+                text += ` <a href="/donate/detail?donateWriteTitle=${r.donatewriteTitle}" className="board-a">
+                        <div class="board-item-box">
+                    `;
+            } else {
+                text +=
+                    `<div class="board-item-box-end">`;
+            }
 
-            text += `
-                <a href="/donate/detail?donateWriteTitle=${r.donateWriteTitle}" class="board-a">
-                    <div class="board-item-box">
-                        <div class="box-top">
-                        `;
+                text +=
+                    `<div class="box-top">`;
 
-                        if(r.donatefileName== null) {
-                            text+=
-                            `<div  class="box-top-img" style="background-image: url(https://via.placeholder.com/300x200)"></div>`
-                       ; }
-                        else{
-                            console.log(r.donatefileUploadPath);
-                            console.log(r.donatefileUuid);
-                            console.log(r.donatefileName);
-                            text+=
-                        `<div class="box-top-img" style="background-image: url(/upload/${r.donatefileUploadPath}/th_${r.donatefileUuid}_${r.donatefileName})"></div>`
-                        ;}
-                        text+=
-                        `<div class="box-top-text flex-center">${r.donatewriteTitle}</div>
+            if (r.donatefileName == null) {
+                text +=
+                    `<div  class="box-top-img" style="background-image: url(https://via.placeholder.com/300x200)"></div>`
+                ;
+            } else {
+                text +=
+                    `<div class="box-top-img" style="background-image: url(/upload/${r.donatefileUploadPath}/th_${r.donatefileUuid}_${r.donatefileName})"></div>`
+                ;
+            }
+            text +=
+                `
+                        <div class="box-top-text flex-center">${r.donatewriteTitle}</div>
                         </div>
                         <div class="box-bottom-donate">
                             <div class="bottom-donate-text">후원하기</div>
@@ -124,6 +134,8 @@
 
         myModule('0', showResult);
     });
+
+
 
 </script>
 
