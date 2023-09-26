@@ -101,6 +101,7 @@ function PhoneCheck() {
     }).open();
 }
 
+
 //비밀번호 일치
 $(document).ready(function(){
     $('.Confirm')
@@ -190,6 +191,7 @@ $('.user-check-btn').on('click', function verifySms() {
         alert("인증번호를 입력하세요.");
         return;
     }
+
     // 서버로 인증번호를 보내고 확인합니다.
     fetch("/users/check", {
         method: "POST",
@@ -203,10 +205,11 @@ $('.user-check-btn').on('click', function verifySms() {
             if (data) {
                 alert("인증이 완료되었습니다.");
                 PhoneCheck();
+                window.location.href = "/myPage/myPageUserOk";
 
             } else {
                 alert("인증번호가 일치하지 않습니다.");
-
+                window.location.reload();
             }
         })
         .catch(error => {
@@ -214,3 +217,46 @@ $('.user-check-btn').on('click', function verifySms() {
             console.error("인증 오류:", error);
         });
 })
+
+// const storedPassword = '[[${List.userPassword}]]';
+const passwordInput = document.getElementById('passwordInput');
+const passwordMismatchMessage = document.getElementById('passwordMismatchMessage');
+const changeButton = document.querySelector('.user-change-btn');
+const passwordInputs = document.querySelectorAll('.user-password-input2, .user-password-input3');
+const confirmDiv = document.querySelector('.Confirm');
+
+const handlePasswordInput = () => {
+    passwordMismatchMessage.style.display = (passwordInput.value === storedPassword && passwordInput.value) ? 'none' : 'block';
+    checkPasswordsMatch();
+};
+
+const checkPasswordsMatch = () => {
+    if (passwordInputs[0].value !== passwordInputs[1].value) {
+        confirmDiv.innerText = '비밀번호가 일치하지 않습니다';
+        confirmDiv.style.color = 'red';
+        confirmDiv.style.display = 'block';
+        changeButton.disabled = true;
+    } else {
+        confirmDiv.innerText = ''; // 비밀번호 일치 메시지 초기화
+        confirmDiv.style.display = 'none';
+        changeButton.disabled = false;
+    }
+};
+
+const handlePasswordChange = event => {
+    if (passwordInput.value !== storedPassword || !passwordInput.value) {
+        alert('현재 비밀번호를 입력하세요.');
+        event.preventDefault();
+    } else if (!passwordInputs[0].value || !passwordInputs[1].value) {
+        alert('변경할 비밀번호를 입력하세요.');
+        event.preventDefault();
+    } else if (passwordInputs[0].value !== passwordInputs[1].value) {
+        alert('비밀번호가 일치하지 않습니다.');
+        event.preventDefault();
+    } else {
+        alert('비밀번호가 변경되었습니다.');
+    }
+};
+passwordInput.addEventListener('input', handlePasswordInput);
+passwordInputs.forEach(input => input.addEventListener('input', checkPasswordsMatch));
+changeButton.addEventListener('click', handlePasswordChange);
