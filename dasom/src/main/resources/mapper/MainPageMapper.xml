@@ -25,6 +25,10 @@
         WHERE CSWRITE_STATUS = '1'
     </select>
 
+    <select id="selectAmount" resultType="_int">
+        SELECT SUM(DONATE_AMOUNT)
+        FROM TBL_DONATE
+    </select>
 
 
 </mapper>

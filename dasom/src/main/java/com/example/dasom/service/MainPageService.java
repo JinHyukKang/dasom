@@ -42,4 +42,10 @@ public class MainPageService {
 
         return mainPageMapper.selectCs();
     }
+
+//    메인페이지 누적 후원금 가져오기
+    public int findAmount(){
+        return mainPageMapper.selectAmount();
+    }
+
 }
