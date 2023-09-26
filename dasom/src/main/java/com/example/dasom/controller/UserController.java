@@ -48,4 +48,11 @@ public class UserController {
         return "include/termOfUse";
     }
 
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest req){
+        req.getSession().invalidate();
+        return "mainPage";
+    }
+
 }
