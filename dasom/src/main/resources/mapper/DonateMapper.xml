@@ -11,7 +11,7 @@
         <selectKey keyProperty="donateNumber" order="BEFORE" resultType="long">
             select SEQ_DONATE.NEXTVAL FROM DUAL
         </selectKey>
-        insert into TBL_DONATE (DONATE_NUMBER, DONATE_AMOUNT)
-        values (#{donateNumber},#{donateAmount})
+        insert into TBL_DONATE (DONATE_NUMBER, user_number, donatewrite_number, DONATE_AMOUNT)
+        values (#{donateNumber},#{userNumber},#{donateWriteNumber},#{donateAmount})
     </insert>
 </mapper>

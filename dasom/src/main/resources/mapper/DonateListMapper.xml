@@ -10,7 +10,7 @@
 
 
     <select id="selectList" resultType="donateListVo">
-        SELECT DONATEWRITE_TITLE
+        SELECT DONATEWRITE_TITLE, DONATEWRITE_NUMBER
         FROM TBL_DONATEWRITE
         WHERE DONATEWRITE_STATUS = ${status}
     </select>

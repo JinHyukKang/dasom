@@ -13,9 +13,6 @@ public class DonateService {
 
     @Transactional
     public void donation(DonateDto donateDto){
-        if (donateDto == null) {
-            throw new IllegalArgumentException("로그인 안 됨");
-        }
         donateMapper.insert(donateDto);
     }
 

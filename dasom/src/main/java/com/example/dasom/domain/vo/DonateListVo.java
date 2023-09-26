@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class DonateListVo {
-//    private Long donatewriteNumber;
+    private Long donateWriteNumber;
 //    private Long adminNumber;
     private String donateWriteTitle;
 //    private String donatewriteStatus;
