@@ -1,5 +1,8 @@
 package com.example.dasom.service;
 
+import com.example.dasom.domain.dto.DonateDto;
+import com.example.dasom.domain.dto.DonateWriteDto;
+import com.example.dasom.domain.dto.UserDto;
 import com.example.dasom.domain.vo.DonateListVo;
 import com.example.dasom.mapper.DonateListMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +26,9 @@ public class DonateListService {
         return donateListMapper.selectList(status);
     };
 
-
+//     카카오페이 페이지에 입력될 유저이름 출력
+    public String selectKakaoUserName(Long userNumber){
+        return donateListMapper.selectKakaoUserName(userNumber);
+    };
 
 }
