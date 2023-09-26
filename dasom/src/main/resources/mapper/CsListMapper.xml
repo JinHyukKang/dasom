@@ -29,7 +29,7 @@
     </insert>
 
     <select id="selectCsDuplicate" resultType="_int">
-        SELECT (count)*
+        SELECT COUNT(*)
         FROM TBL_CS
         WHERE USER_NUMBER = ${userNumber} AND CSWRITE_NUMBER = ${csWriteNumber}
     </select>

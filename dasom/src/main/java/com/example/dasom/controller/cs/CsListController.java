@@ -40,8 +40,8 @@ public class CsListController {
     }
 
     //    봉사신청 완료페이지
-    @GetMapping("/csComplete/{csNum}")
-    public String csComplete(@RequestParam("csNum")Long csWriteNumber, HttpServletRequest req, Model model){
+    @GetMapping("/csComplete")
+    public String csComplete(HttpServletRequest req, Model model){
         //봉사 신청자 이름
         Long  userNumber = (Long)req.getSession().getAttribute("userNumber");
         String userName = donateListService.selectKakaoUserName(userNumber);

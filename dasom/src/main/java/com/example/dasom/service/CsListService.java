@@ -44,7 +44,7 @@ public class CsListService {
         if(duplicateCheck>0) {
             return true;
         }
-        //DB에 정보입력
+        // 중복 아닐경우 DB에 정보입력
         csListMapper.insert(userNumber, csWriteNumber);
         return false;
 
