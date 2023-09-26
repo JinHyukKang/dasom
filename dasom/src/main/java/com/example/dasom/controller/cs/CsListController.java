@@ -39,19 +39,15 @@ public class CsListController {
         return "cs/csDetail/csDetail";
     }
 
-//    봉사신청 완료페이지
-    @GetMapping("/csComplete")
-    //정보 테이블에넣기
-    // 메인페이지로 회원이름 보내기
+    //    봉사신청 완료페이지
+    @GetMapping("/csComplete/{csNum}")
     public String csComplete(@RequestParam("csNum")Long csWriteNumber, HttpServletRequest req, Model model){
         //봉사 신청자 이름
         Long  userNumber = (Long)req.getSession().getAttribute("userNumber");
         String userName = donateListService.selectKakaoUserName(userNumber);
 
-        //기부 테이블에 DB삽입
-        csListService.csApply(userNumber,csWriteNumber);
-
         model.addAttribute("userName", userName);
-        return "cs/csComplete/csComplete";
-    }
+
+            return "cs/csComplete/csComplete";
+        }
 }

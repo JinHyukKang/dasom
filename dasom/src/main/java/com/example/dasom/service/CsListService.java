@@ -35,8 +35,19 @@ public class CsListService {
     };
 
 //    봉사 신청 정보 DB테이블에 입력
-    public void csApply(Long userNumber, Long csWriteNumber){
-        csListMapper.insert(userNumber,csWriteNumber);
+    public boolean csApply(Long userNumber, Long csWriteNumber){
+
+        //중복 체크
+        Integer duplicateCheck = csListMapper.selectCsDuplicate(userNumber,csWriteNumber);
+
+        //중복일 경우
+        if(duplicateCheck>0) {
+            return true;
+        }
+        //DB에 정보입력
+        csListMapper.insert(userNumber, csWriteNumber);
+        return false;
+
     };
 
 }

@@ -68,7 +68,7 @@
 
         <!-- 버튼 -->
         <section class="btn">
-            <a th:href="'/cs/csComplete?csNum='+${csNum}"><button class="apply-btn">신청하기</button></a>
+           <button class="apply-btn">신청하기</button>
         </section>
         
         <!-- 상세페이지 이미지 -->
@@ -76,6 +76,31 @@
             <img class="info-detail-img" th:src="'/upload/' + ${csInfo.csFileUploadPath}+ '/' + ${csInfo.csFileUuid} + '_' + ${csInfo.csFileName}" alt="">
         </section>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+    <script>
+
+        $('.apply-btn').on('click',function (){
+            $.ajax({
+                type: 'get',
+                url: `/csRest/csComplete/${csNum}`,
+                dataType: 'json',
+                success: function (result) {
+                    if(result){
+                        location.href = cs/csComplete?csNum='+${csNum};
+                    }else{
+                        alert('이미 신청한 봉사입니다!')
+                        location.href = cs/csComplete?csNum='+${csNum};
+                    }
+                },
+                error: function (a, b, c) {
+                    console.log(c);
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

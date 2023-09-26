@@ -28,5 +28,11 @@
         values (SEQ_CS.nextval, ${userNumber}, ${csWriteNumber},SYSDATE)
     </insert>
 
+    <select id="selectCsDuplicate" resultType="_int">
+        SELECT (count)*
+        FROM TBL_CS
+        WHERE USER_NUMBER = ${userNumber} AND CSWRITE_NUMBER = ${csWriteNumber}
+    </select>
+
 
 </mapper>
