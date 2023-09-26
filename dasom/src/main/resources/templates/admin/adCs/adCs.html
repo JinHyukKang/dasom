@@ -78,48 +78,53 @@
           </div>
 
           <!-- 회원목록 데이터값 -->
-          <div class="section-board-bottom" th:each="cs : ${csWriteList}">
-            <div class="num" th:text="${cs.csWriteNumber}">1</div>
-            <div class="campaign" th:text="${cs.csWriteTitle}">캠페인명</div>
-            <div class="recruitDate" th:text="${cs.csWriteRecruitStart}+'~'+${cs.csWriteRecruitEnd}">모집기간</div>
-            <div class="manager" th:text="${cs.csWriteManager}">담당자</div>
-            <div class="managerPhone" th:text="${cs.csWritePhone}">담당자 번호</div>
-            <div class="writeDate" th:text="${cs.csWriteDate}">23.09.13</div>
-            <div class="state" th:text="${cs.csWriteStatus == '1' ? '모집중' : '모집완료'}"></div>
-            <div class="execute">
-              <button class="btngreen1" th:onclick="|location.href='@{/csWrite/modify(csWriteNumber=${cs.csWriteNumber})}'|">수정</button>
+          <div class="section-board-title" th:each="cs : ${csWriteList}">
+            <div class="section-board-bottom">
+              <div class="num" th:text="${cs.csWriteNumber}">1</div>
+              <div class="campaign" th:text="${cs.csWriteTitle}">캠페인명</div>
+              <div class="recruitDate" th:text="${cs.csWriteRecruitStart}+'~'+${cs.csWriteRecruitEnd}">모집기간</div>
+              <div class="manager" th:text="${cs.csWriteManager}">담당자</div>
+              <div class="managerPhone" th:text="${cs.csWritePhone}">담당자 번호</div>
+              <div class="writeDate" th:text="${cs.csWriteDate}">23.09.13</div>
+              <div class="state" th:text="${cs.csWriteStatus == '1' ? '모집중' : '모집완료'}"></div>
+              <div class="execute">
+                <button class="btngreen1" th:onclick="|location.href='@{/csWrite/modify(csWriteNumber=${cs.csWriteNumber})}'|">수정</button>
+              </div>
+              <div class="execute">
+                <button class="btnred1" th:attr="data-csWriteNumber=${cs.csWriteNumber}"
+                        onclick="deleteCs(this.getAttribute('data-csWriteNumber'))">삭제</button>
+              </div>
+              <div class="execute"
+                   th:onclick="|location.href='@{/csWrite/recruit(csWriteNumber=${cs.csWriteNumber})}'|"
+                   th:if="${cs.csWriteStatus == '1'}">
+                <button th:attr="data-csWriteNumber=${cs.csWriteNumber}"
+                        onclick="recruitCs(this.getAttribute('data-csWriteNumber'))"
+                        class="btngray1">마감</button>
+              </div>
             </div>
-            <div class="execute">
-              <button class="btnred1" th:attr="data-csWriteNumber=${cs.csWriteNumber}"
-                      onclick="deleteCs(this.getAttribute('data-csWriteNumber'))">삭제</button>
-            </div>
-            <div class="execute"
-                 th:onclick="|location.href='@{/csWrite/recruit(csWriteNumber=${cs.csWriteNumber})}'|"
-                 th:if="${cs.csWriteStatus == '1'}">
-              <button th:attr="data-csWriteNumber=${cs.csWriteNumber}"
-                      onclick="recruitCs(this.getAttribute('data-csWriteNumber'))"
-                      class="btngray1">마감</button>
-            </div>
-            <br>
-            <div>
+              <!--    봉사 참여자 리스트-->
+            <div class="cs-user-list">
+              <div class="cs-user-title"></div>
               <!--    봉사참여자 카테고리     -->
-              <ul class="cs-user">
-                <li class="cs-user-num">회원번호</li>
-                <li class="cs-user-id">아이디</li>
-                <li class="cs-user-name">이름</li>
-                <li class="cs-user-phone">핸드폰번호</li>
-                <li class="cs-user-email">이메일</li>
-                <li class="cs-user-date">봉사 신청일</li>
-              </ul>
+              <div class="cs-user-group">
+                <ul class="cs-user">
+                  <li class="cs-user-num">회원번호</li>
+                  <li class="cs-user-id">아이디</li>
+                  <li class="cs-user-name">이름</li>
+                  <li class="cs-user-phone">핸드폰번호</li>
+                  <li class="cs-user-email">이메일</li>
+                  <li class="cs-user-date">봉사 신청일</li>
+                </ul>
 
-              <ul class="cs-cate">
-                <li class="cs-cate-num">1</li>
-                <li class="cs-cate-id">jhkang</li>
-                <li class="cs-cate-name">강진혁</li>
-                <li class="cs-cate-phone">01011112222</li>
-                <li class="cs-cate-email">jhkang@naver,com</li>
-                <li class="cs-cate-date">2023.09.01</li>
-              </ul>
+                <ul class="cs-cate">
+                  <li class="cs-cate-num">1</li>
+                  <li class="cs-cate-id">jhkang</li>
+                  <li class="cs-cate-name">강진혁</li>
+                  <li class="cs-cate-phone">01011112222</li>
+                  <li class="cs-cate-email">jhkang@naver,com</li>
+                  <li class="cs-cate-date">2023.09.01</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="noResult-text" th:if="${#lists.isEmpty(csWriteList)}">

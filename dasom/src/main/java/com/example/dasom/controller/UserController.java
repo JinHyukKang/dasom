@@ -51,9 +51,9 @@ public class UserController {
 
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest req){
+    public RedirectView logout(HttpServletRequest req){
         req.getSession().invalidate();
-        return "mainPage";
+        return new RedirectView("/main/mainPage");
     }
 
 }

@@ -171,11 +171,18 @@ main {
 }
 .section-board-top,
 .section-board-bottom,
-.section-board-bottom2 {
+.section-board-bottom2{
   width: 100%;
   height: 89px;
   display: flex;
   background-color: #f4f4f4;
+}
+.section-board-title{
+  width: 100%;
+  /*height: 89px;*/
+  display: flex;
+  background-color: #f4f4f4;
+  flex-direction: column;
 }
 .section-board-top {
   font-weight: bold;
@@ -270,4 +277,24 @@ main {
 .noResult-text{
   margin: auto;
   margin-top: 30px;
+}
+.cs-user-list{
+  display: flex;
+  flex-direction: column;
+}
+.cs-user-title{
+
+}
+.cs-user-group{
+  display: flex;
+}
+.cs-user{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+.cs-cate{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
 }
