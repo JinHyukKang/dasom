@@ -111,7 +111,7 @@ a:visited{
   justify-content: center;
 }
 
-.board-item-box {
+.board-item-box, .board-item-box-end {
   width: 400px;
   height: 400px;
   flex-direction: column;
@@ -120,7 +120,7 @@ a:visited{
   box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
 }
 
-.board-item-box:hover {
+.board-item-box:hover, .board-item-box-end:hover{
   border: 1px solid #39b54a;
 }
 .box-top {
