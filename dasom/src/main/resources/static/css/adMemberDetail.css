@@ -107,6 +107,7 @@ main {
   font-weight: bold;
   color: white;
   font-size: 13px;
+  cursor: pointer;
 }
 .button-write:hover {
   background-color: rgb(150, 150, 150);

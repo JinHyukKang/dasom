@@ -57,8 +57,8 @@ public class CsWriteService {
         return csWriteMapper.selectAll(criteria, searchVo);
     }
     //    봉사글 총 개수 조회
-    public int getTotal(String keyword){
-        return csWriteMapper.selectTotal(keyword);
+    public int getTotal(SearchVo searchVo){
+        return csWriteMapper.selectTotal(searchVo);
     }
 
 //    봉사글 상세조회(수정페이지 이동)

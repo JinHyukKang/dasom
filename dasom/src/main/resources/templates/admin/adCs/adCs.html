@@ -51,12 +51,12 @@
 
         <!-- 검색바 -->
         <section class="section-search">
-          <form class="search-form" action="/admin/adCs">
+          <form class="search-form" action="/admin/adCs" method="get">
             <div class="search-inner">
-              <select class="search-dropdown" name="cate">
+              <select class="search-dropdown" name="cate" th:value="${searchCate}">
                 <option value="campaign">캠페인명</option>
               </select>
-              <input class="search-bar" type="text" name="keyword" th:value="${param.keyword}"/>
+              <input class="search-bar" type="text" name="keyword" th:value="${searchKeyword}"/>
               <button class="search-button" type="submit">검색</button>
             </div>
           </form>
@@ -80,8 +80,8 @@
           <!-- 회원목록 데이터값 -->
           <div class="section-board-title" th:each="cs : ${csWriteList}">
             <div class="section-board-bottom">
-              <div class="num" th:text="${cs.csWriteNumber}">1</div>
-              <div class="campaign" th:text="${cs.csWriteTitle}">캠페인명</div>
+              <div class="csNum" th:text="${cs.csWriteNumber}">1</div>
+              <a class="campaign-btn" href="#" th:text="${cs.csWriteTitle}" th:data-number="${cs.csWriteNumber}">캠페인명</a>
               <div class="recruitDate" th:text="${cs.csWriteRecruitStart}+'~'+${cs.csWriteRecruitEnd}">모집기간</div>
               <div class="manager" th:text="${cs.csWriteManager}">담당자</div>
               <div class="managerPhone" th:text="${cs.csWritePhone}">담당자 번호</div>
@@ -103,57 +103,58 @@
               </div>
             </div>
               <!--    봉사 참여자 리스트-->
-            <div class="cs-user-list">
-              <div class="cs-user-title"></div>
-              <!--    봉사참여자 카테고리     -->
-              <div class="cs-user-group">
-                <ul class="cs-user">
-                  <li class="cs-user-num">회원번호</li>
-                  <li class="cs-user-id">아이디</li>
-                  <li class="cs-user-name">이름</li>
-                  <li class="cs-user-phone">핸드폰번호</li>
-                  <li class="cs-user-email">이메일</li>
-                  <li class="cs-user-date">봉사 신청일</li>
-                </ul>
+            <div class="cs-user-modal">
+              <div class="cs-user-list">
+                <div class="cs-user-title" th:text="'[봉사모집] '+${cs.csWriteTitle} +' 지원자 목록'"></div>
+                <!--    봉사참여자 카테고리     -->
+                <div class="cs-user-group">
+                  <ul class="cs-user">
+                    <li class="cs-user-num">회원번호</li>
+                    <li class="cs-user-id">아이디</li>
+                    <li class="cs-user-name">이름</li>
+                    <li class="cs-user-phone">핸드폰번호</li>
+                    <li class="cs-user-email">이메일</li>
+                    <li class="cs-user-date">봉사 신청일</li>
+                  </ul>
 
-                <ul class="cs-cate">
-                  <li class="cs-cate-num">1</li>
-                  <li class="cs-cate-id">jhkang</li>
-                  <li class="cs-cate-name">강진혁</li>
-                  <li class="cs-cate-phone">01011112222</li>
-                  <li class="cs-cate-email">jhkang@naver,com</li>
-                  <li class="cs-cate-date">2023.09.01</li>
-                </ul>
+                <!-- 봉사 참여자 리스트 비동기로 불러오기 -->
+                  <div class="cs-cate-bottom">
+
+                  </div>
+
+                  <button type="button" class="modal-close">닫기</button>
+                </div>
               </div>
-            </div>
+          </div>
           </div>
           <div class="noResult-text" th:if="${#lists.isEmpty(csWriteList)}">
             <h3>일치하는 검색결과가 없습니다</h3>
           </div>
 
         </section>
-      <!-- 페이징  -->
-      <section class="section-paging">
-        <div class="page_wrap">
-          <div class="page_nation">
-            <!-- 이전 페이지 링크 -->
-            <a th:href="@{/admin/adCs(page=${pageInfo.startPage-1}, keyword=${param.keyword})}"
-               class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
+        <!-- 페이징  -->
+        <section class="section-paging">
+          <div class="page_wrap">
+            <div class="page_nation">
+              <!-- 이전 페이지 링크 -->
+              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.startPage-1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
+                 class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
 
-            <!-- 페이지 번호 순환 출력 -->
-            <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
-              <a th:href="@{/admin/adCs(page=${i}, keyword=${param.keyword})}" class="active"
-                 th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
-              <a th:href="@{/admin/adCs(page=${i}, keyword=${param.keyword})}" class="active"
-                 th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
-            </th:block>
+              <!-- 페이지 번호 순환 출력 -->
+              <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
+                   th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
+                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
+                   th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
+              </th:block>
 
-            <!-- 다음 페이지 링크 -->
-            <a th:href="@{/admin/adCs(page=${pageInfo.endPage+1}, keyword=${param.keyword})}"
-               class="arrow next" th:if="${pageInfo.next}">&gt;</a>
+              <!-- 다음 페이지 링크 -->
+              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.endPage+1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
+                 class="arrow next" th:if="${pageInfo.next}">&gt;</a>
+
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </main>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>

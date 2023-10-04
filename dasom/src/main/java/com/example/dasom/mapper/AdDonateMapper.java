@@ -14,6 +14,6 @@ public interface AdDonateMapper {
 //    후원내역조회
     public List<AdDonateVo> selectAll(Criteria criteria, SearchVo searchVo);
 //    후원수 조회
-    public int selectTotal(@Param("keyword") String keyword, SearchVo searchVo);
+    public int selectTotal(SearchVo searchVo);
 
 }

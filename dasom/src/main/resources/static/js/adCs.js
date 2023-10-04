@@ -61,3 +61,73 @@ function recruitCs(csWriteNumber) {
         alert("모집완료를 취소하셨습니다");
     }
 };
+
+//봉사자 리스트 모달
+document.addEventListener('DOMContentLoaded', function() {
+    let modal = document.querySelector(".cs-user-modal");
+    let xBox = document.querySelector('.modal-close');
+    let campaignLinks = document.querySelectorAll('.campaign-btn');
+    let csUserTitle = document.querySelector('.cs-user-title');
+    let csWriteNumber = document.querySelector('.csNum');
+
+    campaignLinks.forEach(function(campaignLink) {
+        campaignLink.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // 클릭된 링크의 데이터를 가져와서 csWriteNumber 설정
+            let csWriteNumber = $(this).data('number');
+
+            modal.style.display = "block";
+
+            function getList(csWriteNumber, callback){
+                $.ajax({
+                    url : `/adCsRest/find/${csWriteNumber}`,
+                    type : 'get',
+                    dataType : 'json',
+                    success : function (result) {
+                        if(callback){
+                            callback(result);
+                        }
+                    },
+                    error : function(a, b, c) {
+                        console.error(c);
+                    }
+                });
+            }
+
+            getList(csWriteNumber, showCsUser);
+
+            function showCsUser(result){
+                console.log(result);
+
+                let text ='';
+
+                result.forEach( r => {
+
+                    text += `
+                    <ul class="cs-cate">
+                        <li class="cs-user-num">${r.userNumber}</li>
+                        <li class="cs-user-id">${r.userId}</li>
+                        <li class="cs-user-name">${r.userName}</li>
+                        <li class="cs-user-phone">${r.userPhone}</li>
+                        <li class="cs-user-email">${r.userEmail}</li>
+                        <li class="cs-user-date">${r.csApplyDate}</li>
+                    </ul>
+
+                  `;
+                });
+
+                $('.cs-cate-bottom').html(text);
+            }
+        });
+    });
+
+    xBox.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+});
+
+
+
+
+
