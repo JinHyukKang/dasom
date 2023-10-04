@@ -20,4 +20,7 @@ public interface CsListMapper {
 
     //    봉사 신청 정보 DB테이블에 입력
     public void insert(Long userNumber, Long csWriteNumber);
+
+    //봉사 중복신청 체크
+    public Integer selectCsDuplicate(Long userNumber, Long csWriteNumber);
 }

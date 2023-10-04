@@ -4,6 +4,7 @@ import com.example.dasom.domain.dto.DonateDto;
 import com.example.dasom.domain.dto.DonateWriteDto;
 import com.example.dasom.domain.dto.UserDto;
 import com.example.dasom.mapper.DonateMapper;
+import com.example.dasom.service.DonateListService;
 import com.example.dasom.service.DonateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class DonateController {
     private final DonateService donateService;
+    private final DonateListService donateListService;
 
 
     @GetMapping("payPage")
@@ -46,6 +48,23 @@ public class DonateController {
         model.addAttribute("userName", userName);
         return "donation/donationComplete/donationComplete";
     }
+
+    @GetMapping("/list")
+    public String showList(){
+        return "donation/donationList/donationList";
+    }
+
+    @GetMapping("/detail")
+    public String donationDetail(@RequestParam("donateWriteTitle")String donateWriteTitle, Model model, HttpServletRequest req){
+        Long  userNumber = (Long)req.getSession().getAttribute("userNumber");
+        String userName = donateListService.selectKakaoUserName(userNumber);
+        model.addAttribute("userName", userName);
+        model.addAttribute("donateWriteTitle", donateWriteTitle);
+
+        return "donation/donationPay/donationPay";
+    }
+
+
 
 
 }

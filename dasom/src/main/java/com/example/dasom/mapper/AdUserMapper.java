@@ -14,7 +14,7 @@ public interface AdUserMapper {
 //    회원전체조회
     public List<UserDto> selectAll(Criteria criteria, SearchVo searchVo);
 //    회원수 조회
-    public int selectTotal(@Param("keyword") String keyword, SearchVo searchVo);
+    public int selectTotal(SearchVo searchVo);
 //    회원 조회
     public UserDto select(@Param("userNumber") Long userNumber);
 //    회원 정보 삭제

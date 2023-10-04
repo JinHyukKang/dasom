@@ -73,8 +73,15 @@
             let text = '';
             result.forEach(r => {
 
-                text += `
-                <a href="/cs/detail?csNum=${r.csWriteNumber}" class="main-va-tag">
+                if(r.csWriteStatus ==1){
+                    text += `
+                <a href="/cs/detail?csNum=${r.csWriteNumber}" class="main-va-tag">`;
+                }else{
+                    text += `
+                    <a class="main-va-tag">`;
+                }
+                
+                 text += `
                 <div class="main-va-list">
                     <div class="main-va-text">봉사지원</div>
                     <div class="main-va-content">[모집]${r.csWriteTitle}</div>
@@ -104,7 +111,7 @@
             document.getElementById("campaign-ongoing").style.color="#39b54a";
             document.getElementById("campaign-end").style.color="black";
 
-            myModule('0',stat, showResult);
+            myModule('1',stat, showResult);
         });
 
         //종료된 캠페인 클릭
@@ -119,7 +126,7 @@
             document.getElementById("campaign-ongoing").style.color="black";
             document.getElementById("campaign-end").style.color="#39b54a";
 
-            myModule('1',stat,showResult);
+            myModule('0',stat,showResult);
         });
 
     </script>

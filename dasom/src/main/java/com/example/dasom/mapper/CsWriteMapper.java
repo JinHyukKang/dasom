@@ -18,7 +18,7 @@ public interface CsWriteMapper {
 //    봉사글 전체 조회
     public List<CsWriteDto> selectAll(Criteria criteria, SearchVo searchVo);
 //    전체 봉사글 수 조회
-    public int selectTotal(@Param("keyword") String keyword);
+    public int selectTotal(SearchVo searchVo);
 //    봉사 글 조회
     public CsWriteVo select(@Param("csWriteNumber") Long csWriteNumber);
 //    봉사 글 삭제

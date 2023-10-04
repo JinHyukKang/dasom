@@ -34,8 +34,8 @@ public class AdUserService {
     }
 
 //    회원 인원 조회(검색 포함)
-    public int getTotal(String keyword, SearchVo searchVo){
-        return adUserMapper.selectTotal(keyword, searchVo);
+    public int getTotal(SearchVo searchVo){
+        return adUserMapper.selectTotal(searchVo);
     }
 
 //    회원 상세 조회

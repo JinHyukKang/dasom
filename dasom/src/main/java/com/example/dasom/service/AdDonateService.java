@@ -24,6 +24,7 @@ public class AdDonateService {
     public List<AdDonateVo> findAll(Criteria criteria, SearchVo searchVo){
 
         List<AdDonateVo> list = new ArrayList<>();
+        log.info(searchVo.toString());
         list = adDonateMapper.selectAll(criteria,searchVo);
         for (int i=0; i<list.size(); i++){
             log.info(String.valueOf(list.get(i)));
@@ -31,8 +32,8 @@ public class AdDonateService {
 
         return adDonateMapper.selectAll(criteria,searchVo);
     }
-//    후원 내역 갯수 조회
-    public int getTotal(String keyword, SearchVo searchVo){
-        return adDonateMapper.selectTotal(keyword, searchVo);
+    //    후원 내역 갯수 조회
+    public int getTotal(SearchVo searchVo){
+        return adDonateMapper.selectTotal(searchVo);
     }
 }
