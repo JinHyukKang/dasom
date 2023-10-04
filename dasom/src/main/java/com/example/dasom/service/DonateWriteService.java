@@ -56,8 +56,8 @@ public class DonateWriteService {
         return donateWriteMapper.selectAll(criteria, searchVo);
     }
 //    후원글 총 개수 조회
-    public int getTotal(String keyword){
-    return donateWriteMapper.selectTotal(keyword);
+    public int getTotal(SearchVo searchVo){
+    return donateWriteMapper.selectTotal(searchVo);
 }
 
 //    후원글 상세조회(수정페이지 이동)

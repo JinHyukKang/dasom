@@ -47,13 +47,13 @@
 
         <!-- 검색바 -->
         <section class="section-search">
-          <form class="search-form" action="">
+          <form class="search-form" action="/admin/adUser" method="get">
             <div class="search-inner">
-              <select class="search-dropdown" name="cate" id="">
+              <select class="search-dropdown" name="cate" th:value="${searchCate}">
                 <option value="name">이름</option>
                 <option value="id">아이디</option>
               </select>
-              <input class="search-bar" type="text" name="keyword" th:value="${param.keyword}"/>
+              <input class="search-bar" type="text" name="keyword" th:value="${searchKeyword}" />
               <button class="search-button" type="submit">검색</button>
             </div>
           </form>
@@ -76,8 +76,8 @@
           <div th:each="user : ${userList}"
             class="section-board-bottom">
             <div class="member-num" th:text="${user.userNumber}">1</div>
-            <div class="id" th:text="${user.userId}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">abb60455</div>
-            <div class="name" th:text="${user.userName}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">이우진</div>
+            <div class="id onclick" th:text="${user.userId}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">abb60455</div>
+            <div class="name onclick" th:text="${user.userName}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">이우진</div>
             <div class="birth"
             th:text="${user.userBirthYear}+'.'+${user.userBirthMonth}+'.'+${user.userBirthDay}"
             >1962.05.07</div>
@@ -98,20 +98,21 @@
           <div class="page_wrap">
             <div class="page_nation">
               <!-- 이전 페이지 링크 -->
-              <a th:href="@{/admin/adUser(page=${pageInfo.startPage-1}, keyword=${param.keyword})}"
+              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.startPage-1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
                  class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
 
               <!-- 페이지 번호 순환 출력 -->
               <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
-                <a th:href="@{/admin/adUser(page=${i}, keyword=${param.keyword})}" class="active"
+                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
                    th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
-                <a th:href="@{/admin/adUser(page=${i}, keyword=${param.keyword})}" class="active"
+                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
                    th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
               </th:block>
 
               <!-- 다음 페이지 링크 -->
-              <a th:href="@{/admin/adUser(page=${pageInfo.endPage+1}, keyword=${param.keyword})}"
+              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.endPage+1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
                  class="arrow next" th:if="${pageInfo.next}">&gt;</a>
+
             </div>
           </div>
         </section>

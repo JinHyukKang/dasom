@@ -21,6 +21,7 @@
 
         <typeAlias type="com.example.dasom.domain.vo.CsWriteVo" alias="csWriteVo"/>
         <typeAlias type="com.example.dasom.domain.vo.AdDonateVo" alias="adDonateVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.CsUserVo" alias="csUserVo"/>
 
         <typeAlias type="com.example.dasom.domain.vo.CsDetailVo" alias="csDetailVo"/>
 
