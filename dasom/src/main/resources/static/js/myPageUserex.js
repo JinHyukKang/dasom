@@ -52,35 +52,35 @@ function PhoneCheck() {
     var CheckDiv = document.querySelector(".phone-check");
     CheckDiv.style.display = "none";
 }
-// SMS를 보내는 함수
-$('.user-phone-btn1').on('click', function sendSms() {
-    const phoneNumber = document.getElementById("userPhoneCh").value;
-    if (!phoneNumber) {
-        alert("휴대전화 번호를 입력하세요.");
-        return;
-    }
-
-    // 서버로 휴대전화 번호를 보내고 SMS를 전송합니다.
-    fetch("/users/send", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ phoneNumber })
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert("SMS 전송에 실패했습니다.");
-            } else {
-                alert("SMS가 전송되었습니다.");
-                startCountdown(); // SMS 전송 후 카운트다운 시작
-            }
-        })
-        .catch(error => {
-            console.error("SMS 전송 오류:", error);
-        });
-});
+// // SMS를 보내는 함수
+// $('.user-phone-btn').on('click', function sendSms() {
+//     const phoneNumber = document.getElementById("userPhone").value;
+//     if (!phoneNumber) {
+//         alert("휴대전화 번호를 입력하세요.");
+//         return;
+//     }
+//
+//     // 서버로 휴대전화 번호를 보내고 SMS를 전송합니다.
+//     fetch("/users/send", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({ phoneNumber })
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.error) {
+//                 alert("SMS 전송에 실패했습니다.");
+//             } else {
+//                 alert("SMS가 전송되었습니다.");
+//                 startCountdown(); // SMS 전송 후 카운트다운 시작
+//             }
+//         })
+//         .catch(error => {
+//             console.error("SMS 전송 오류:", error);
+//         });
+// });
 
 // SMS 인증번호 확인 함수
 $('.user-check-btn').on('click', function verifySms() {
@@ -103,12 +103,11 @@ $('.user-check-btn').on('click', function verifySms() {
             if (data) {
                 alert("인증이 완료되었습니다.");
                 PhoneCheck();
-                var userPhone = document.querySelector("#userPhoneCh").value;  //입력한 주문자명
-
-                document.querySelector("#userPhone").value = userPhone;
+                window.location.href = "/myPage/myPageUserOk";
 
             } else {
                 alert("인증번호가 일치하지 않습니다.");
+                window.location.reload();
             }
         })
         .catch(error => {
@@ -119,7 +118,7 @@ $('.user-check-btn').on('click', function verifySms() {
 
 
 //주소찾기 api
-function sample6_execDaumPostcode() {
+ function sample6_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -153,7 +152,7 @@ function sample6_execDaumPostcode() {
                 }
                 // 조합된 참고항목을 해당 필드에 넣는다.
                 document.getElementById("sample6_extraAddress").value = extraAddr;
-
+            
             } else {
                 document.getElementById("sample6_extraAddress").value = '';
             }
@@ -179,20 +178,20 @@ function pwCheck() {
 
     if($('.user-password-input2').val() ==="" &$('.user-password-input3').val()==="" ){
         $('.Confirm')
-            .text("비밀번호를 입력해주세요")
-            .css("color", "gray");
+        .text("비밀번호를 입력해주세요")
+        .css("color", "gray");
     }else if ($('.user-password-input2').val() === $('.user-password-input3').val()) {
-        $('.Confirm')
-            .text("비밀번호가 일치합니다")
-            .css("color", "green");
+      $('.Confirm')
+        .text("비밀번호가 일치합니다")
+        .css("color", "green");
     }else if($('.user-password-input2').val() !== $('.user-password-input3').val()){
-        $('.Confirm')
-            .text("비밀번호가 일치하지 않습니다")
-            .css("color", "red");
+      $('.Confirm')
+        .text("비밀번호가 일치하지 않습니다")
+        .css("color", "red");
     }else{
         $('.Confirm')
-            .text("비밀번호를 입력해주세요")
-            .css("color", "gray");
+        .text("비밀번호를 입력해주세요")
+        .css("color", "gray");
     }
 }
 
