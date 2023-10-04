@@ -11,8 +11,8 @@
 </head>
 <body>
 <!-- header -->
-<!--<header class="header" th:replace="fragments/header :: header">-->
-<!--</header>-->
+<header class="header" th:replace="fragments/header :: header">
+</header>
 <main>
 
     <h2 class="user-title">나의정보</h2>
@@ -87,14 +87,14 @@
                 <div class="user-text">
                     이메일
                 </div>
-                <input type="email" class="user-email-input" th:value="${List.userEmail}" name=userEmail/>
+                <input type="email" class="user-email-input" th:value="${List.userEmail}" name="userEmail" oninput="modifyCheck" />
             </div>
             <!-- 핸드폰번호(인증포함) -->
             <div class="user-info">
                 <div class="user-text">
                     휴대폰 번호
                 </div>
-                <input type="text" class="user-phone-input-none" th:value="${List.userPhone}" readonly/>
+                <input type="text" class="user-phone-input-none" th:value="${List.userPhone}" id="userPhone" name="userPhone"  oninput="modifyCheck2" readonly/>
                 <button type="button" class="user-phone-btn">번호변경</button>
             </div>
             <!-- 주소 -->
@@ -108,18 +108,19 @@
                                value="우편번호 찾기" readonly>
                     </div>
                     <input type="text" class="mypage-addr-addr" id="sample6_address" th:value="${List.userAddr}"
-                           name="userAddr" readonly>
+                           name="userAddr" onchange="modifyCheck3" readonly>
                     <div class="mypage-addr-group2">
                         <input type="text" class="mypage-addr-extra" id="sample6_extraAddress"
                                th:value="${List.userAddExtra}" name="userAddExtra" readonly>
                         <input type="text" class="mypage-addr-detail" id="sample6_detailAddress"
-                               th:value="${List.userAddDetail}" name="userAddDetail">
+                               th:value="${List.userAddDetail}" name="userAddDetail" oninput="modifyCheck">
                     </div>
                 </div>
             </div>
+            <div class="modify-message"></div>
             <!-- 회원정보 수정, 돌아가기 -->
             <div class="user-btn">
-                <button class="btn-back" type="button">취소</button>
+                <button class="btn-back" type="button" onclick="btnBack()">취소</button>
                 <button class="btn-modify" type="submit">수정하기</button>
             </div>
             <div class="user-last">
@@ -180,7 +181,7 @@
                     <div class="user-text">
                         번호 인증
                     </div>
-                    <input type="text" class="user-check-input"/>
+                    <input type="text" class="user-check-input" id="verificationCode" name="verificationCode"/>
                     <button type="button" class="user-check-btn" onclick="PhoneCheck()">인증확인</button>
                 </div>
                 <div id="countdown" class="countdown"></div>
@@ -200,6 +201,10 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script th:inline="javascript">
     const storedPassword = [[${List.userPassword}]];
+    const storedEmail = [[${List.userEmail}]];
+    const storedPh = [[${List.userPhone}]];
+    const storedAddr = [[${List.userAddr}]];
+    const storedAddDetail = [[${List.userAddDetail}]];
 </script>
 <script defer th:src="@{/js/myPageUser.js}"></script>
 

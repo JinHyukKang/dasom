@@ -1,7 +1,3 @@
-
-
-
-
 //인증시간 카운트 다운
 var countdownInterval;
 var secondsRemaining = 240; // 4분 = 240초
@@ -15,7 +11,7 @@ function startCountdown() {
 
     countdownDiv.innerHTML = formatTime(secondsRemaining);
 
-    countdownInterval = setInterval(function() {
+    countdownInterval = setInterval(function () {
         secondsRemaining--;
 
         if (secondsRemaining <= 0) {
@@ -52,6 +48,7 @@ function PhoneCheck() {
     var CheckDiv = document.querySelector(".phone-check");
     CheckDiv.style.display = "none";
 }
+
 // SMS를 보내는 함수
 $('.user-phone-btn1').on('click', function sendSms() {
     const phoneNumber = document.getElementById("userPhoneCh").value;
@@ -66,7 +63,7 @@ $('.user-phone-btn1').on('click', function sendSms() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ phoneNumber })
+        body: JSON.stringify({phoneNumber})
     })
         .then(response => response.json())
         .then(data => {
@@ -96,16 +93,16 @@ $('.user-check-btn').on('click', function verifySms() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ checkNumber: verificationCode })
+        body: JSON.stringify({checkNumber: verificationCode})
     })
         .then(response => response.json())
         .then(data => {
             if (data) {
                 alert("인증이 완료되었습니다.");
-                PhoneCheck();
-                var userPhone = document.querySelector("#userPhoneCh").value;  //입력한 주문자명
-
+                var userPhone = document.querySelector("#userPhoneCh").value;
                 document.querySelector("#userPhone").value = userPhone;
+                PhoneCheck();
+                modifyCheck2();
 
             } else {
                 alert("인증번호가 일치하지 않습니다.");
@@ -121,7 +118,7 @@ $('.user-check-btn').on('click', function verifySms() {
 //주소찾기 api
 function sample6_execDaumPostcode() {
     new daum.Postcode({
-        oncomplete: function(data) {
+        oncomplete: function (data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -137,23 +134,22 @@ function sample6_execDaumPostcode() {
             }
 
             // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-            if(data.userSelectedType === 'R'){
+            if (data.userSelectedType === 'R') {
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                     extraAddr += data.bname;
                 }
                 // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
+                if (data.buildingName !== '' && data.apartment === 'Y') {
                     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
                 // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraAddr !== ''){
+                if (extraAddr !== '') {
                     extraAddr = ' (' + extraAddr + ')';
                 }
                 // 조합된 참고항목을 해당 필드에 넣는다.
                 document.getElementById("sample6_extraAddress").value = extraAddr;
-
             } else {
                 document.getElementById("sample6_extraAddress").value = '';
             }
@@ -163,13 +159,76 @@ function sample6_execDaumPostcode() {
             document.getElementById("sample6_address").value = addr;
             // 커서를 상세주소 필드로 이동한다.
             document.getElementById("sample6_detailAddress").focus();
+
+            modifyCheck3();
         }
     }).open();
 }
+//
+function btnBack(){
+    history.go(0);
+}
+// 수정사항 체크
+$(document).ready(function () {
+    // 초기에 메시지를 " "로 설정 (테스트용)
+    $('.modify-message').text("");
+    // 수정 가능한 입력 필드에 대해서 keyup 이벤트 처리
+    $('.user-email-input, .mypage-addr-detail').on('keyup', function () {
+        modifyCheck();
+    });
+    // // 수정 가능한 입력 필드에 대해서 change 이벤트 처리
+    // $('.user-phone-input-none').on('change', function () {
+    //     modifyCheck2();
+    // });
+    // // 수정 가능한 입력 필드에 대해서 change 이벤트 처리
+    // $('.mypage-addr-addr').on('change', function () {
+    //     modifyCheck3();
+    // });
+});
 
+function modifyCheck() {
+    // 수정사항이 존재할때
+    if (storedEmail !== $('.user-email-input').val() ||  storedAddDetail !== $('.mypage-addr-detail').val()) {
+        // "수정사항이 존재합니다" 라는 메시지를 빨간색으로 표시
+        $('.modify-message')
+            .text("수정사항이 존재합니다")
+            .css("color", "red");
+    } else {
+        // 다시 메시지를 초기화 (테스트용)
+        $('.modify-message')
+            .text("")
+    }
+}
+
+function modifyCheck2() {
+    // 수정사항이 존재할때
+    if (storedPh !== $('.user-phone-input-none').val() ) {
+        // "수정사항이 존재합니다" 라는 메시지를 빨간색으로 표시
+        $('.modify-message')
+            .text("수정사항이 존재합니다")
+            .css("color", "red");
+    } else {
+        // 다시 메시지를 초기화 (테스트용)
+        $('.modify-message')
+            .text("")
+    }
+}
+function modifyCheck3() {
+    // 수정사항이 존재할때
+    if ( storedAddr !== $('.mypage-addr-addr').val() ) {
+        // "수정사항이 존재합니다" 라는 메시지를 빨간색으로 표시
+        $('.modify-message')
+            .text("수정사항이 존재합니다")
+            .css("color", "red");
+    } else {
+        // 다시 메시지를 초기화 (테스트용)
+        $('.modify-message')
+            .text("")
+    }
+}
 
 //비밀번호 일치
-$(document).ready(function(){
+$(document).ready(function () {
     $('.Confirm')
         .text("비밀번호를 입력해주세요")
         .css("color", "gray");
@@ -177,69 +236,69 @@ $(document).ready(function(){
 
 function pwCheck() {
 
-    if($('.user-password-input2').val() ==="" &$('.user-password-input3').val()==="" ){
+    if ($('.user-password-input2').val() === "" & $('.user-password-input3').val() === "") {
         $('.Confirm')
             .text("비밀번호를 입력해주세요")
             .css("color", "gray");
-    }else if ($('.user-password-input2').val() === $('.user-password-input3').val()) {
+    } else if ($('.user-password-input2').val() === $('.user-password-input3').val()) {
         $('.Confirm')
             .text("비밀번호가 일치합니다")
             .css("color", "green");
-    }else if($('.user-password-input2').val() !== $('.user-password-input3').val()){
+    } else if ($('.user-password-input2').val() !== $('.user-password-input3').val()) {
         $('.Confirm')
             .text("비밀번호가 일치하지 않습니다")
             .css("color", "red");
-    }else{
+    } else {
         $('.Confirm')
             .text("비밀번호를 입력해주세요")
             .css("color", "gray");
     }
 }
 
+
 //번호 변경창(모달)
-let changeModalPh= document.querySelector(".user-phone-btn");
+let changeModalPh = document.querySelector(".user-phone-btn");
 let ph = document.querySelector(".change-ph");
 let phModal = document.querySelector(".phone-change-modal");
 let xBoxPh = document.querySelector('.phone-modal-close');
-let changeBtnPh = document.querySelector('.ph-change-btn');
+// let changeBtnPh = document.querySelector('.ph-change-btn');
 
-changeModalPh.addEventListener('click',function(event){
+changeModalPh.addEventListener('click', function (event) {
     event.preventDefault();
-    phModal.style.display="flex";
-    ph.style.display="flex";
-    xBoxPh.style.display="flex";
-    changeBtnPh.style.display="block";
+    phModal.style.display = "flex";
+    ph.style.display = "flex";
+    xBoxPh.style.display = "flex";
+    // changeBtnPh.style.display="block";
 });
 
-xBoxPh.addEventListener('click',function(){
-    phModal.style.display="none";
-    xBoxPh.style.display="none";
-    ph.style.display="none";
-    changeBtnPh.style.display="none";
+xBoxPh.addEventListener('click', function () {
+    phModal.style.display = "none";
+    xBoxPh.style.display = "none";
+    ph.style.display = "none";
+    // changeBtnPh.style.display="none";
 });
 
 //비밀번호 변경창(모달)
-let changeModal= document.querySelector(".change-pw-btn");
+let changeModal = document.querySelector(".change-pw-btn");
 let pw = document.querySelector(".change-pw");
 let modal = document.querySelector(".change-modal");
 let xBox = document.querySelector('.modal-close');
 let changeBtn = document.querySelector('.user-change-btn');
 
-changeModal.addEventListener('click',function(event){
+changeModal.addEventListener('click', function (event) {
     event.preventDefault();
-    modal.style.display="flex";
-    pw.style.display="flex";
-    xBox.style.display="flex";
-    changeBtn.style.display="block";
+    modal.style.display = "flex";
+    pw.style.display = "flex";
+    xBox.style.display = "flex";
+    changeBtn.style.display = "block";
 });
 
-xBox.addEventListener('click',function(){
-    modal.style.display="none";
-    xBox.style.display="none";
-    pw.style.display="none";
-    changeBtn.style.display="none";
+xBox.addEventListener('click', function () {
+    modal.style.display = "none";
+    xBox.style.display = "none";
+    pw.style.display = "none";
+    changeBtn.style.display = "none";
 });
-
 
 
 // const storedPassword = '[[${List.userPassword}]]';
