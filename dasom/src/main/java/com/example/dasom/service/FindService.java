@@ -17,4 +17,9 @@ public class FindService {
 //        return Optional.ofNullable(userMapper.findUserId(userName,userPhone,userBirthYear,userBirthMonth,userBirthDay))
 //                .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음"));
     }
+
+    public Long findUserNumber(String userName, String userId, String userPhone){
+        return userMapper.findUserPassword(userName,userId,userPhone);
+    }
+
 }

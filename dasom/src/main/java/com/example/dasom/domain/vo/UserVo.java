@@ -35,6 +35,9 @@ public class UserVo {
     String csWriteDate;
     String csWriteManager;
     String csWritePhone;
+    Long donateCount;
+    String totalDonateAmount;
+
 
 }
 

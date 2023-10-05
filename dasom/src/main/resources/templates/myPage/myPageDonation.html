@@ -22,7 +22,7 @@
         <article class="donate-article">
             <ul class="article-list">
                 <li class="article-donate">
-                    <a class="article-donate-tag" href="/myPage/myPageDonation.html">
+                    <a class="article-donate-tag" href="/myPage/myPageDonation">
                         <div class="article-donate-text">
                             나의후원내역
                         </div>
@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="article-cs">
-                    <a class="article-cs-tag" href="/myPage/myPageCs.html">
+                    <a class="article-cs-tag" href="/myPage/myPageCs">
                         <div class="article-cs-text">
                             나의참여
                         </div>
@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="article-user">
-                    <a class="article-user-tag" href="/myPage/myPageUser.html">
+                    <a class="article-user-tag" href="/myPage/myPageUser">
                         <div class="article-user-text">
                             나의정보
                         </div>
@@ -65,7 +65,7 @@
                         전체 후원
                     </div>
                     <div class="donate-cnt-text2">
-                        <div class="donate-cnt-text2-cnt">
+                        <div class="donate-cnt-text2-cnt" th:text="${donateCount}">
                             5
                         </div>
                         <div class="donate-cnt-text2-text">
@@ -81,7 +81,7 @@
                         총후원금
                     </div>
                     <div class="donate-total-text2">
-                        <div class="donate-total-text2-cnt">
+                        <div class="donate-total-text2-cnt" th:text="${totalDonateAmount}">
                             500,000
                         </div>
                         <div class="donate-total-text2-text">
@@ -119,7 +119,8 @@
         
     </section>
 
-</main>    
+</main>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
 
 
 <script defer src="/js/myPageDonate.js"></script>

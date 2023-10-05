@@ -6,7 +6,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/findId.css" />
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/headerLogin.css">
     <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
@@ -22,8 +21,8 @@
 
             <!-- tab -->
             <div class="tab">
-                <a href="/find/findId"><span class="id-tab">아이디 찾기</span></a>
-                <a href="/find/findPassword"><span class="pw-tab">비밀번호 찾기</span></a>
+                <a href="/find/findId"class="aa"><span class="id-tab">아이디 찾기</span></a>
+                <a href="/find/findPassword" class="aa"><span class="pw-tab">비밀번호 찾기</span></a>
             </div>
         </div>
 
@@ -73,6 +72,7 @@
         </div>
     </div>
 </article>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
 
 <script>
     // '출생 연도' 셀렉트 박스 option 목록 동적 생성

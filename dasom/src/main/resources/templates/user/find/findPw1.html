@@ -19,8 +19,8 @@
         <div class="width">
             <!-- pageTitle -->
             <div class="page-title">
-                <h1 class="title">아이디/비밀번호 찾기</h1>
-
+                <h1 class="title">아이디/비밀번호 찾기1</h1>
+                <input type="text" th:value = "${User}" name="userNumber"></input>
                 <!-- tab -->
                 <div class="tab">
                     <a href="/find/findId" class="aa"><span class="id-tab">아이디 찾기</span></a>
@@ -30,7 +30,7 @@
 
             <!-- form -->
             <div class="form-wrap">
-                <form class="find-pw-form" action="/find/findPassword" method="post">
+                <form class="find-pw-form" action="/find/findUserNumber" method="post">
                     <!-- name -->
                     <div class="form-group">
                         <label for="pw-name">이름</label>
@@ -43,10 +43,10 @@
                     </div>
                     <!-- phone-number -->
                     <div class="form-group phone-group">
-                        <label for="pw-phonenum">휴대전화</label>
+                        <label>휴대전화</label>
                         <input type="text" id="id-phnum" name="userPhone" required />
                     </div>
-                    <button type="submit" class="submit-btn">확인하기</button>
+                    <button type="submit" class="submit-btn">인증하기</button>
                 </form>
             </div>
         </div>
