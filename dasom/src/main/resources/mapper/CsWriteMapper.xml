@@ -12,12 +12,17 @@
     </insert>
 
     <!--  총 봉사 모집글 개수  -->
-    <select id="selectTotal" resultType="_int" parameterType="string">
+    <select id="selectTotal" resultType="_int" parameterType="searchVo">
         SELECT COUNT(CSWRITE_NUMBER)
         FROM TBL_CSWRITE
-        WHERE CSWRITE_TITLE LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+        <choose>
+            <when test="'campaign'.equals(cate)">
+                WHERE CSWRITE_TITLE LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+        </choose>
+
     </select>
-    <select id="selectAll" resultType="csWriteDto">
+    <select id="selectAll" resultType="csWriteDto" parameterType="searchVo">
         SELECT RNUM,CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
         TO_CHAR(TO_DATE(CSWRITE_RECRUIT_START, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_START,
         TO_CHAR(TO_DATE(CSWRITE_RECRUIT_END, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_END,
@@ -29,36 +34,35 @@
         CSWRITE_MANAGER,
         CSWRITE_PHONE
         FROM(
-            SELECT ROWNUM AS RNUM,CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
-                CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END, CSWRITE_COUNT, CSWRITE_PLACE,
-                CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
-                CSWRITE_MANAGER, CSWRITE_PHONE
-            FROM TBL_CSWRITE
+            SELECT ROWNUM AS RNUM, CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+            CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END, CSWRITE_COUNT, CSWRITE_PLACE,
+            CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+            CSWRITE_MANAGER, CSWRITE_PHONE
+            FROM (
+                SELECT CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+                    CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END, CSWRITE_COUNT, CSWRITE_PLACE,
+                    CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+                    CSWRITE_MANAGER, CSWRITE_PHONE
+                FROM TBL_CSWRITE
             <choose>
                 <when test="'campaign'.equals(searchVo.cate)">
-                    <![CDATA[
-                      WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%' AND ROWNUM <= #{criteria.page} * #{criteria.amount}
-                      ]]>
+                      WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
                     ORDER BY CSWRITE_NUMBER
                 </when>
                 <otherwise>
-                    <![CDATA[
-                      WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
-                      ]]>
                     ORDER BY CSWRITE_NUMBER
                 </otherwise>
             </choose>
-        )X
-        <choose>
-            <when test="'campaign'.equals(searchVo.cate)">
-                WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%' AND RNUM > (#{criteria.page} - 1) * #{criteria.amount}
-                ORDER BY CSWRITE_NUMBER
-            </when>
-            <otherwise>
-                WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
-                ORDER BY CSWRITE_NUMBER
-            </otherwise>
-        </choose>
+            )X
+            WHERE
+            <![CDATA[
+            ROWNUM <= #{criteria.page}  * #{criteria.amount}
+             ]]>
+            ORDER BY CSWRITE_NUMBER
+        )Y
+        WHERE RNUM > (#{criteria.page} - 1)  * #{criteria.amount}
+
+
     </select>
 
     <!--  봉사글 조회  -->

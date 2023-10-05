@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Data
 //@NoArgsConstructor
 public class SearchVo {
-    String cate;
-    String keyword;
+    private String cate;
+    private String keyword;
 
     public SearchVo() {
         this.cate = "";

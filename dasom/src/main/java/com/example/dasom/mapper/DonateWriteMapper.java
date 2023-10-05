@@ -17,7 +17,7 @@ public interface DonateWriteMapper {
 //    후원글 전체 조회
     public List<DonateWriteDto> selectAll(Criteria criteria, SearchVo searchVo);
 //    전체 후원글 수 조회
-    public int selectTotal(@Param("keyword") String keyword);
+    public int selectTotal(SearchVo searchVo);
 //    후원 글 조회
     public DonateWriteVo select(@Param("donateWriteNumber") Long donateWriteNumber);
 //    후원글 삭제
