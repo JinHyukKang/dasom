@@ -21,17 +21,21 @@
         <form class="pay-form" action="/donate/complete" method="get">
           <div class="form-group-hidden">
             <label for="campaign">캠페인명</label>
+              <div id="hidden-box">
             <input type="hidden" id="campaign" name="campaign" th:value="${campaign}" th:text="${campaign}" />
+              </div>
           </div>
+          <div class="form-group-hidden">
+              <label for="name">후원자명</label>
+              <div id="hidden-box">
+              <input type="hidden" id="name" name="name" th:value="${name}" th:text="${name}" />
+              </div>
+          </div>
+            <input type="hidden" name="donatewriteNumber" th:value="${donatewriteNumber}">
           <div class="form-group">
             <label for="pay">후원금액</label>
             <input type="text" id="pay-amount" name="donateAmount" placeholder="후원 금액을 입력하세요" required />
           </div>
-          <div class="form-group-hidden">
-            <label for="name">후원자명</label>
-            <input type="hidden" id="name" name="name" th:value="${name}" th:text="${name}" />
-          </div>
-            <input type="hidden" name="donateWriteNumber" th:value="${donatewriteNumber}">
           <!-- btn -->
           <button id="check_module">후원하기</button>
         </form>

@@ -234,6 +234,7 @@ function PhoneCheck() {
                 alert("사용 가능한 아이디입니다.")
              }else{
                 alert("중복된 아이디입니다. 다른 아이디를 입력해주세요.")
+                 event.preventDefault();
              }
          }
      })
@@ -290,8 +291,10 @@ function PhoneCheck() {
              if (data) {
                  alert("인증이 완료되었습니다.");
                  PhoneCheck();
+                 event.preventDefault();
              } else {
                  alert("인증번호가 일치하지 않습니다.");
+                 event.preventDefault();
              }
          })
          .catch(error => {
