@@ -209,7 +209,6 @@ function PhoneCheck() {
     CheckDiv.style.display = "none";
 }
 
-
  $('.join-id-btn').on('click', function checkId(){
      let userId = $('.join-id-input').val();
 
@@ -223,6 +222,7 @@ function PhoneCheck() {
          alert("아이디를 입력하세요");
          return;
      }
+
 
      $.ajax({
          url : "/users/checkId",
@@ -299,6 +299,7 @@ function PhoneCheck() {
              console.error("인증 오류:", error);
          });
  })
+
 
 
 
