@@ -83,7 +83,7 @@
     <!-- 이우진 나의 참여 리스트   -->
     <select id="csUserSelectAll" resultType="UserVo">
         SELECT cs_number,
-               TBL_CS.user_number,
+               TBL_CS.user_number, TBL_CSWRITE.CSwrite_number,
                TBL_CSWRITE.CSwrite_title,
                TO_CHAR(TO_DATE(csWrite_Act_Start, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_Start,
                TO_CHAR(TO_DATE(csWrite_Act_END, 'YYYY-MM-DD'), 'YY-MM-DD')   AS csWrite_Act_END,

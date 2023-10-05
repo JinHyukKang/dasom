@@ -4,14 +4,14 @@
     font-weight: 700;
     font-style: normal;
 }
-    
+
 body{
     font-family: 'LINESeedKR-Bd';
 }
 
 article{
-    margin: 100px;  
-    
+    margin: 100px;
+
 }
 
 .title {
@@ -19,7 +19,7 @@ article{
 }
 
 .page-title {
-    text-align: center; 
+    text-align: center;
 }
 
 .form-group, .width {
@@ -27,8 +27,8 @@ article{
     width: 600px;
 }
 .form-wrap {
-    margin: 70px;
-    padding-inline-start: 12%;
+    /*margin: 70px;*/
+    padding-inline-start: 15%;
 }
 
 .tab{
@@ -41,7 +41,7 @@ article{
     display: flex;
 }
 
-a{
+.aa{
     width: 50%;
     height: 100%;
     display: flex;
@@ -70,7 +70,7 @@ label {
 }
 
 input[type='text'] {
-    width: 50%;
+    width: 67%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -91,7 +91,7 @@ input[type='text'] {
 }
 
 .submit-btn {
-    width: 53%;
+    width: 83%;
     height: 60px;
     padding: 10px;
     background-color: #39b54a;
@@ -100,11 +100,13 @@ input[type='text'] {
     cursor: pointer;
     border-radius: 5px;
     margin: 30px 0 0 0;
-    margin-left: 15%;
+    /* margin-left: 15%; */
 }
 
 .submit-btn:hover {
     background-color: #16a729;
 }
-
+form.find-pw-form {
+    margin-top: 50px;
+}
 

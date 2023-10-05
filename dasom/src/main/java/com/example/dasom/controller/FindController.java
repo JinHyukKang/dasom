@@ -46,16 +46,16 @@ public class FindController {
         return "/user/find/findPw";
     }
 
-    @PostMapping("/findUserNumber")
-    public RedirectView findPassword(
+    @PostMapping("/findPassword")
+    public String findPassword(
             String userName, String userPhone,
             String userId,
-            Long userNumber,UserDto userDto
+            Long userNumber,UserDto userDto,Model model
     ) {
         userNumber = findService.findUserNumber(userName, userId, userPhone);
         userDto.setUserNumber(userNumber);
-        myPageService.userPasswordUpdate(userDto);
-        return new RedirectView("/user/login");
+        model.addAttribute("User", userNumber);
+        return "/user/find/findPw1";
     }
 }
 
