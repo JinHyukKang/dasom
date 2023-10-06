@@ -2,6 +2,7 @@ package com.example.dasom.service;
 
 import com.example.dasom.domain.dto.CsDto;
 import com.example.dasom.domain.dto.CsWriteDto;
+import com.example.dasom.domain.vo.Criteria;
 import com.example.dasom.domain.vo.CsDetailVo;
 import com.example.dasom.domain.vo.DonateListVo;
 import com.example.dasom.mapper.CsListMapper;
@@ -19,14 +20,15 @@ public class CsListService {
     private final CsListMapper csListMapper;
 
 //    봉사 페이지 전체 게시글 수 조회
-//    public int getTotal(){
-//        return donateListMapper.selectTotal();
-//    }
+    public int getTotal(String status){
+        return csListMapper.selectTotal(status);
+    }
 
 
 //    봉사 리스트 전체 게시글 조회
-    public List<CsWriteDto> showList(String status){
-        return csListMapper.selectList(status);
+    public List<CsWriteDto> showList(Criteria criteria, String status){
+        return csListMapper.selectList(criteria, status);
+
     };
 
 //    봉사 게시물 상세보기
