@@ -2,6 +2,9 @@ package com.example.dasom.controller.cs;
 
 import com.example.dasom.domain.dto.CsDto;
 import com.example.dasom.domain.dto.CsWriteDto;
+import com.example.dasom.domain.vo.Criteria;
+import com.example.dasom.domain.vo.DonateListVo;
+import com.example.dasom.domain.vo.PageVo;
 import com.example.dasom.service.CsListService;
 import com.example.dasom.service.DonateListService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,9 +25,19 @@ public class CsListRestController {
     private final CsListService csListService;
     private final DonateListService donateListService;
 
-    @GetMapping(value = {"/{status}"})
-    public List<CsWriteDto> showList(@PathVariable("status")String status){
-        return csListService.showList(status);
+//    봉사신청 게시글 띄우기
+    @GetMapping(value = {"/{status}/{page}"})
+    public Map<String, Object> showList(@PathVariable("page")Integer page, @PathVariable("status")String status){
+        Criteria criteria = new Criteria();
+        criteria.setPage(page);
+
+        PageVo pageVo = new PageVo(csListService.getTotal(status), criteria);
+        List<CsWriteDto> CsWriteDtoList = csListService.showList(criteria, status);
+
+        Map<String, Object> csListMap = new HashMap<>();
+        csListMap.put("pageVo", pageVo);
+        csListMap.put("CsWriteDtoList", CsWriteDtoList);
+        return csListMap;
     }
 
     //    봉사신청 완료페이지
@@ -38,5 +53,11 @@ public class CsListRestController {
       return duplicateCheck;
 
     }
+
+
+
+
+
+
 
 }

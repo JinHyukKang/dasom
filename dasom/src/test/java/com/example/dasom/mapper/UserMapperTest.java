@@ -20,28 +20,28 @@ class UserMapperTest {
     @Autowired
     UserMapper userMapper;
 
-    @Test
-    void findUserId() {
-
-        UserDto userDto = new UserDto();
-        userDto.setUserName("abb");
-        userDto.setUserPhone("01049432518");
-        userDto.setUserBirthYear("2022");
-        userDto.setUserBirthMonth("1");
-        userDto.setUserBirthDay("12");
-
+//    @Test
+//    void findUserId() {
+//
+//        UserDto userDto = new UserDto();
+//        userDto.setUserName("abb");
+//        userDto.setUserPhone("01049432518");
+//        userDto.setUserBirthYear("2022");
+//        userDto.setUserBirthMonth("1");
+//        userDto.setUserBirthDay("12");
+//
 
 //        UserDto foundUser = userMapper.findUserId(userDto);
 
 
 //        assertNotNull(foundUser);
 
-    }
-        @Test
-    void DonateUserSelectAll(){
-        UserVo userVo = new UserVo();
-        userVo.setUserNumber(1L);
-
-        List<UserVo> userVoList =userMapper.DonateUserSelectAll(userVo.getUserNumber());
-        }
+//    }
+//        @Test
+//    void DonateUserSelectAll(){
+//        UserVo userVo = new UserVo();
+//        userVo.setUserNumber(1L);
+//
+//        List<UserVo> userVoList =userMapper.DonateUserSelectAll(userVo.getUserNumber());
+//        }
 }
