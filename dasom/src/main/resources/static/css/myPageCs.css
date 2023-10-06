@@ -23,6 +23,7 @@ main{
     align-items: center;
     width: 1515px;
     margin-top: 240px;
+    margin-bottom: 240px;
 }
 .cs-title{
     font-weight: 700;
