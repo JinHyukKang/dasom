@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+
+import static javax.swing.text.html.CSS.getAttribute;
+
 @Controller
 @RequestMapping("/find/*")
 @RequiredArgsConstructor
@@ -54,8 +58,17 @@ public class FindController {
     ) {
         userNumber = findService.findUserNumber(userName, userId, userPhone);
         userDto.setUserNumber(userNumber);
-        model.addAttribute("User", userNumber);
+        model.addAttribute("userNumber", userNumber);
+        model.addAttribute("userPhone", userPhone);
         return "/user/find/findPw1";
+    }
+
+    @PostMapping("/UserPasswordUp")
+    public RedirectView userPasswordUpdate(Long userNumber, String userPassword,UserDto userDto) {
+        userDto.setUserNumber(userNumber);
+        myPageService.userPasswordUpdate(userDto);
+
+        return new RedirectView("/user/login");
     }
 }
 

@@ -79,6 +79,7 @@
         FROM TBL_DONATE
                  INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
         where TBL_DONATE.user_number = ${userNumber}
+        order by donate_number desc
     </select>
     <!-- 이우진 나의 참여 리스트   -->
     <select id="csUserSelectAll" resultType="UserVo">
@@ -91,6 +92,7 @@
         FROM TBL_CS
                  INNER JOIN TBL_CSWRITE ON TBL_CS.CSwrite_number = TBL_CSWRITE.CSwrite_number
         where TBL_CS.user_number = ${userNumber}
+        order by cs_number desc
     </select>
     <!-- 이우진 내정보   -->
     <select id="userSelect" resultType="UserDto">
