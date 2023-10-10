@@ -128,6 +128,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// HTML 요소를 가져오고 클릭 이벤트를 추가합니다.
+var campaignBtns = document.querySelectorAll(".campaign-btn");
 
+campaignBtns.forEach(function(btn) {
+    btn.addEventListener("click", function(event) {
+
+        var csWriteTitle = btn.textContent;
+
+        var csUserTitle = document.querySelector(".cs-user-title");
+        csUserTitle.textContent = "[봉사모집] " + csWriteTitle + " 지원자 목록";
+    });
+});
 
 

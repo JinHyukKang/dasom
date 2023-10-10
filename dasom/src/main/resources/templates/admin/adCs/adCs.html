@@ -137,14 +137,14 @@
           <div class="page_wrap">
             <div class="page_nation">
               <!-- 이전 페이지 링크 -->
-              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.startPage-1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
+              <a th:href="@{'/admin/adCs?page=' + ${pageInfo.startPage-1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
                  class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
 
               <!-- 페이지 번호 순환 출력 -->
               <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
                 <a th:href="'/admin/adCs?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
                    th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
-                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="activeNow"
+                <a th:href="'/admin/adCs?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="activeNow"
                    th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
               </th:block>
 
