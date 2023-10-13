@@ -1,7 +1,7 @@
  // '출생 연도' 셀렉트 박스 option 목록 동적 생성
  const birthYear = document.querySelector('#birth-year')
  // option 목록 생성 여부 확인
- isYearOptionExisted = false;
+ let isYearOptionExisted = false;
  birthYear.addEventListener('focus', function () {
  // year 목록 생성되지 않았을 때 (최초 클릭 시)
  if(!isYearOptionExisted) {
@@ -20,7 +20,7 @@
  // '출생 연도' 셀렉트 박스 option 목록 동적 생성
  const birthMonth = document.querySelector('#birth-month')
  // option 목록 생성 여부 확인
- isMonthOptionExisted = false;
+let isMonthOptionExisted = false;
  birthMonth.addEventListener('focus', function () {
  // month 목록 생성되지 않았을 때 (최초 클릭 시)
  if(!isMonthOptionExisted) {
@@ -37,20 +37,20 @@
  });
 
   // '출생 연도' 셀렉트 박스 option 목록 동적 생성
-  const birthDay = document.querySelector('#birth-day')
+  const birthDay = document.querySelector('#birth-day');
  // option 목록 생성 여부 확인
- isDayOptionExisted = false;
+let isDayOptionExisted = false;
  birthDay.addEventListener('focus', function () {
  // month 목록 생성되지 않았을 때 (최초 클릭 시)
- if(!isMonthOptionExisted) {
- isDayOptionExisted = true
- for(var i = 1; i <= 31; i++) {
- // option element 생성
- const dayOption = document.createElement('option')
- dayOption.setAttribute('value', i)
- dayOption.innerText = i
- // birthMonth의 자식 요소로 추가
- this.appendChild(dayOption);
+ if(!isDayOptionExisted) {
+     isDayOptionExisted = true;
+     for(var i = 1; i <= 31; i++) {
+         // option element 생성
+         const dayOption = document.createElement('option');
+         dayOption.setAttribute('value', i);
+         dayOption.innerText = i;
+         // birthMonth의 자식 요소로 추가
+         this.appendChild(dayOption);
       }
      }
  });
@@ -308,9 +308,12 @@ function PhoneCheck() {
          });
  })
 
- $('.join-submit-btn').on('click', function check(){
+ $('.join-submit-btn').on('click', function (){
     let postcode = document.getElementById('sample6_postcode').value;
      let addr = document.getElementById("sample6_address").value;
+
+     console.log(postcode)
+     console.log(addr)
      if (ckId == 1 && ckPhoneNum == 1 && postcode !=null && addr != null){
          $('.form-tag').submit();
 

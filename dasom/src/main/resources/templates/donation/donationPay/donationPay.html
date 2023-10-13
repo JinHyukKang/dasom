@@ -6,7 +6,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/donationPay.css" />
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/headerLogin.css">
     <link rel="stylesheet" href="/css/footer.css">
     <script defer src="/js/donationPay.js"></script>
 </head>
@@ -31,20 +30,20 @@
               <input type="hidden" id="name" name="name" th:value="${name}" th:text="${name}" />
               </div>
           </div>
-            <input type="hidden" name="donatewriteNumber" th:value="${donatewriteNumber}">
+            <input type="hidden" name="donateWriteNumber" th:value="${donateWriteNumber}">
           <div class="form-group">
             <label for="pay">후원금액</label>
             <input type="text" id="pay-amount" name="donateAmount" placeholder="후원 금액을 입력하세요" required />
           </div>
           <!-- btn -->
-          <button id="check_module">후원하기</button>
+          <button type="button" id="check_module">후원하기</button>
         </form>
       </div>
     </div>
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+    <footer class="footer" th:replace="fragments/footer :: footer"></footer>
  <script>
 
     $("#check_module").click(function () {
@@ -55,9 +54,9 @@
       IMP.init('imp44070752');
 
       // input 값 받을 변수 선언
-    var payAmount = $('#pay-amount').val();
-    var campaign = $('#campaign').val();
-    var name = $('#name').val();
+    let payAmount = $('#pay-amount').val();
+    let campaign = $('#campaign').val();
+    let name = $('#name').val();
 
     // PG상점아이디 (CID) 입력력
       IMP.request_pay({
@@ -78,7 +77,7 @@
          if (rsp.success) {
             var msg = '결제가 완료되었습니다.';
             msg += '결제 금액 : ' + rsp.paid_amount;
-            success.submit();
+            $('.pay-form').submit();
             // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
             // 자세한 설명은 구글링으로 보시는게 좋습니다.
          } else {

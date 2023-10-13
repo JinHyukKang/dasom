@@ -26,10 +26,3 @@ loginBtn.addEventListener('click', function (){
     }
     loginForm.submit();
 });
-
-// const cklogin = document.querySelector('login-btn');
-//
-// cklogin.addEventListener('click', function (){
-//     const userId = document.querySelector('userId')
-//     const userPw =
-// })
