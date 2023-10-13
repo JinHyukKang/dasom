@@ -28,9 +28,9 @@ public class DonateController {
 
 
     @GetMapping("payPage")
-    public String pay(@RequestParam("donatewriteTitle")String campaign, Long donatewriteNumber, Model model, HttpServletRequest req) {
+    public String pay(@RequestParam("donateWriteTitle")String campaign, Long donateWriteNumber, Model model, HttpServletRequest req) {
         model.addAttribute("campaign", campaign);
-        model.addAttribute("donatewriteNumber", donatewriteNumber);
+        model.addAttribute("donateWriteNumber", donateWriteNumber);
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         String name = donateService.selectName(userNumber);
         model.addAttribute("name", name);

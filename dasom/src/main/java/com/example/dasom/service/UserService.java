@@ -28,7 +28,7 @@ public class UserService {
     //    로그인
     public UserDto find(String userId, String userPassword){
         return Optional.ofNullable(userMapper.select(userId, userPassword))
-                .orElseThrow( () -> {throw new IllegalArgumentException("조회 결과 없음"); });
+                .orElseThrow( () -> {throw new IllegalArgumentException("회원 조회 결과 없음"); });
     }
 
 
