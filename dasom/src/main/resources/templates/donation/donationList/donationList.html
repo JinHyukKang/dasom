@@ -79,7 +79,7 @@
         result.donateListVoList.forEach(r => {
             console.log("@@@@@" + r.donatewriteStatus);
             if (r.donatewriteStatus == 1) {
-                text += ` <a href="/donate/detail?donateWriteTitle=${r.donatewriteTitle}" className="board-a">
+                text += ` <a href="/donate/payPage?donateWriteTitle=${r.donatewriteTitle}&donateWriteNumber=${r.donatewriteNumber}" class="board-a">
                         <div class="board-item-box">
                     `;
             } else {

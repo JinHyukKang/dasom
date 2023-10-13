@@ -17,6 +17,10 @@ body{
     margin-bottom: 30px;
 }
 
+.form-group-hidden {
+    margin-bottom: 40px;
+}
+
 label {
     display: flex;
     margin: 0 0 5px 113px;
@@ -34,13 +38,13 @@ input[type='text'] {
     margin: 0 0 20px 0 ;
 }
 
-input[type='hidden'] {
-    width: 60%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 0 0 20px 0 ;
-}
+/*input[type='hidden'] {*/
+/*    width: 60%;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    margin-bottom: 40px;*/
+/*}*/
 
 #check_module {
     width: 65%;

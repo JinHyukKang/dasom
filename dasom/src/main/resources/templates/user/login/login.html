@@ -6,13 +6,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/login.css" />
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/headerLogin.css">
     <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
     <!-- header -->
-    <header class="header" th:replace="fragments/header :: header">
-    </header>
+    <header class="header" th:replace="fragments/header :: header"/>
     <!-- out:container -->
     <div class="container">
       <h1 class="title">로그인</h1>
@@ -32,13 +30,14 @@
           <button type="button" class="login-btn">로그인</button>
         <!-- find id,pw -->
         <div>
-            <a href="/find/findId" id="find-id" ><span>아이디 찾기</span></a>
-            <a href="/find/findPassword" id="find-pw" ><span>비밀번호 찾기</span></a>
-            <a href="/user/join" id="join" ><span>회원가입</span></a>
+            <a class="a" href="/find/findId" id="find-id" ><span>아이디 찾기</span></a>
+            <a class="a" href="/find/findPassword" id="find-pw" ><span>비밀번호 찾기</span></a>
+            <a class="a" href="/user/join" id="join" ><span>회원가입</span></a>
         </div>
         </form>
       </div>
     </div>
     <script src="/js/login.js"></script>
+    <footer class="footer" th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

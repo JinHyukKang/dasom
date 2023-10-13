@@ -1,7 +1,7 @@
  // '출생 연도' 셀렉트 박스 option 목록 동적 생성
  const birthYear = document.querySelector('#birth-year')
  // option 목록 생성 여부 확인
- isYearOptionExisted = false;
+ let isYearOptionExisted = false;
  birthYear.addEventListener('focus', function () {
  // year 목록 생성되지 않았을 때 (최초 클릭 시)
  if(!isYearOptionExisted) {
@@ -20,7 +20,7 @@
  // '출생 연도' 셀렉트 박스 option 목록 동적 생성
  const birthMonth = document.querySelector('#birth-month')
  // option 목록 생성 여부 확인
- isMonthOptionExisted = false;
+let isMonthOptionExisted = false;
  birthMonth.addEventListener('focus', function () {
  // month 목록 생성되지 않았을 때 (최초 클릭 시)
  if(!isMonthOptionExisted) {
@@ -37,20 +37,20 @@
  });
 
   // '출생 연도' 셀렉트 박스 option 목록 동적 생성
-  const birthDay = document.querySelector('#birth-day')
+  const birthDay = document.querySelector('#birth-day');
  // option 목록 생성 여부 확인
- isDayOptionExisted = false;
+let isDayOptionExisted = false;
  birthDay.addEventListener('focus', function () {
  // month 목록 생성되지 않았을 때 (최초 클릭 시)
- if(!isMonthOptionExisted) {
- isDayOptionExisted = true
- for(var i = 1; i <= 31; i++) {
- // option element 생성
- const dayOption = document.createElement('option')
- dayOption.setAttribute('value', i)
- dayOption.innerText = i
- // birthMonth의 자식 요소로 추가
- this.appendChild(dayOption);
+ if(!isDayOptionExisted) {
+     isDayOptionExisted = true;
+     for(var i = 1; i <= 31; i++) {
+         // option element 생성
+         const dayOption = document.createElement('option');
+         dayOption.setAttribute('value', i);
+         dayOption.innerText = i;
+         // birthMonth의 자식 요소로 추가
+         this.appendChild(dayOption);
       }
      }
  });
@@ -130,6 +130,9 @@ xBox.addEventListener('click',function(){
     section5.style.display="none";
 });
 
+let ckId = 0;
+let ckPhoneNum = 0;
+let ckAddress = 0;
 
 //비밀번호 일치
 $(document).ready(function(){
@@ -209,7 +212,8 @@ function PhoneCheck() {
     CheckDiv.style.display = "none";
 }
 
- $('.join-id-btn').on('click', function checkId(){
+
+ $('.join-id-btn').on('click', function checkId(e){
      let userId = $('.join-id-input').val();
 
      console.log(userId)
@@ -231,9 +235,11 @@ function PhoneCheck() {
          dataType : 'json',
          success :function (result){
              if(result == 0){
+                 ckId = 1;
                 alert("사용 가능한 아이디입니다.")
              }else{
                 alert("중복된 아이디입니다. 다른 아이디를 입력해주세요.")
+                 document.querySelector('.join-submit-btn').setAttribute('disabled', 'disabled');
              }
          }
      })
@@ -288,16 +294,34 @@ function PhoneCheck() {
          .then(response => response.json())
          .then(data => {
              if (data) {
+                 ckPhoneNum = 1;
                  alert("인증이 완료되었습니다.");
                  PhoneCheck();
+
              } else {
                  alert("인증번호가 일치하지 않습니다.");
+                 document.querySelector('.join-submit-btn').setAttribute('disabled', 'disabled');
              }
          })
          .catch(error => {
 
              console.error("인증 오류:", error);
          });
+ })
+
+ $('.join-submit-btn').on('click', function (){
+    let postcode = document.getElementById('sample6_postcode').value;
+     let addr = document.getElementById("sample6_address").value;
+
+     console.log(postcode)
+     console.log(addr)
+     if (ckId == 1 && ckPhoneNum == 1 && postcode !=null && addr != null){
+         $('.form-tag').submit();
+
+     } else {
+         alert("미입력된 칸이 없는지 확인해주세요.")
+     }
+
  })
 
 

@@ -26,14 +26,3 @@ loginBtn.addEventListener('click', function (){
     }
     loginForm.submit();
 });
-
-// 체크박스 상태가 변경될 때, 아이디를 로컬 스토리지에 저장하거나 제거합니다.
-// checkBox.addEventListener('change', () => {
-//     const userIdInput = document.getElementById('userId');
-//     if (checkBox.checked) {
-//         const userId = userIdInput.value;
-//         localStorage.setItem(storageKey, userId);
-//     } else {
-//         localStorage.removeItem(storageKey);
-//     }
-// });
