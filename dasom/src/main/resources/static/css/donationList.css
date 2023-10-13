@@ -137,6 +137,8 @@ a:visited{
   overflow: hidden;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .box-top-img:hover {
   transform: scale(1.4);
