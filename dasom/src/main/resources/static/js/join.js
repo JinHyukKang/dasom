@@ -253,7 +253,7 @@ function PhoneCheck() {
          return;
      }
 
-     // 서버로 휴대전화 번호를 보내고 SMS를 전송합니다.
+     // 서버로 휴대전화 번호를 보내고 SMS를 전송
      fetch("/users/send", {
          method: "POST",
          headers: {
@@ -283,7 +283,7 @@ function PhoneCheck() {
          return;
      }
 
-     // 서버로 인증번호를 보내고 확인합니다.
+     // 서버로 인증번호를 보내고 확인
      fetch("/users/check", {
          method: "POST",
          headers: {
@@ -309,17 +309,24 @@ function PhoneCheck() {
          });
  })
 
+ // 중복확인, 인증번호, 주소찾기 버튼 미 클릭 시 회원가입 블락 처리
  $('.join-submit-btn').on('click', function (){
     let postcode = document.getElementById('sample6_postcode').value;
      let addr = document.getElementById("sample6_address").value;
 
-     console.log(postcode)
-     console.log(addr)
-     if (ckId == 1 && ckPhoneNum == 1 && postcode !=null && addr != null){
+     console.log(postcode);
+     console.log(addr);
+     if (ckId == 1 && ckPhoneNum == 1 && postcode && addr){
          $('.form-tag').submit();
 
      } else {
-         alert("미입력된 칸이 없는지 확인해주세요.")
+         if (ckId == 0){
+             alert("아이디 중복 확인 버튼을 눌러주세요.")
+         } else if (ckPhoneNum == 0){
+             alert("핸드폰 번호 인증을 해주세요. 제발여")
+         } else {
+             alert("주소를 입력해주세요.")
+         }
      }
 
  })
