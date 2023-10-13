@@ -267,6 +267,7 @@ main{
     padding: 15px;
     position: relative;
     margin-right: 3%;
+    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
 }
 .main-va-tag{
     width: 100%;
@@ -274,7 +275,7 @@ main{
     text-decoration: none;
 }
 .cs-group:hover{
-    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 .main-va-list{
@@ -300,7 +301,6 @@ main{
     margin-bottom: 30px;
     overflow: hidden;
     text-overflow:ellipsis;
-    display: flex;
     display: -webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp: 2;

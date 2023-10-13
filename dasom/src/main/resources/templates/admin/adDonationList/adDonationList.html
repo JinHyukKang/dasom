@@ -32,6 +32,11 @@
             <div class="board-qna-text">봉사 글 관리</div>
           </a>
         </section>
+        <section class="board-logout">
+          <a class="board-logout-a" href="/admin/logout">
+            <div class="board-logout-text">로그아웃</div>
+          </a>
+        </section>
       </aside>
 
       <!-- 우측 게시글 목록 창 -->
@@ -51,6 +56,7 @@
               <select class="search-dropdown" name="cate" th:value="${searchCate}">
                 <option value="name">이름</option>
                 <option value="id">아이디</option>
+                <option value="campaign">캠페인명</option>
               </select>
               <input class="search-bar" type="text" name="keyword" th:value="${searchKeyword}" />
               <button class="search-button" type="submit">검색</button>

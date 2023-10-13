@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// HTML 요소를 가져오고 클릭 이벤트를 추가합니다.
+// 봉사지원자 리스트에 봉사글 제목 가져오기
 var campaignBtns = document.querySelectorAll(".campaign-btn");
 
 campaignBtns.forEach(function(btn) {
