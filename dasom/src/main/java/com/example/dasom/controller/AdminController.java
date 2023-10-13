@@ -98,6 +98,13 @@ public class AdminController {
         return "admin/adCs/adCs";
     }
 
+//    관리자 로그아웃
+    @GetMapping("/logout")
+    public RedirectView logout(HttpServletRequest req){
+        req.getSession().invalidate();
+        return new RedirectView("/admin/adLogin");
+    }
+
 
 
 

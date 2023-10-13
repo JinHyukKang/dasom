@@ -33,6 +33,11 @@
             <div class="board-qna-text">봉사 글 관리</div>
           </a>
         </section>
+        <section class="board-logout">
+          <a class="board-logout-a" href="/admin/logout">
+            <div class="board-logout-text">로그아웃</div>
+          </a>
+        </section>
       </aside>
 
       <!-- 우측 게시글 목록 창 -->
@@ -43,10 +48,7 @@
           <div class="section-top-category-name">
             <div class="section-top-category-name-text">봉사 글 관리</div>
           </div>
-          <!-- 글쓰기버튼 -->
-          <div class="section-top-write">
-              <button onclick="location.href='/csWrite/write'" class="button-write">글쓰기</button>
-          </div>
+
         </section>
 
         <!-- 검색바 -->
@@ -60,6 +62,7 @@
               <button class="search-button" type="submit">검색</button>
             </div>
           </form>
+          <button onclick="location.href='/csWrite/write'" class="button-write">글쓰기</button>
         </section>
 
         <!-- 회원 목록 -->
@@ -102,7 +105,7 @@
                         class="btngray1">마감</button>
               </div>
             </div>
-              <!--    봉사 참여자 리스트-->
+            <!--   봉사 참여자 리스트  -->
             <div class="cs-user-modal">
               <div class="cs-user-list">
                 <div class="cs-user-title" th:text="'[봉사모집] '+${cs.csWriteTitle} +' 지원자 목록'"></div>
@@ -137,14 +140,14 @@
           <div class="page_wrap">
             <div class="page_nation">
               <!-- 이전 페이지 링크 -->
-              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.startPage-1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
+              <a th:href="@{'/admin/adCs?page=' + ${pageInfo.startPage-1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
                  class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
 
               <!-- 페이지 번호 순환 출력 -->
               <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
                 <a th:href="'/admin/adCs?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
                    th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
-                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="activeNow"
+                <a th:href="'/admin/adCs?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="activeNow"
                    th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
               </th:block>
 
