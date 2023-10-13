@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
 </head>
 <body>
 <header class="header" th:replace="fragments/header :: header">
@@ -67,7 +68,7 @@
                 <input type="hidden" th:value="${donate.donateWriteNumber}" name="donateWriteNumber">
                 <a class="main-donate-tag"
                    href="javascript:void(0);"
-                   th:onclick="'checkLoginAndRedirect(\'' + '/donate/detail?donateNum=' + ${donate.donateWriteNumber} + '\')'">
+                   th:href="@{/donate/detail(donateWriteTitle = ${donate.donateWriteTitle})}">
                     <div class="main-donate-list">
                         <img th:src="'/upload/' + ${donate.donateFileUploadPath} + '/th_' + ${donate.donateFileUuid} + '_' + ${donate.donateFileName}"
                              class="main-donate-img" alt="main-donate-img">
@@ -95,7 +96,7 @@
                class="main-va-tag">
                 <div class="main-va-list">
                     <div class="main-va-text">봉사지원</div>
-                    <div class="main-va-content" th:text="'[모집]' + ${cs.csWriteTitle}">[모집] 기아대책 번역봉사단 기대라이터 11기</div>
+                    <div class="main-va-content" th:text="'[모집] ' + ${cs.csWriteTitle}"></div>
                     <div class="main-va-at">
                         <div class="main-va-attext">모집인원</div>
                         <div class="main-va-atcnt" th:text = "${cs.csWriteCount}+'명'">300명</div>
@@ -110,24 +111,40 @@
             </div>
         </div>
     </section>
+
+    <!--    챗봇      -->
+    <!-- 채팅 버튼과 창 -->
+    <div id="chatbot" class="chatbot">
+        <div id="chatbot-header" class="chatbot-header">
+            <div class="close-box">
+                <button id="chatbot-close" class="chatbot-close">X</button>
+            </div>
+            <h4>챗봇</h4>
+        </div>
+        <div id="chatbot-body" class="chatbot-body">
+            <!-- 메세지 위치-->
+            <!--    <div class="user-message message">-->
+            <!--      <div class="message-text">안녕</div>-->
+            <!--    </div>-->
+            <!--    <div class="bot-message message">-->
+            <!--      <div class="message-text">네 안녕하세요</div>-->
+            <!--    </div>-->
+        </div>
+        <div id="chatbot-footer" class="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="궁금한것을 물어보세요!" />
+            <button id="chatbot-send">보내기</button>
+        </div>
+    </div>
+
+    <button id="chatbot-open" class="chatbot-button">
+        <!-- Font Awesome 채팅 아이콘 -->
+        <i class="fas fa-comment-dots"></i>
+    </button>
 </main>
 <footer class="footer" th:replace="fragments/footer :: footer"></footer>
 
-<script th:src="@{/js/mainPage.js}" defer="defer"></script>
+<script th:src="@{/js/mainPage.js}" defer="defer" type="module"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script  th:inline="javascript">
-    function checkLoginAndRedirect(redirectUrl) {
-        var userNumber = [[${session.userNumber}]];
 
-        if (userNumber == null) {
-
-            alert("로그인 후 이용 가능합니다.");
-        } else {
-
-            window.location.href = redirectUrl;
-        }
-    }
-
-</script>
 </body>
 </html>

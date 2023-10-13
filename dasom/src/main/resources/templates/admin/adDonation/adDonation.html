@@ -33,6 +33,11 @@
             <div class="board-qna-text">봉사 글 관리</div>
           </a>
         </section>
+        <section class="board-logout">
+          <a class="board-logout-a" href="/admin/logout">
+            <div class="board-logout-text">로그아웃</div>
+          </a>
+        </section>
       </aside>
 
       <!-- 우측 게시글 목록 창 -->
@@ -43,12 +48,7 @@
           <div class="section-top-category-name">
             <div class="section-top-category-name-text">후원 글 관리</div>
           </div>
-          <!-- 글쓰기버튼 -->
-          <div class="section-top-write">
 
-              <button onclick="location.href='/donateWrite/write'" class="button-write">글쓰기</button>
-
-          </div>
         </section>
 
         <!-- 검색바 -->
@@ -62,6 +62,7 @@
               <button class="search-button" type="submit">검색</button>
             </div>
           </form>
+          <button onclick="location.href='/donateWrite/write'" class="button-write">글쓰기</button>
         </section>
 
         <!-- 회원 목록 -->
@@ -79,7 +80,7 @@
           <!-- 회원목록 데이터값 -->
           <div class="section-board-bottom" th:each="donate : ${donateWriteList}">
             <div class="num" th:text="${donate.donateWriteNumber}">1</div>
-            <div class="campaign" th:text="${donate.donateWriteTitle}">캠페인명</div>
+            <a class="campaign-btn" href="#" th:text="${donate.donateWriteTitle}" th:data-number="${donate.donateWriteNumber}">캠페인명</a>
             <div class="writeDate" th:text="${donate.donateWriteDate}">23.09.13</div>
             <div class="state" th:text="${donate.donateWriteStatus == '1' ? '모집중' : '모집완료'}"></div>
             <div class="execute">
@@ -94,6 +95,32 @@
               <button th:attr="data-donateWriteNumber=${donate.donateWriteNumber}"
                       onclick="recruitDonation(this.getAttribute('data-donateWriteNumber'))"
                       class="btngray">마감</button>
+            </div>
+            <!--   봉사 참여자 리스트  -->
+            <div class="donate-user-modal">
+              <div class="donate-user-list">
+                <div class="donate-user-title" th:text="'[후원모금] '+${donate.donateWriteTitle} +' 후원 목록'"></div>
+                <div class="donate-write_amount">
+
+                </div>
+                <!--    봉사참여자 카테고리     -->
+                <div class="donate-user-group">
+                  <ul class="donate-user">
+                    <li class="donate-user-num">후원번호</li>
+                    <li class="donate-user-id">아이디</li>
+                    <li class="donate-user-name">이름</li>
+                    <li class="donate-user-amount">금액</li>
+                    <li class="donate-user-date">후원일자</li>
+                  </ul>
+
+                  <!-- 봉사 참여자 리스트 비동기로 불러오기 -->
+                  <div class="donate-cate-bottom">
+
+                  </div>
+
+                  <button type="button" class="modal-close">닫기</button>
+                </div>
+              </div>
             </div>
           </div>
           <div class="noResult-text" th:if="${#lists.isEmpty(donateWriteList)}">
@@ -113,7 +140,7 @@
               <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
                 <a th:href="'/admin/adDonation?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
                    th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
-                <a th:href="'/admin/adDonation?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
+                <a th:href="'/admin/adDonation?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="activeNow"
                    th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
               </th:block>
 

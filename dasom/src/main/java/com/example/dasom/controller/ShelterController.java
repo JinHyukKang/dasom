@@ -51,7 +51,6 @@ public class ShelterController {
             addrExtra = "";
         }
         model.addAttribute("addr3", addrExtra);
-
         model.addAttribute("userInfo", userDto);
         return "include/mapApiLogin";
     }

@@ -128,6 +128,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// 봉사지원자 리스트에 봉사글 제목 가져오기
+var campaignBtns = document.querySelectorAll(".campaign-btn");
 
+campaignBtns.forEach(function(btn) {
+    btn.addEventListener("click", function(event) {
+
+        var csWriteTitle = btn.textContent;
+
+        var csUserTitle = document.querySelector(".cs-user-title");
+        csUserTitle.textContent = "[봉사모집] " + csWriteTitle + " 지원자 목록";
+    });
+});
 
 

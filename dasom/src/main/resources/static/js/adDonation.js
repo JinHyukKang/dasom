@@ -61,3 +61,107 @@ function recruitDonation(donateWriteNumber) {
         alert("모집완료를 취소하셨습니다");
     }
 };
+
+//봉사자 리스트 모달
+document.addEventListener('DOMContentLoaded', function() {
+    let modal = document.querySelector(".donate-user-modal");
+    let xBox = document.querySelector('.modal-close');
+    let campaignLinks = document.querySelectorAll('.campaign-btn');
+
+    campaignLinks.forEach(function(campaignLink) {
+        campaignLink.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // 클릭된 링크의 데이터를 가져와서 csWriteNumber 설정
+            let donateWriteNumber = $(this).data('number');
+
+            modal.style.display = "block";
+
+            function getList(donateWriteNumber, callback){
+                $.ajax({
+                    url : `/adDonateRest/find/${donateWriteNumber}`,
+                    type : 'get',
+                    dataType : 'json',
+                    success : function (result) {
+                        if(callback){
+                            callback(result);
+                        }
+                    },
+                    error : function(a, b, c) {
+                        console.error(c);
+                    }
+                });
+            }
+
+            getList(donateWriteNumber, showDonateUser);
+
+            function showDonateUser(result){
+                console.log(result);
+
+                let text ='';
+
+                result.forEach( r => {
+
+                    text += `
+                    <ul class="donate-cate">
+                        <li class="donate-user-num">${r.donateNumber}</li>
+                        <li class="donate-user-id">${r.userId}</li>
+                        <li class="donate-user-name">${r.userName}</li>
+                        <li class="donate-user-amount">${r.donateAmount}원</li>
+                        <li class="donate-user-date">${r.donateDate}</li>
+                    </ul>
+
+                  `;
+                });
+
+                $('.donate-cate-bottom').html(text);
+            }
+
+            function getAmount(donateWriteNumber, callback) {
+                $.ajax({
+                    url: `/adDonateRest/findAmount/${donateWriteNumber}`,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (result) {
+                        if (callback) {
+                            callback(result);
+                        }
+                    },
+                    error: function (a, b, c) {
+                        console.error(c);
+                    }
+                });
+            }
+
+            getAmount(donateWriteNumber, showAmount);
+
+            function showAmount(result) {
+                console.log(result);
+
+                let text = `
+                    <div class="donate-write-amountCount">총모금액 : ${result.formattedAmount}원</div>
+                    `;
+
+                $('.donate-write_amount').html(text);
+            }
+
+        });
+    });
+
+    xBox.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+});
+
+// 봉사지원자 리스트에 봉사글 제목 가져오기
+var campaignBtns = document.querySelectorAll(".campaign-btn");
+
+campaignBtns.forEach(function(btn) {
+    btn.addEventListener("click", function(event) {
+
+        var donateWriteTitle = btn.textContent;
+
+        var donateTitle = document.querySelector(".donate-user-title");
+        donateTitle.textContent = "[후원모금] " + donateWriteTitle + " 후원 목록";
+    });
+});

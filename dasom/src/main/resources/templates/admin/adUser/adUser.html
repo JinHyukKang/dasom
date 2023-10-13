@@ -33,6 +33,11 @@
             <div class="board-qna-text">봉사 글 관리</div>
           </a>
         </section>
+        <section class="board-logout">
+          <a class="board-logout-a" href="/admin/logout">
+            <div class="board-logout-text">로그아웃</div>
+          </a>
+        </section>
       </aside>
 
       <!-- 우측 게시글 목록 창 -->
@@ -105,7 +110,7 @@
               <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
                 <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
                    th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
-                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
+                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="activeNow"
                    th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
               </th:block>
 

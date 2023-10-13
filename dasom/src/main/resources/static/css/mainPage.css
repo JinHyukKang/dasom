@@ -206,11 +206,10 @@ main{
 .main-donate-group{
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 .donate-group{
     width: 22%;
+    margin-right: 3%;
 }
 .main-donate-tag{
     text-decoration: none;
@@ -259,7 +258,7 @@ main{
 .main-va-group{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+
 }
 .cs-group{
     width: 20%;
@@ -267,6 +266,8 @@ main{
     border-radius: 8px;
     padding: 15px;
     position: relative;
+    margin-right: 3%;
+    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
 }
 .main-va-tag{
     width: 100%;
@@ -274,7 +275,7 @@ main{
     text-decoration: none;
 }
 .cs-group:hover{
-    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 .main-va-list{
@@ -287,20 +288,27 @@ main{
     margin-bottom: 10px;
     font-weight: bold;
 }
+.main-va-text1{
+    display: flex;
+}
 .main-va-content{
-    width: 70%;
-    height: 55px;
+    max-width: 70%;
+    max-height: 60px;
+    line-height: 30px;
     font-weight: 500;
     font-size: 20px;
     color: #000;
     margin-bottom: 30px;
-    display: -webkit-box;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    word-break: break-word;
+    word-break:break-word;
 }
+/*.main-va-content::after {*/
+/*    display: inline-block;*/
+/*}*/
 .main-va-at,
 .main-va-date{
     display: flex;
@@ -334,4 +342,105 @@ main{
     padding: 12px 15px 0;
     background: #39b54a;
     border-radius: 20px 0 20px 0;
+}
+
+/*챗봇*/
+
+/* 채팅 창 */
+.chatbot {
+    display: none; /* 채팅 창을 기본적으로 숨깁니다 */
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    width: 300px;
+    height: 500px;
+    z-index: 20;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.chatbot-header {
+    padding: 10px;
+    background-color: #39b54a;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+.close-box {
+    text-align: right;
+}
+.chatbot-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.chatbot-body {
+    height: 78%;
+    padding: 10px;
+    overflow-y: auto; /* 스크롤이 가능하도록 설정 */
+}
+
+.chatbot-footer {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chatbot-send {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #39b54a;
+    border: #39b54a 1px solid;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#chatbot-input {
+    height: 28px;
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.message {
+    /* border: black 1px solid; */
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.message-text {
+    margin: 0 10px 0 10px;
+    border: #00c7ae 1px solid;
+    min-height: 30px;
+    line-height: 30px;
+    border-radius: 10px;
+    padding: 3px 5px;
+}
+
+.user-message {
+}
+
+.bot-message {
+    text-align: right;
+    justify-content: right;
+}
+
+.bot-message > .message-text {
+    background-color: #39b54a;
+    color: white;
+}
+.chatbot-button{
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    z-index: 20;
+    width: 50px;
+    height: 40px;
 }

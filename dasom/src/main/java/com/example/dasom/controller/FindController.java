@@ -4,6 +4,7 @@ import com.example.dasom.domain.dto.UserDto;
 import com.example.dasom.service.FindService;
 import com.example.dasom.service.MyPageService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import static javax.swing.text.html.CSS.getAttribute;
 @Controller
 @RequestMapping("/find/*")
 @RequiredArgsConstructor
+@Slf4j
 public class FindController {
     private final FindService findService;
     private final MyPageService myPageService;
