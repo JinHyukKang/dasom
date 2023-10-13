@@ -14,7 +14,7 @@ public interface UserMapper {
     public UserDto findUserId(@Param("userName") String userName, @Param("userPhone") String userPhone, @Param("userBirthYear") String userBirthYear, @Param("userBirthMonth") String userBirthMonth, @Param("userBirthDay") String userBirthDay);
 
     //        비번찾기
-    public Long findUserPassword(@Param("userId") String userId, @Param("userName") String userName, @Param("userPhone") String userPhone);
+    public Long findUserPassword(@Param("userName") String userName, @Param("userId") String userId, @Param("userPhone") String userPhone);
 
     //    마이페이지 나의 Pw 수정
     public void userPasswordUpdate(UserDto userDto);
