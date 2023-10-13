@@ -315,7 +315,7 @@ function PhoneCheck() {
 
      console.log(postcode)
      console.log(addr)
-     if (ckId == 1 && ckPhoneNum == 1 && postcode !=null && addr != null){
+     if (ckId == 1 && ckPhoneNum == 1 && postcode && addr){
          $('.form-tag').submit();
 
      } else {
