@@ -24,7 +24,7 @@
     <!-- 이우진 내비밀번호 수정  -->
     <update id="userPasswordUpdate" parameterType="UserDto">
         update TBL_USERS
-        set user_password       = #{userPassword}
+        set user_password = #{userPassword}
         where user_number = ${userNumber}
     </update>
 
