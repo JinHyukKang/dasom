@@ -233,6 +233,8 @@ $('.user-check-btn').on('click', function verifySms() {
                 document.querySelector("#userPhone").value = userPhone;
                 PhoneCheck();
                 modifyCheck2();
+                closePh();
+
 
             } else {
                 alert("인증번호가 일치하지 않습니다.");
@@ -337,4 +339,10 @@ function pwCheck() {
             .text("비밀번호를 입력해주세요")
             .css("color", "gray");
     }
+}
+function closePh(){
+    phModal.style.display = "none";
+    xBoxPh.style.display = "none";
+    ph.style.display = "none";
+    // changeBtnPh.style.display="none";
 }

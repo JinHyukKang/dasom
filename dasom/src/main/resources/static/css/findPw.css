@@ -75,6 +75,9 @@ input[type='text'] {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.input-back-color-gray{
+    background-color: #f3f3f3;
+}
 
 .btn {
     width: 53%;
@@ -244,7 +247,6 @@ form.find-pw-form {
     padding: 0 20px;
     border: 1px solid #ddd;
     vertical-align: middle;
-    background: #fff;
     border-radius: 10px;
     margin-right: 2%;
 }
@@ -502,7 +504,7 @@ form.find-pw-form {
     width: 500px;
     height: 60px;
     top: 69%;
-    right: 37%;
+    right: 33%;
     z-index: 20;
     border-radius: 8px;
     background-color: #39a14a;

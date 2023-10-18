@@ -34,7 +34,7 @@
                 <!-- phone-number -->
                 <div class="form-group phone-group">
                     <label>휴대전화</label>
-                    <input type="text" id="id-phnum" th:value="${userPhone}" name="userPhone" readonly/>
+                    <input class="input-back-color-gray" type="text" id="id-phnum" th:value="${userPhone}" name="userPhone" readonly/>
                 </div>
                 <button type="button" class="submit-btn">인증하기</button>
 
@@ -45,13 +45,13 @@
 <!--   회원 전화번호 변경    (모달)-->
 <div class="phone-change-modal">
     <div class="change-ph">
-        <div class="change-title-ph">번호 변경</div>
+        <div class="change-title-ph">문자 인증</div>
         <!-- 핸드폰번호(인증포함) -->
         <div class="user-info">
             <div class="user-text">
                 휴대폰 번호
             </div>
-            <input type="text" class="user-phone-input" th:value="${userPhone}" id="userPhoneCh" name="userPhoneCh" readonly/>
+            <input type="text" class="input-back-color-gray user-phone-input" th:value="${userPhone}" id="userPhoneCh" name="userPhoneCh" readonly/>
             <button type="button" class="user-phone-btn1" onclick="startCountdown()">인증하기</button>
         </div>
         <!-- 휴대폰번호 인증 -->

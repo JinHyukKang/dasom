@@ -18,8 +18,8 @@ import java.util.*;
 @Service
 public class SmsService {
     String serviceId = "ncp:sms:kr:316486650918:dasom";
-    String accessKey = "5penp4Z4rRPU4BMX0JF0";
-    String secretKey = "maH0PJ9CZZnT2JZgo5MjLqpXguSnWFkxy1SzYFw7";
+    String accessKey = "72RIMhDJMQT8qVvvx4Ng";
+    String secretKey = "ZOTb1BNsQjqLtJwhBNr2KAkA9Y6JqQYtxfT7AQjL";
     String method = "POST";
     String timeStamp = Long.toString(System.currentTimeMillis());
 
