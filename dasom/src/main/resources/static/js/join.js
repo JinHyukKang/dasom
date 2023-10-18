@@ -218,12 +218,12 @@ function PhoneCheck() {
 
      console.log(userId)
      if(userId.search(/\s/) != -1) {
-         alert("공백 사용 불가");
+         alert("아이디는 공백 없이 입력해주세요.");
          return;
      }
 
-     if(userId.trim().length == 0) {
-         alert("아이디를 입력하세요");
+     if(userId.trim().length <= 2 || userId.trim().length >= 10) {
+         alert("아이디를 3~10자 이하로 입력해주세요.");
          return;
      }
 
@@ -314,22 +314,26 @@ function PhoneCheck() {
     let postcode = document.getElementById('sample6_postcode').value;
      let addr = document.getElementById("sample6_address").value;
 
-     console.log(postcode);
-     console.log(addr);
      if (ckId == 1 && ckPhoneNum == 1 && postcode && addr){
          $('.form-tag').submit();
+         alert("회원가입이 완료되었습니다.")
 
      } else {
          if (ckId == 0){
              alert("아이디 중복 확인 버튼을 눌러주세요.")
-         } else if (ckPhoneNum == 0){
-             alert("핸드폰 번호 인증을 해주세요. 제발여")
-         } else {
+         }
+
+         if (ckPhoneNum == 0){
+             alert("핸드폰 번호 인증을 해주세요.")
+         }
+
+         if(postcode == null && addr == null ){
              alert("주소를 입력해주세요.")
          }
      }
-
  })
+
+
 
 
 
