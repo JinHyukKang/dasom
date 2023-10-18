@@ -313,7 +313,7 @@ function PhoneCheck() {
  $('.join-submit-btn').on('click', function (){
     let postcode = document.getElementById('sample6_postcode').value;
      let addr = document.getElementById("sample6_address").value;
-
+     
      if (ckId == 1 && ckPhoneNum == 1 && postcode && addr){
          $('.form-tag').submit();
          alert("회원가입이 완료되었습니다.")
