@@ -26,9 +26,9 @@ aside {
   align-items: center;
 }
 aside section {
-  width: 170px;
-  height: 50px;
-  margin-top: 40px;
+  width: 150px;
+  height: 40px;
+  margin-top: 30px;
   background-color: #39b54a;
   border-radius: 6px;
 }
@@ -45,7 +45,7 @@ aside a {
 }
 aside div {
   font-weight: bold;
-  font-size: 17px;
+  font-size: 15px;
   color: white;
 }
 .aside-spacing {
@@ -179,7 +179,7 @@ main {
 .section-board-bottom,
 .section-board-bottom2 {
   width: 100%;
-  height: 89px;
+  height: 55px;
   display: flex;
   background-color: #f4f4f4;
 }
