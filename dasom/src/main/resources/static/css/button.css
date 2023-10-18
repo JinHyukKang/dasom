@@ -1,5 +1,5 @@
 .btnred {
-  height: 35%;
+  height: 40%;
   width: 50%;
   border: none;
   font-size: 14px;
@@ -11,7 +11,7 @@
 }
 
 .btngray {
-  height: 35%;
+  height: 40%;
   width: 50%;
   border: none;
   font-size: 14px;
@@ -22,7 +22,7 @@
   cursor: pointer;
 }
 .btnred1 {
-  height: 35%;
+  height: 40%;
   width: 60%;
   border: none;
   font-size: 14px;
@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 .btnred2{
-  height: 35%;
+  height: 40%;
   width: 40%;
   border: none;
   font-size: 14px;
@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 .btngray1 {
-  height: 35%;
+  height: 40%;
   width: 60%;
   border: none;
   font-size: 14px;
@@ -79,7 +79,7 @@
   opacity: 0.5;
 }
 .btngreen {
-  height: 35%;
+  height: 40%;
   width: 50%;
   border: none;
   font-size: 14px;
@@ -90,7 +90,7 @@
   cursor: pointer;
 }
 .btngreen1 {
-  height: 35%;
+  height: 40%;
   width: 60%;
   border: none;
   font-size: 14px;

@@ -26,7 +26,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/cs/detail/**")
-                .addPathPatterns("/donate/detail/**")
+                .addPathPatterns("/donate/payPage/**")
                 .order(1);
     }
 }
