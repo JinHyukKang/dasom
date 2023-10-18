@@ -23,6 +23,8 @@ public class DonateListRestController {
     private final DonateListService donateListService;
 
 
+//    봉사글 리스트 출력 (페이징 적용)
+
     @GetMapping("/{status}/{page}")
     public Map<String, Object> replyListPage(@PathVariable("page")Integer page, @PathVariable("status") String status){
         Criteria criteria = new Criteria();
