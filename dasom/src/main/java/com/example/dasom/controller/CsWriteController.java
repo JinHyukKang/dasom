@@ -53,6 +53,7 @@ public class CsWriteController {
 //    관리자 봉사 글 수정 페이지 이동
     @GetMapping("/modify")
     public String showModify(@RequestParam("csWriteNumber") Long csWriteNumber, Model model){
+
         CsWriteVo csWriteVo = csWriteService.find(csWriteNumber);
         model.addAttribute("cs", csWriteVo);
         return "admin/adModify/adModifyCs";

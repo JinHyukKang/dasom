@@ -79,7 +79,7 @@
         result.donateListVoList.forEach(r => {
             console.log("@@@@@" + r.donatewriteStatus);
             if (r.donatewriteStatus == 1) {
-                text += ` <a href="/donate/payPage?donateWriteTitle=${r.donatewriteTitle}&donateWriteNumber=${r.donatewriteNumber}" class="board-a">
+                text += ` <a href="/donate/payPage?donateWriteNumber=${r.donatewriteNumber}" class="board-a">
                         <div class="board-item-box">
                     `;
             } else {
@@ -122,7 +122,7 @@
         document.getElementById("hr-end").style.color = "black";
         document.getElementById("hr-on").style.display = "";
         document.getElementById("campaign-ongoing").style.color = "#39b54a";
-        document.getElementById("campaign-end").style.color = "#black";
+        document.getElementById("campaign-end").style.color = "black";
         status = '1';
         page=1;
         myModule(status, page, showResult);

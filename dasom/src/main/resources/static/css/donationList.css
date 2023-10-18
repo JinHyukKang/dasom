@@ -10,7 +10,7 @@
   margin: 0;
   padding: 0;
   font-family: "LINESeedKR-Bd";
-  /* border: 1px black solid; */
+   /*border: 1px black solid;*/
 }
 .flex-center {
   display: flex;
@@ -145,13 +145,20 @@ a:visited{
 }
 
 .box-top-text {
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.4);
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-word;
   width: 400px;
   position: absolute;
-  top: 80%;
+  top: 81%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
-  font-size: 30px;
+  font-size: 25px;
+  text-align: center;
 }
 
 .box-bottom-donate {
