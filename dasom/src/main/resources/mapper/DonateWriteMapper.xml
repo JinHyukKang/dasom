@@ -32,16 +32,11 @@
                 FROM TBL_DONATEWRITE
                 <choose>
                     <when test="'campaign'.equals(searchVo.cate)">
-                        <![CDATA[
-                          WHERE DONATEWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%' AND ROWNUM <= #{criteria.page} * #{criteria.amount}
-                          ]]>
-                        ORDER BY DONATEWRITE_NUMBER
+                        WHERE DONATEWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
+                        ORDER BY DONATEWRITE_NUMBER DESC
                     </when>
                     <otherwise>
-                        <![CDATA[
-                          WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
-                          ]]>
-                        ORDER BY DONATEWRITE_NUMBER
+                        ORDER BY DONATEWRITE_NUMBER DESC
                     </otherwise>
                 </choose>
             )X

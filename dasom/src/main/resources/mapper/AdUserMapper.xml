@@ -34,17 +34,14 @@
                 <choose>
                     <when test="'name'.equals(searchVo.cate)">
                           WHERE USER_NAME LIKE '%' || #{searchVo.keyword} || '%'
-                          ORDER BY USER_NUMBER
+                          ORDER BY USER_NUMBER DESC
                     </when>
                     <when test="'id'.equals(searchVo.cate)">
                           WHERE USER_ID LIKE '%' || #{searchVo.keyword} || '%'
-                          ORDER BY USER_NUMBER
+                          ORDER BY USER_NUMBER DESC
                     </when>
                     <otherwise>
-                        <![CDATA[
-                          WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
-                          ]]>
-                          ORDER BY USER_NUMBER
+                          ORDER BY USER_NUMBER DESC
                     </otherwise>
                 </choose>
             )X

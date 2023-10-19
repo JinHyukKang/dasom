@@ -46,11 +46,11 @@
                 FROM TBL_CSWRITE
             <choose>
                 <when test="'campaign'.equals(searchVo.cate)">
-                      WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
-                    ORDER BY CSWRITE_NUMBER
+                    WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
+                    ORDER BY CSWRITE_NUMBER DESC
                 </when>
                 <otherwise>
-                    ORDER BY CSWRITE_NUMBER
+                    ORDER BY CSWRITE_NUMBER DESC
                 </otherwise>
             </choose>
             )X
@@ -58,11 +58,9 @@
             <![CDATA[
             ROWNUM <= #{criteria.page}  * #{criteria.amount}
              ]]>
-            ORDER BY CSWRITE_NUMBER
+
         )Y
         WHERE RNUM > (#{criteria.page} - 1)  * #{criteria.amount}
-
-
     </select>
 
     <!--  봉사글 조회  -->
