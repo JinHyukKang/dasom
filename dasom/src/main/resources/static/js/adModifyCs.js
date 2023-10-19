@@ -85,10 +85,39 @@ function displayAjax() {
             let fileName = fileList.csFileUploadPath + '/' + fileList.csFileUuid + '_' + fileList.csFileName;
             console.log("fileName : "+fileName);
 
-            text += `<img src="/csFile/display?fileName=${fileName}" data-number=${fileList.csFileNumber} class="post-image" />`;
+            text += `<img src="/csFile/display?fileName=${fileName}" data-number=${fileList.csFileNumber} class="post-image2" />`;
 
 
             $('.post-images').html(text);
+
+            // 이미지가 생성된 후에 클릭 이벤트 처리기를 추가
+            let bigImgWrap = $('.big-img-wrap');
+
+            // 이미지가 생성된 후에 클릭 이벤트 처리기를 추가
+            let testImg = document.getElementsByClassName('post-image2');
+
+            for (let i = 0; i < testImg.length; i++) {
+                testImg[i].addEventListener("click", function () {
+                    let src = this.getAttribute('src');
+                    console.log(src);
+                    console.log(this);
+
+                    let bigImg = document.querySelector('.big-img');
+                    bigImg.setAttribute('src', src);
+
+                    // 해당 이미지와 관련된 bigImgWrap을 찾아서 표시
+                    let parentBigImgWrap = document.querySelector('.big-img-wrap'); // 변경된 부분
+                    parentBigImgWrap.style.display = 'flex';
+                });
+            }
+
+            // 모든 bigImgWrap 요소에 클릭 이벤트를 주기 위해서 반복문 사용
+            for (let i = 0; i < bigImgWrap.length; i++) {
+                bigImgWrap[i].addEventListener('click', function () {
+                    this.style.display = 'none';
+                });
+            }
+
         }
     });
 }

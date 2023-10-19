@@ -39,24 +39,24 @@
                 WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
                 AND U.USER_NUMBER = D.USER_NUMBER
                 AND U.USER_NAME LIKE '%' || #{searchVo.keyword} || '%'
-                ORDER BY D.DONATE_NUMBER
+                ORDER BY D.DONATE_NUMBER DESC
             </when>
             <when test="'id'.equals(searchVo.cate)">
                 WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
                 AND U.USER_NUMBER = D.USER_NUMBER
                 AND U.USER_ID LIKE '%' || #{searchVo.keyword} || '%'
-                ORDER BY D.DONATE_NUMBER
+                ORDER BY D.DONATE_NUMBER DESC
             </when>
             <when test="'campaign'.equals(searchVo.cate)">
                 WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
                 AND U.USER_NUMBER = D.USER_NUMBER
                 AND W.DONATEWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
-                ORDER BY D.DONATE_NUMBER
+                ORDER BY D.DONATE_NUMBER DESC
             </when>
             <otherwise>
                 WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
                 AND U.USER_NUMBER = D.USER_NUMBER
-                ORDER BY D.DONATE_NUMBER
+                ORDER BY D.DONATE_NUMBER DESC
             </otherwise>
         </choose>
         )X

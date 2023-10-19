@@ -86,6 +86,7 @@
         SELECT cs_number,
                TBL_CS.user_number, TBL_CSWRITE.CSwrite_number,
                TBL_CSWRITE.CSwrite_title,
+               TO_CHAR(TO_DATE(TBL_CS.cs_apply_date, 'YYYY-MM-DD'), 'YY-MM-DD') AS cs_Apply_Date,
                TO_CHAR(TO_DATE(csWrite_Act_Start, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_Start,
                TO_CHAR(TO_DATE(csWrite_Act_END, 'YYYY-MM-DD'), 'YY-MM-DD')   AS csWrite_Act_END,
                csWrite_Status
