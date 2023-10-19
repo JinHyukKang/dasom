@@ -21,12 +21,13 @@ public class SmsService {
     String accessKey = "72RIMhDJMQT8qVvvx4Ng";
     String secretKey = "ZOTb1BNsQjqLtJwhBNr2KAkA9Y6JqQYtxfT7AQjL";
     String method = "POST";
-    String timeStamp = Long.toString(System.currentTimeMillis());
+
 
     String requestUrl  = "/sms/v2/services/" + serviceId + "/messages";
     String apiUrl = "https://sens.apigw.ntruss.com" + requestUrl;
 
     public Map<String, Object> sendMessage(String phoneNumber){
+        String timeStamp = Long.toString(System.currentTimeMillis());
         Map<String, String> message = new HashMap<>();
         message.put("to", phoneNumber);
 
@@ -49,7 +50,7 @@ public class SmsService {
                     .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .defaultHeader("x-ncp-apigw-timestamp", timeStamp)
                     .defaultHeader("x-ncp-iam-access-key", accessKey)
-                    .defaultHeader("x-ncp-apigw-signature-v2", makeSignature())
+                    .defaultHeader("x-ncp-apigw-signature-v2", makeSignature(timeStamp))
                     .build();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -76,7 +77,7 @@ public class SmsService {
 
     }
 
-    private String makeSignature() throws NoSuchAlgorithmException, InvalidKeyException {
+    private String makeSignature(String timeStamp) throws NoSuchAlgorithmException, InvalidKeyException {
         String message = new StringBuilder()
                 .append(method)
                 .append(" ")
