@@ -79,6 +79,7 @@ public class MyPageController {
         log.info(userNumber.toString());
         userDto.setUserNumber(userNumber);
         myPageService.userDelete(userDto);
+        req.getSession().invalidate();
 
         return new RedirectView("/user/login");
     }
